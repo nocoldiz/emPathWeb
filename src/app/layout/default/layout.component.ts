@@ -35,7 +35,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
       opened: true,
       children: [
         {
-          name: 'Dashboard',
+          name: 'Explore',
           url: '/app/dashboard/default',
           prefix: {
             type: 'ibm-icon',
@@ -92,7 +92,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
           url: '/app/tasks',
         },
         {
-          name: 'File manager',
+          name: 'Inventory',
           prefix: {
             type: 'ibm-icon',
             name: 'folder',
