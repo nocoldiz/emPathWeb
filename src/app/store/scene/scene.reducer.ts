@@ -1,9 +1,18 @@
 import { createReducer, on } from '@ngrx/store';
-import { setActiveEvent, updateLog, removeLog } from './scene.actions';
+import {
+  setActiveEvent,
+  updateLog,
+  removeLog,
+  loadPlace,
+} from './scene.actions';
 import { initialState } from './scene.state';
 
 export const sceneReducer = createReducer(
   initialState,
+  on(loadPlace, (state, { place }) => ({
+    ...state,
+    place: place,
+  })),
   // Set active event
   on(setActiveEvent, (state, { id }) => ({
     ...state,

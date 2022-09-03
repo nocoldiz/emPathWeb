@@ -8,17 +8,7 @@ export const getLog = createSelector(
   (state: SceneState) => state.log
 );
 
-/*
-export const getLog = createSelector(getSceneState, (state) => {
-  return state.log;
-});
-export const getScene = createSelector(getSceneState, (state) => {
-  return state;
-});
-*/
-
-/*
-export const getLog = (state: SceneState) => state.log;
-
-export const getScene = (state: SceneState) => state;
-*/
+export const getPlace = createSelector(
+  getScene,
+  (state: SceneState) => state.place
+);

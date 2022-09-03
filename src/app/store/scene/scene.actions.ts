@@ -1,6 +1,11 @@
 import { createAction, props } from '@ngrx/store';
+import { Place } from 'src/app/interfaces/places.interface';
 
 //Scene
+export const loadPlace = createAction(
+  '[Scene] Load place',
+  props<{ place: Place }>()
+);
 export const addImgToScene = createAction(
   '[Scene] Add image to scene',
   props<{ name: string; keywords: string[]; position: -1 | 0 | 1 }>()

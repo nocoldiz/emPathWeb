@@ -1,6 +1,7 @@
 import { LogEntry } from '../../interfaces/events.interface';
-
+import { Place } from '../../interfaces/places.interface';
 export interface SceneState {
+  place: Place;
   music: string;
   centerImg: string;
   leftImg: string;
@@ -9,6 +10,7 @@ export interface SceneState {
   log: LogEntry[];
 }
 export const initialState: SceneState = {
+  place: { id: '0', name: 'Moonlit gas station', description: 'Lorem ipsum' },
   log: [
     {
       action: 'You open your eyes',
@@ -26,7 +28,7 @@ export const initialState: SceneState = {
       action: 'You look at the Guardian',
       date: new Date(),
       text: 'Ehi you!',
-      id: '1',
+      id: '2',
       name: 'Guardian',
       class: 'Keeper',
     },

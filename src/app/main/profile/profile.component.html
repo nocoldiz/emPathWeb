@@ -1,69 +1,78 @@
 <div class="app-a-box app-scrollbar-fix">
   <ng-scrollbar>
-    <div fxLayout="row wrap">
+    <div fxLayout="row wrap ">
       <div fxFlex.gt-md="360px" fxFlex="100%">
         <div
-          *ngFor="let logEntry of log$ | async"
-          class="app-card app-card--m-b mb-4"
+          class="app-content app-content--default relative sticky top-0"
+          ngClass.gt-md="-mt-20"
         >
-          <div class="app-card__content">
-            <div
-              *ngIf="logEntry.name || logEntry.npcImg"
-              class="flex justify-between mb-4"
-            >
-              <!-- Npc image-->
-              <div class="flex items-center">
-                <img
-                  class="w-12 rounded mr-2"
-                  [src]="logEntry.npcImg || 'assets/img/avatar/avatar2.jpg'"
-                />
-                <div>
-                  <div class="app-productive-heading-02">
-                    {{ logEntry.name }}
-                    <span class="app-helper-text-01 opacity-5 ml-1">
-                      {{ logEntry.class }}
-                    </span>
+          <div
+            *ngFor="let logEntry of log$ | async"
+            class="app-card app-card--m-b mb-4"
+          >
+            <div class="app-card__content">
+              <div
+                *ngIf="logEntry.name || logEntry.npcImg"
+                class="flex justify-between mb-4"
+              >
+                <!-- Npc image-->
+                <div class="flex items-center">
+                  <img
+                    class="w-12 rounded mr-2"
+                    [src]="logEntry.npcImg || 'assets/img/avatar/avatar2.jpg'"
+                  />
+                  <div>
+                    <div class="app-productive-heading-02">
+                      {{ logEntry.name }}
+                      <span class="app-helper-text-01 opacity-5 ml-1">
+                        {{ logEntry.class }}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div>
-                <button
-                  ibmButton="ghost"
-                  size="sm"
-                  class="bx--btn--icon-only bx--btn--remove-tooltip"
-                >
-                  <svg
-                    class="bx--btn__icon"
-                    ibmIconOverflowMenuVertical
-                    size="32"
-                  ></svg>
-                </button>
-              </div>
-            </div>
-            <!-- Log image-->
-            <div
-              fxLayout="row wrap"
-              fxLayoutGap="3px grid"
-              *ngIf="logEntry.img"
-            >
-              <div fxFlex="100%" fxFlex.gt-md="100%" style="min-height: 350px">
-                <div
-                  class="bg-cover cursor-pointer"
-                  fxFlex
-                  style="
-                    background-image: url(assets/img/pixabay/taj-mahal-1209004_640.jpg);
-                  "
-                ></div>
-              </div>
-            </div>
-            <!-- Log Description-->
-            <div fxLayout="row wrap" fxLayoutGap="3px grid">
-              <div fxFlex="100%" fxFlex.gt-md="100%">
-                <div class="app-body-long-02 mb-2 mr-2">
-                  {{ logEntry.text }}
+                <div>
+                  <button
+                    ibmButton="ghost"
+                    size="sm"
+                    class="bx--btn--icon-only bx--btn--remove-tooltip"
+                  >
+                    <svg
+                      class="bx--btn__icon"
+                      ibmIconOverflowMenuVertical
+                      size="32"
+                    ></svg>
+                  </button>
                 </div>
-                <div class="app-productive-heading-02 mb-2">
-                  {{ logEntry.action }}
+              </div>
+              <!-- Log image-->
+              <div
+                fxLayout="row wrap"
+                fxLayoutGap="3px grid"
+                *ngIf="logEntry.img"
+              >
+                <div
+                  fxFlex="100%"
+                  fxFlex.gt-md="100%"
+                  style="min-height: 350px"
+                >
+                  <div
+                    class="bg-cover cursor-pointer"
+                    fxFlex
+                    style="
+                      background-image: url(assets/img/pixabay/taj-mahal-1209004_640.jpg);
+                    "
+                  ></div>
+                </div>
+              </div>
+              <!-- Log Description-->
+              <div fxLayout="row wrap" fxLayoutGap="3px grid">
+                <div fxFlex="100%" fxFlex.gt-md="100%">
+                  <div class="app-body-long-02 mb-2 mr-2">
+                    {{ logEntry.text }}
+                  </div>
+                  <div class="app-productive-heading-02 mb-2">
+                    {{ logEntry.action }}
+                  </div>
                 </div>
               </div>
             </div>
@@ -76,6 +85,7 @@
           ngClass.gt-md="-mt-20"
         >
           <div fxLayout="row wrap">
+            <!-- Image container -->
             <div fxFlex="30%" fxFlex.gt-md="100%">
               <div class="">
                 <img
@@ -84,18 +94,18 @@
                 />
               </div>
             </div>
-
+            <!-- Description container -->
             <div fxFlex="70%" fxFlex.gt-md="100%">
               <div ngClass.lt-md="ml-2" ngClass.md="ml-2" ngClass.gt-md="pt-4">
                 <div>
                   <div class="app-productive-heading-03 font-bold">
-                    David Robson
+                    <div *ngIf="place$ | async as data">{{ data.name }}</div>
                   </div>
                 </div>
                 <div class="app-body-short-01 mt-4 mb-4">
-                  My passion for communication drew me to public relations and
-                  marketing, where I have worked with clients across a range of
-                  industries, including retail, education and technology.
+                  <div *ngIf="place$ | async as data">
+                    {{ data.description }}
+                  </div>
                 </div>
               </div>
             </div>
@@ -225,49 +235,7 @@
           </div>
           <div class="app-card app-card--m-b mb-4">
             <div class="app-card__content">
-              <div class="app-productive-heading-02 mb-4">CREATURES</div>
-
-              <div class="flex items-center mb-2">
-                <youpez-ibm-icon
-                  iconName="flag"
-                  iconSize="32"
-                ></youpez-ibm-icon>
-                <div class="ml-3">
-                  <div class="app-productive-heading-02">Discount 20%</div>
-                  <div class="truncate app-body-short-01 mb-1">
-                    Lorem ipsum dolor sit amet
-                  </div>
-                  <div class="app-helper-text-01">See details</div>
-                </div>
-              </div>
-
-              <div class="flex items-center mb-2">
-                <youpez-ibm-icon
-                  iconName="locked"
-                  iconSize="32"
-                ></youpez-ibm-icon>
-                <div class="ml-3">
-                  <div class="app-productive-heading-02">New servers</div>
-                  <div class="truncate app-body-short-01 mb-1">
-                    Lorem ipsum dolor sit amet
-                  </div>
-                  <div class="app-helper-text-01">See details</div>
-                </div>
-              </div>
-
-              <div class="flex items-center mb-2">
-                <youpez-ibm-icon
-                  iconName="star"
-                  iconSize="32"
-                ></youpez-ibm-icon>
-                <div class="ml-3">
-                  <div class="app-productive-heading-02">Free beer</div>
-                  <div class="truncate app-body-short-01 mb-1">
-                    Lorem ipsum dolor sit amet
-                  </div>
-                  <div class="app-helper-text-01">See details</div>
-                </div>
-              </div>
+              <div class="app-productive-heading-02 mb-4">MAP</div>
             </div>
           </div>
         </div>
