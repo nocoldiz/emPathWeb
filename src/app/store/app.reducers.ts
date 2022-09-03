@@ -5,55 +5,53 @@ import {
   createReducer,
   createSelector,
   MetaReducer,
-  on
+  on,
 } from '@ngrx/store';
-import { setActiveEvent, updateLog } from './actions/app.actions'
+import { setActiveEvent, updateLog } from './scene/scene.actions';
 import { environment } from '../../environments/environment';
 import { Npc } from '../../app/interfaces/npc.interface';
 import { LogEntry } from '../../app/interfaces/events.interface';
 import { state } from '@angular/animations';
 import { from } from 'rxjs';
-export interface AppState {
+
+/*export interface AppState {
   game?: {
-    player?: Npc,
+    player?: Npc;
     money?: number;
     researchPoints?: number;
-    party?: Npc[],
-    location?: string,
+    party?: Npc[];
+    location?: string;
     activeEvent: string;
     prevEvent: string;
     nextEvent: string;
     poi?: string;
-    coordinates?: [number, number],
-    seed?: string,
-
-  }
+    coordinates?: [number, number];
+    seed?: string;
+  };
 
   stats?: {
     placeVisited: number;
     kills: number;
     deaths: number;
     notoriety: number;
+  };
 
-  }
-
-  scene?: {
+  scene: {
     music?: string;
     centerImg?: string;
     leftImg?: string;
     rightImg?: string;
     backgroundImg?: string;
     log?: LogEntry[];
-  }
+  };
 
   options?: {
     music: number;
     sfx: number;
     novelAiAPIkey: string;
     dreamstudioAPIkey: string;
-    chaosMode?: boolean
-
-  }
+    chaosMode?: boolean;
+  };
 
   unlock?: {
     travelMap?: boolean;
@@ -67,57 +65,34 @@ export interface AppState {
     creativity?: boolean;
     demonology?: boolean;
     magic?: boolean;
+  };
 
-  }
-
-  witchingHour?: number,
+  witchingHour?: number;
 
   //theme:string
 }
-
+*/
+/*
 export const initialState: AppState = {
   game: {
-    seed: "12292",
-    activeEvent: "",
-    nextEvent: "",
+    seed: '12292',
+    activeEvent: 'test',
+    nextEvent: '',
     money: 3000,
-    prevEvent: "",
+    prevEvent: '',
     coordinates: [0, 0],
-    poi: "",
+    poi: '',
     researchPoints: 100,
-    location: "gasStation00",
+    location: 'gasStation00',
   },
   scene: {
-    log: []
-  }
-}
-
-
-export const appReducer = createReducer(
-  initialState,
-  // Set active event
-  on(setActiveEvent, (state, { id }) => ({
-    ...state,
-    game: {
-      ...state.game,
-      activeEvent: id,
-    }
-  })),
-
-  on(updateLog, (state, { action, description }) => ({
-    ...state,
-    scene: {
-      ...state.scene,
-      //log: [...state.scene, { action: action, date: new Date(), description: description }]
-    }
-
-  }))
-);
-
-
-export const reducers: ActionReducerMap<AppState> = {
-
+    log: [
+      {
+        action: 'You open your eyes',
+        date: new Date(),
+        text: 'You are sitting in your camper',
+      },
+    ],
+  },
 };
-
-
-export const metaReducers: MetaReducer<AppState>[] = !environment.production ? [] : [];
+*/

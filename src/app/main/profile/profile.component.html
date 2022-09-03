@@ -4,7 +4,6 @@
     <div fxLayout="row wrap">
 
       <div fxFlex.gt-md="360px" fxFlex="100%">
-        {{log$ |async}}
 
         <div class="app-card app-card--m-b mb-4">
           <div class="app-card__content">
@@ -26,6 +25,9 @@
               </div>
             </div>
             <div class="app-body-long-02 mb-4">
+              <b>    TEST ASYNC     {{scene$ |async}}      {{log$ |async}}
+              </b>
+
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
               dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
               ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
