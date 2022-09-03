@@ -1,17 +1,22 @@
-import { Ability, Cost, Npc } from "./npc.interface";
+import { Ability, Cost, Npc } from './npc.interface';
 
-export interface LogEntry{
-    date: Date;
-    text: string;
-    action: string;
+export interface LogEntry {
+  id: string;
+  text: string;
+  img?: string;
+  npcImg?: string;
+  name?: string;
+  class?: string;
+  date?: Date;
+  action?: string;
 }
 
-export interface Event{
-    title: string;
-    id: string;
-    keywords: string[];
-    npc: Npc[];
-    image: string;
-    timeout?: number;
-    actions: Ability[];
+export interface Event {
+  title: string;
+  id: string;
+  keywords: string[];
+  npc: Npc[];
+  image: string;
+  timeout?: number;
+  actions: Ability[];
 }

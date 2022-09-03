@@ -23,6 +23,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './store/app.effects';
+import { appReducer } from './store/app.state';
 
 @NgModule({
   declarations: [AppComponent],
@@ -43,11 +44,3 @@ import { AppEffects } from './store/app.effects';
   bootstrap: [AppComponent],
 })
 export class AppModule {}
-function appReducer(
-  appReducer: any
-):
-  | any[]
-  | import('@angular/core').Type<any>
-  | import('@angular/core').ModuleWithProviders<{}> {
-  throw new Error('Function not implemented.');
-}

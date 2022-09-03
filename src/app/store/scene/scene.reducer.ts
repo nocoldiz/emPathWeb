@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { setActiveEvent, updateLog } from './scene.actions';
+import { setActiveEvent, updateLog, removeLog } from './scene.actions';
 import { initialState } from './scene.state';
 
 export const sceneReducer = createReducer(
@@ -12,6 +12,14 @@ export const sceneReducer = createReducer(
 
   on(updateLog, (state, { action, description }) => ({
     ...state,
-    log: [...state.log],
+    todos: [
+      ...state.log,
+      { date: Date.now().toString(), action: action, description: description },
+    ],
+  })),
+  // Remove the todo from the todos array
+  on(removeLog, (state, { id }) => ({
+    ...state,
+    todos: state.log.filter((entry) => entry.id.toString() !== id.toString()),
   }))
 );
