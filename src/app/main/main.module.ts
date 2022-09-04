@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '../shared/shared.module';
-import { LayoutModule } from '../layout/layout.module';
+import { AdvModeModule } from '../advMode/advMode.module';
 import { AgGridModule } from '@ag-grid-community/angular';
 import { ChartsModule } from '../../@youpez';
 import { MainRoutingModule } from './main-routing.module';
@@ -144,7 +144,7 @@ import { StarterApplicationComplexComponent } from './starters/application/start
   imports: [
     CommonModule,
     MainRoutingModule,
-    LayoutModule,
+    AdvModeModule,
     SharedModule,
     ChartsModule,
     AgGridModule.withComponents([]),

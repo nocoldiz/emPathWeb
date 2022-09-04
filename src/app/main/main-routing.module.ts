@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TypographyComponent } from './typography/typography.component';
 
-import { LayoutComponent } from '../layout/default/layout.component';
-import { AppLayoutHorizontalComponent } from '../layout/horizontal/app-layout-horizontal/app-layout-horizontal.component';
+import { LayoutComponent } from '../advMode/default/layout.component';
+import { AppLayoutHorizontalComponent } from '../advMode/horizontal/app-layout-horizontal/app-layout-horizontal.component';
 
 import { WidgetsGeneralComponent } from './widgets/widgets-general/widgets-general.component';
 import { DashboardDefaultComponent } from './dashboard/dashboard-default/dashboard-default.component';
@@ -58,7 +58,7 @@ import { StarterRightSidebarTabsComponent } from './starters/right-sidebar/start
 import { StarterApplicationBasicComponent } from './starters/application/starter-application-basic/starter-application-basic.component';
 import { StarterApplicationAdvancedComponent } from './starters/application/starter-application-advanced/starter-application-advanced.component';
 import { StarterApplicationComplexComponent } from './starters/application/starter-application-complex/starter-application-complex.component';
-import { AdventureComponent } from '../layout/adventure/adventure.component';
+import { AdventureComponent } from '../advMode/adventure/adventure.component';
 
 const starterPages = [
   {

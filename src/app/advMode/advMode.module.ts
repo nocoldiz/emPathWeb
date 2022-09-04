@@ -9,11 +9,13 @@ import { LayoutMiniSidebarComponent } from './menu/layout-mini-sidebar/layout-mi
 import { LayoutSidebarComponent } from './menu/layout-sidebar/layout-sidebar.component';
 import { HeaderComponent } from './header/header/header.component';
 import { AdventureComponent } from './adventure/adventure.component';
+import { LogComponent } from './log/log.component';
 
 @NgModule({
   declarations: [
     LayoutComponent,
     AppLayoutHorizontalComponent,
+    LogComponent,
     LayoutMiniSidebarComponent,
     LayoutSidebarComponent,
     AdventureComponent,
@@ -28,4 +30,4 @@ import { AdventureComponent } from './adventure/adventure.component';
     HeaderComponent,
   ],
 })
-export class LayoutModule {}
+export class AdvModeModule {}
