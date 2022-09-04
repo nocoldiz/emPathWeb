@@ -22,26 +22,12 @@ import {
 })
 export class AdventureComponent implements OnInit {
   public log$ = this.store.select(getLog);
-  public scene$ = this.store.select(getScene);
-  public place$ = this.store.select(getPlace);
-  public activeAction$ = this.store.select(getActiveAction).subscribe((obj) => {
-    console.log('## active action', obj);
-  });
 
   log: Observable<ILogEntry[]>;
 
   constructor(private store: Store<AppState>) {}
 
-  clickAction(actionId: string): void {
-    console.log('## click on action ', actionId);
-    this.store.dispatch(sendAction({ actionId: actionId }));
-    this.store.dispatch(
-      updateLog({ description: 'test', action: 'you made x' })
-    );
-  }
-
   ngOnInit(): void {
-    console.log(this.scene$);
     /*
     this.store.dispatch(setActiveEvent({ id: 'test' }));
     this.store.dispatch(

@@ -65,7 +65,7 @@ export interface IPlace {
   hiddenTraps?: number;
   hiddenLoot?: number;
   log?: ILogEntry[];
-  actions?: IAction[];
+  actions?: string[];
   weather?: string;
   specialWeather?: string;
   specialWeatherOdds?: number;

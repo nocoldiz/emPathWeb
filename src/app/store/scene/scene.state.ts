@@ -3,19 +3,20 @@ import { IPlace } from '../../interfaces/places.interface';
 export interface SceneState {
   place: IPlace;
   music: string;
-  centerImg: string;
-  leftImg: string;
-  rightImg: string;
+  centerOverlay: string;
+  leftOverlay: string;
+  rightOverlay: string;
   backgroundImg: string;
   log: ILogEntry[];
   activeAction: string;
+  globalActions: [];
 }
 export const initialState: SceneState = {
   place: {
     id: '0',
     name: 'Moonlit gas station',
     description: 'Lorem ipsum',
-    actions: [{ id: 'lit-fire', name: 'Lit fire', type: 'physical' }],
+    actions: ['lit-fire', ''],
   },
   log: [
     {
@@ -37,9 +38,10 @@ export const initialState: SceneState = {
     },
   ],
   music: '',
-  centerImg: '',
-  leftImg: '',
-  rightImg: '',
+  centerOverlay: '',
+  leftOverlay: '',
+  rightOverlay: '',
   backgroundImg: '',
   activeAction: '',
+  globalActions: [],
 };
