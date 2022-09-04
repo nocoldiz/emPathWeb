@@ -1,6 +1,6 @@
 import { ILogEntry } from './events.interface';
 import { IInventory } from './inventory.interface';
-import { IAbility, INpc } from './npc.interface';
+import { IAction, INpc } from './npc.interface';
 import { IPlace } from './places.interface';
 
 export interface IUpgrades {
@@ -20,5 +20,5 @@ export interface ICamper {
   upgrades: IUpgrades[];
   pointsOfInterests?: IPlace[];
   log: ILogEntry[];
-  actions: IAbility[];
+  actions: IAction[];
 }

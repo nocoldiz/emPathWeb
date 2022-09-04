@@ -14,11 +14,11 @@ import {
   getScene,
 } from 'src/app/store/scene/scene.selectors';
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss'],
+  selector: 'app-adventure',
+  templateUrl: './adventure.component.html',
+  styleUrls: ['./adventure.component.scss'],
 })
-export class ProfileComponent implements OnInit {
+export class AdventureComponent implements OnInit {
   public log$ = this.store.select(getLog);
   public scene$ = this.store.select(getScene);
   public place$ = this.store.select(getPlace);

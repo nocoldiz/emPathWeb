@@ -1,4 +1,4 @@
-import { IAbility, ICost, INpc } from './npc.interface';
+import { ICost, INpc } from './npc.interface';
 
 export interface ILogEntry {
   id: string;
@@ -10,6 +10,35 @@ export interface ILogEntry {
   date?: Date;
   action?: string;
 }
+export interface IAction {
+  name: string;
+  id: string;
+  type:
+    | 'magic'
+    | 'physical'
+    | 'item'
+    | 'PSY'
+    | 'survival'
+    | 'speech'
+    | 'intellectual'
+    | 'ranged'
+    | 'curse'
+    | 'tecnical';
+  stat?: 'STR' | 'INT' | 'SAG' | 'DEX' | 'COS' | 'AGI' | 'LCL';
+  timeout?: number;
+  image?: string;
+  icon?: string;
+  keywords?: string[];
+  cost?: ICost[];
+  school?: string;
+  expiration?: Date;
+  event?: string;
+  failureEvent?: string;
+  locked?: boolean;
+  uses?: number;
+  failure?: number;
+  battleOnly?: boolean;
+}
 
 export interface IEvent {
   title: string;
@@ -18,5 +47,16 @@ export interface IEvent {
   npc: INpc[];
   image: string;
   timeout?: number;
-  actions: IAbility[];
+  actions: IAction[];
+}
+export interface IDialogueTree {
+  text: string;
+  id: string;
+  options: IDialogueTree[];
+  callEvent?: string;
+  callAction?: string;
+  requirement?: ICost;
+  cost?: ICost;
+  image?: string;
+  icon?: string;
 }

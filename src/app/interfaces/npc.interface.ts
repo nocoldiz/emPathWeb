@@ -1,43 +1,16 @@
+import { IAction, IDialogueTree } from './events.interface';
 import { IItem } from './inventory.interface';
 
 export interface ICost {
   item?: IItem;
   quantity?: number;
+  skillName?: string;
   mpCost?: number;
   hpCost?: number;
   euroCost?: number;
   atpCost?: number;
   wattCost?: number;
   researchCost?: number;
-}
-export interface IAbility {
-  name: string;
-  id: string;
-  type:
-    | 'magic'
-    | 'physical'
-    | 'item'
-    | 'PSY'
-    | 'survival'
-    | 'speech'
-    | 'intellectual'
-    | 'ranged'
-    | 'curse'
-    | 'tecnical';
-  stat?: 'STR' | 'INT' | 'SAG' | 'DEX' | 'COS' | 'AGI' | 'LCL';
-  timeout?: number;
-  image?: string;
-  icon?: string;
-  keywords?: string[];
-  cost?: ICost[];
-  school?: string;
-  expiration?: Date;
-  event?: string;
-  failureEvent?: string;
-  locked?: boolean;
-  uses?: number;
-  failure?: number;
-  battleOnly?: boolean;
 }
 
 export interface IPersonalityTrait {
@@ -61,6 +34,7 @@ export interface INpc {
   thirst?: boolean;
   traits: string[];
   fertility?: number;
+  dialogueTree?: IDialogueTree;
   image?: string;
   birthday?: Date;
   keywords?: string[];
@@ -74,7 +48,7 @@ export interface INpc {
     LCK: number;
   };
   inventory: IItem[];
-  abilities: IAbility[];
+  abilities: IAction[];
   politicalOrientation?: [number, number];
   religion?: string;
   race?: string;

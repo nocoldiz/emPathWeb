@@ -1,7 +1,7 @@
-import { ILogEntry } from './events.interface';
+import { IAction, ILogEntry } from './events.interface';
 import { IInventory } from './inventory.interface';
-import { IAbility, INpc } from './npc.interface';
-import { Vegetation } from './vegetation.interface';
+import { INpc } from './npc.interface';
+import { IVegetation } from './vegetation.interface';
 
 export interface IPlace {
   name: string;
@@ -60,12 +60,12 @@ export interface IPlace {
   owner?: INpc | string;
   hasUnderworld?: boolean;
   exploredPercentage?: number;
-  vegetation?: Vegetation[];
+  vegetation?: IVegetation[];
   temperature?: number;
   hiddenTraps?: number;
   hiddenLoot?: number;
   log?: ILogEntry[];
-  actions?: IAbility[];
+  actions?: IAction[];
   weather?: string;
   specialWeather?: string;
   specialWeatherOdds?: number;

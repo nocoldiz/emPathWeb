@@ -1,10 +1,10 @@
 import { createAction, props } from '@ngrx/store';
-import { Place } from 'src/app/interfaces/places.interface';
+import { IPlace } from 'src/app/interfaces/places.interface';
 
 //Scene
 export const loadPlace = createAction(
   '[Scene] Load place',
-  props<{ place: Place }>()
+  props<{ place: IPlace }>()
 );
 export const addImgToScene = createAction(
   '[Scene] Add image to scene',

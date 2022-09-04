@@ -1,4 +1,4 @@
-import { Inventory } from '../interfaces/inventory.interface';
+import { IInventory } from '../interfaces/inventory.interface';
 import { PlayerState } from './player/player.reducer';
 import { SceneState } from './scene/scene.state';
 import { sceneReducer } from './scene/scene.reducer';
