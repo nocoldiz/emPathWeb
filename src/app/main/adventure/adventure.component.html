@@ -113,7 +113,10 @@
 
                     <ng-container *ngFor="let action of data.actions">
                       <div>
-                        <div class="app-card app-card--select">
+                        <div
+                          (click)="clickAction(action.id)"
+                          class="app-card app-card--select"
+                        >
                           <div class="app-card__content__alt">
                             <div class="flex items-center">
                               <div class="mr-3">

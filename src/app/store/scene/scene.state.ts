@@ -8,6 +8,7 @@ export interface SceneState {
   rightImg: string;
   backgroundImg: string;
   log: ILogEntry[];
+  activeAction: string;
 }
 export const initialState: SceneState = {
   place: {
@@ -19,19 +20,16 @@ export const initialState: SceneState = {
   log: [
     {
       action: 'You open your eyes',
-      date: new Date(),
       text: 'You are sitting in your camper',
       id: '0',
     },
     {
       action: 'You see a lonely gas station',
-      date: new Date(),
       text: 'You are sitting in your camper',
       id: '1',
     },
     {
       action: 'You look at the Guardian',
-      date: new Date(),
       text: 'Ehi you!',
       id: '2',
       name: 'Guardian',
@@ -43,4 +41,5 @@ export const initialState: SceneState = {
   leftImg: '',
   rightImg: '',
   backgroundImg: '',
+  activeAction: '',
 };

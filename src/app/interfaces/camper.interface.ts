@@ -1,6 +1,6 @@
-import { ILogEntry } from './events.interface';
+import { IAction, ILogEntry } from './events.interface';
 import { IInventory } from './inventory.interface';
-import { IAction, INpc } from './npc.interface';
+import { INpc } from './npc.interface';
 import { IPlace } from './places.interface';
 
 export interface IUpgrades {

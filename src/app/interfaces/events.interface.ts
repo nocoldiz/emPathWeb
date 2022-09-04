@@ -7,7 +7,6 @@ export interface ILogEntry {
   npcImg?: string;
   name?: string;
   class?: string;
-  date?: Date;
   action?: string;
 }
 export interface IAction {

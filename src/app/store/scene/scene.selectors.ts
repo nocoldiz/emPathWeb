@@ -12,3 +12,7 @@ export const getPlace = createSelector(
   getScene,
   (state: SceneState) => state.place
 );
+export const getActiveAction = createSelector(
+  getScene,
+  (state: SceneState) => state.place
+);

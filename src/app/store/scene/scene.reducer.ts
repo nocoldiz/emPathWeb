@@ -4,6 +4,7 @@ import {
   updateLog,
   removeLog,
   loadPlace,
+  sendAction,
 } from './scene.actions';
 import { initialState } from './scene.state';
 
@@ -18,17 +19,22 @@ export const sceneReducer = createReducer(
     ...state,
     activeEvent: id,
   })),
-
+  on(sendAction, (state, { actionId }) => ({
+    ...state,
+    activeAction: actionId,
+  })),
   on(updateLog, (state, { action, description }) => ({
     ...state,
-    todos: [
+    log: [
       ...state.log,
-      { date: Date.now().toString(), action: action, description: description },
+      { date: Date.now(), action: action, description: description },
     ],
-  })),
+  }))
   // Remove the todo from the todos array
+
+  /*
   on(removeLog, (state, { id }) => ({
     ...state,
-    todos: state.log.filter((entry) => entry.id.toString() !== id.toString()),
-  }))
+    log: state.log.filter((entry) => entry.id !== id),
+  }))*/
 );

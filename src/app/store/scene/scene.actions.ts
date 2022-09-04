@@ -2,6 +2,15 @@ import { createAction, props } from '@ngrx/store';
 import { IPlace } from 'src/app/interfaces/places.interface';
 
 //Scene
+export const sendAction = createAction(
+  '[Scene] Send action',
+  props<{ actionId: string }>()
+);
+export const getActiveAction = createAction(
+  '[Scene] Get active action',
+  props<{ actionId: string }>()
+);
+
 export const loadPlace = createAction(
   '[Scene] Load place',
   props<{ place: IPlace }>()
@@ -29,7 +38,7 @@ export const updateLog = createAction(
 
 export const removeLog = createAction(
   '[Log] Update log',
-  props<{ id: number }>()
+  props<{ id: string }>()
 );
 export const clearLog = createAction(
   '[Log] Clear log',
