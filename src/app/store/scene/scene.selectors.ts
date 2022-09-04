@@ -3,6 +3,10 @@ import { AppState } from '../app.state';
 import { SceneState } from './scene.state';
 
 export const getScene = createFeatureSelector<AppState, SceneState>('scene');
+export const sceneUpdate = createSelector(
+  getScene,
+  (state: SceneState) => state
+);
 export const getLog = createSelector(
   getScene,
   (state: SceneState) => state.log

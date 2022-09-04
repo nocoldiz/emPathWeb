@@ -23,21 +23,28 @@ import {
 })
 export class AdventureComponent implements OnInit {
   public log$ = this.store.select(getLog);
-
   log: Observable<ILogEntry[]>;
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
+    this.store.dispatch(
+      loadPlace({
+        place: {
+          id: '0',
+          name: 'Moonlit gas station',
+          description: 'Test',
+          actions: ['lit-fire', 'enter-camper'],
+        },
+      })
+    );
     // this.store.dispatch(setScene({ backgroundImg: '' }));
     /*
     this.store.dispatch(setActiveEvent({ id: 'test' }));
     this.store.dispatch(
       updateLog({ description: 'test', action: 'you made x' })
     );
-    this.store.dispatch(
-      loadPlace({ place: { id: '0', name: 'Tavern', description: 'Test' } })
-    );
+
     console.log(this.scene$);*/
   }
 }

@@ -8,7 +8,13 @@ import {
   getPlace,
   getScene,
 } from 'src/app/store/scene/scene.selectors';
-import { sendAction, updateLog } from 'src/app/store/scene/scene.actions';
+import {
+  sendAction,
+  setScene,
+  setText,
+  updateLog,
+} from 'src/app/store/scene/scene.actions';
+import { IPlace } from 'src/app/interfaces/places.interface';
 
 @Component({
   selector: 'app-scene',
@@ -16,8 +22,13 @@ import { sendAction, updateLog } from 'src/app/store/scene/scene.actions';
   styleUrls: ['./scene.component.scss'],
 })
 export class SceneComponent implements OnInit {
-  public scene$ = this.store.select(getScene);
-  public place$ = this.store.select(getPlace);
+  public sceneUpdate$ = this.store.select(getScene);
+  public place$ = this.store.select(getPlace).subscribe((place: IPlace) => {
+    console.log(place);
+    this.store.dispatch(
+      setScene({ title: place.name, text: place.description })
+    );
+  });
   public activeAction$ = this.store.select(getActiveAction).subscribe((id) => {
     console.log('## active action', id);
   });

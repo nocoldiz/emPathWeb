@@ -20,6 +20,7 @@ export const setScene = createAction(
     place?: IPlace;
     music?: string;
     text?: string;
+    title?: string;
     centerOverlay?: string;
     leftOverlay?: string;
     rightOverlay?: string;
@@ -53,7 +54,10 @@ export const updateLog = createAction(
   '[Log] Update log',
   props<{ description: string; action: string }>()
 );
-
+export const setText = createAction(
+  '[Log] set Text',
+  props<{ text: string }>()
+);
 export const removeLog = createAction(
   '[Log] Update log',
   props<{ id: string }>()
