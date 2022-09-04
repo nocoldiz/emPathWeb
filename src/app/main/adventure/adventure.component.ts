@@ -24,22 +24,20 @@ export class AdventureComponent implements OnInit {
   public log$ = this.store.select(getLog);
   public scene$ = this.store.select(getScene);
   public place$ = this.store.select(getPlace);
-  public activeAction$ = this.store.select(getActiveAction);
+  public activeAction$ = this.store.select(getActiveAction).subscribe((obj) => {
+    console.log('## active action', obj);
+  });
 
   log: Observable<ILogEntry[]>;
 
   constructor(private store: Store<AppState>) {}
 
-  clickAction(action): void {
-    console.log('## click on action ', action);
-    this.store.dispatch(sendAction({ actionId: action }));
+  clickAction(actionId: string): void {
+    console.log('## click on action ', actionId);
+    this.store.dispatch(sendAction({ actionId: actionId }));
     this.store.dispatch(
       updateLog({ description: 'test', action: 'you made x' })
     );
-    /*
-    this.store.dispatch(
-      loadPlace({ place: { id: '0', name: 'Tavern', description: 'Test' } })
-    );*/
   }
 
   ngOnInit(): void {
@@ -52,9 +50,6 @@ export class AdventureComponent implements OnInit {
     this.store.dispatch(
       loadPlace({ place: { id: '0', name: 'Tavern', description: 'Test' } })
     );
-    this.activeAction$.subscribe((action) => {
-      console.log(action);
-    });
     console.log(this.scene$);*/
   }
 }
