@@ -1,2 +1,1 @@
-import { Npc } from "./npc.interface";
-
+import { INpc } from './npc.interface';

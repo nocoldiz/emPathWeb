@@ -1,6 +1,6 @@
-import { Place } from './places.interface';
+import { IPlace } from './places.interface';
 
-export interface HumanoidBody {
+export interface IHumanoidBody {
   head: {
     brain?: {
       status: string[];
@@ -127,6 +127,6 @@ export interface Race {
   soul?: string[];
   pregnancyMonths?: number;
   genders?: string[];
-  body: HumanoidBody;
+  body: IHumanoidBody;
   habitat: string;
 }

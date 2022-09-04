@@ -1,26 +1,24 @@
-import {  LogEntry } from "./events.interface";
-import { Inventory } from "./inventory.interface";
-import { Ability, Npc } from "./npc.interface";
-import { Place } from "./places.interface";
+import { ILogEntry } from './events.interface';
+import { IInventory } from './inventory.interface';
+import { IAbility, INpc } from './npc.interface';
+import { IPlace } from './places.interface';
 
-export interface Upgrades{
-    name: string;
-    requiredItems: {}
-    requiredWatts: number;
-    action: string
-    
-
+export interface IUpgrades {
+  name: string;
+  requiredItems: {};
+  requiredWatts: number;
+  action: string;
 }
 
-export interface Camper {
-    name: string;
-    description?: string[];
-    inventory: Inventory;
-    topSpeed: number;
-    temperature: number;
-    watt: number;
-    upgrades: Upgrades[]
-    pointsOfInterests?: Place[];
-    log: LogEntry[]
-    actions: Ability[];
+export interface ICamper {
+  name: string;
+  description?: string[];
+  inventory: IInventory;
+  topSpeed: number;
+  temperature: number;
+  watt: number;
+  upgrades: IUpgrades[];
+  pointsOfInterests?: IPlace[];
+  log: ILogEntry[];
+  actions: IAbility[];
 }

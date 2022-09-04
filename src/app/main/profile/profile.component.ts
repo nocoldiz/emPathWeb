@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { LogEntry } from 'src/app/interfaces/events.interface';
+import { ILogEntry } from 'src/app/interfaces/events.interface';
 import { AppState } from 'src/app/store/app.state';
 import {
   loadPlace,
@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
   public scene$ = this.store.select(getScene);
   public place$ = this.store.select(getPlace);
 
-  log: Observable<LogEntry[]>;
+  log: Observable<ILogEntry[]>;
 
   constructor(private store: Store<AppState>) {}
 

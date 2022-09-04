@@ -1,16 +1,21 @@
-import { LogEntry } from '../../interfaces/events.interface';
-import { Place } from '../../interfaces/places.interface';
+import { ILogEntry } from '../../interfaces/events.interface';
+import { IPlace } from '../../interfaces/places.interface';
 export interface SceneState {
-  place: Place;
+  place: IPlace;
   music: string;
   centerImg: string;
   leftImg: string;
   rightImg: string;
   backgroundImg: string;
-  log: LogEntry[];
+  log: ILogEntry[];
 }
 export const initialState: SceneState = {
-  place: { id: '0', name: 'Moonlit gas station', description: 'Lorem ipsum' },
+  place: {
+    id: '0',
+    name: 'Moonlit gas station',
+    description: 'Lorem ipsum',
+    actions: [{ id: 'lit-fire', name: 'Lit fire', type: 'physical' }],
+  },
   log: [
     {
       action: 'You open your eyes',

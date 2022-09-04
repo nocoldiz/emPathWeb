@@ -1,6 +1,6 @@
-import { Ability, Cost, Npc } from './npc.interface';
+import { IAbility, ICost, INpc } from './npc.interface';
 
-export interface LogEntry {
+export interface ILogEntry {
   id: string;
   text: string;
   img?: string;
@@ -11,12 +11,12 @@ export interface LogEntry {
   action?: string;
 }
 
-export interface Event {
+export interface IEvent {
   title: string;
   id: string;
   keywords: string[];
-  npc: Npc[];
+  npc: INpc[];
   image: string;
   timeout?: number;
-  actions: Ability[];
+  actions: IAbility[];
 }

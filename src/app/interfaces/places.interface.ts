@@ -1,9 +1,9 @@
-import { LogEntry } from './events.interface';
-import { Inventory } from './inventory.interface';
-import { Ability, Npc } from './npc.interface';
+import { ILogEntry } from './events.interface';
+import { IInventory } from './inventory.interface';
+import { IAbility, INpc } from './npc.interface';
 import { Vegetation } from './vegetation.interface';
 
-export interface Place {
+export interface IPlace {
   name: string;
   id: string;
   type?:
@@ -46,26 +46,26 @@ export interface Place {
     | 'primitive';
   layout?: 'square' | 'tower' | 'sparse';
   services?: string[];
-  places?: Place[];
+  places?: IPlace[];
   description?: string;
   keywords?: string[];
   isDungeon?: boolean;
-  npc?: Npc[];
+  npc?: INpc[];
   image?: string | string[];
   floors?: number;
   height?: number;
   foundingDate?: Date | string;
   population?: number;
-  builder?: Npc | string;
-  owner?: Npc | string;
+  builder?: INpc | string;
+  owner?: INpc | string;
   hasUnderworld?: boolean;
   exploredPercentage?: number;
   vegetation?: Vegetation[];
   temperature?: number;
   hiddenTraps?: number;
   hiddenLoot?: number;
-  log?: LogEntry[];
-  actions?: Ability[];
+  log?: ILogEntry[];
+  actions?: IAbility[];
   weather?: string;
   specialWeather?: string;
   specialWeatherOdds?: number;
