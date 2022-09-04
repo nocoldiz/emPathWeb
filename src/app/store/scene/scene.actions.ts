@@ -11,6 +11,24 @@ export const getActiveAction = createAction(
   props<{ actionId: string }>()
 );
 
+/**
+ * Manually override a scene parameter
+ */
+export const setScene = createAction(
+  '[Scene] Set Scene',
+  props<{
+    place?: IPlace;
+    music?: string;
+    text?: string;
+    centerOverlay?: string;
+    leftOverlay?: string;
+    rightOverlay?: string;
+    backgroundImg?: string;
+    activeAction?: string;
+    globalActions?: string[];
+  }>()
+);
+
 export const loadPlace = createAction(
   '[Scene] Load place',
   props<{ place: IPlace }>()

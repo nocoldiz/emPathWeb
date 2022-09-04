@@ -5,11 +5,38 @@ import {
   removeLog,
   loadPlace,
   sendAction,
+  setScene,
 } from './scene.actions';
 import { initialState } from './scene.state';
 
 export const sceneReducer = createReducer(
   initialState,
+  on(
+    setScene,
+    (
+      state,
+      {
+        place,
+        music,
+        centerOverlay,
+        leftOverlay,
+        rightOverlay,
+        backgroundImg,
+        activeAction,
+        globalActions,
+      }
+    ) => ({
+      ...state,
+      place: place,
+      music: music,
+      centerOverlay: centerOverlay,
+      leftOverlay: leftOverlay,
+      rightOverlay: rightOverlay,
+      backgroundImg: backgroundImg,
+      activeAction: activeAction,
+      globalActions: globalActions,
+    })
+  ),
   on(loadPlace, (state, { place }) => ({
     ...state,
     place: place,

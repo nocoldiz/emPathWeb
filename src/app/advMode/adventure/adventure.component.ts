@@ -8,6 +8,7 @@ import {
   setActiveEvent,
   updateLog,
   sendAction,
+  setScene,
 } from 'src/app/store/scene/scene.actions';
 import {
   getActiveAction,
@@ -28,6 +29,7 @@ export class AdventureComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
+    // this.store.dispatch(setScene({ backgroundImg: '' }));
     /*
     this.store.dispatch(setActiveEvent({ id: 'test' }));
     this.store.dispatch(

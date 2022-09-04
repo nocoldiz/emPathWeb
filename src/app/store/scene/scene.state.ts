@@ -7,9 +7,10 @@ export interface SceneState {
   leftOverlay: string;
   rightOverlay: string;
   backgroundImg: string;
+  text: string;
   log: ILogEntry[];
   activeAction: string;
-  globalActions: [];
+  globalActions: string[];
 }
 export const initialState: SceneState = {
   place: {
@@ -18,6 +19,7 @@ export const initialState: SceneState = {
     description: 'Lorem ipsum',
     actions: ['lit-fire', ''],
   },
+  text: '',
   log: [
     {
       action: 'You open your eyes',
