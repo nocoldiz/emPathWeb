@@ -2,13 +2,13 @@
   class="app-content app-content--default relative sticky top-0"
   ngClass.gt-md="-mt-20"
 >
-  <div *ngIf="sceneUpdate$ | async as data" fxLayout="row wrap">
+  <div fxLayout="row wrap">
     <!-- Image container -->
     <div fxFlex="30%" fxFlex.gt-md="100%">
       <div class="">
         <img
           class="w-full rounded-lg border-4 border-solid app-border-container"
-          [src]="data.img || 'assets/img/background/wilderness/1.png'"
+          [src]="img || 'assets/img/background/wilderness/1.png'"
         />
       </div>
     </div>
@@ -18,14 +18,14 @@
         <div ngClass.lt-md="ml-2" ngClass.md="ml-2" ngClass.gt-md="pt-4">
           <div>
             <div class="app-productive-heading-03 font-bold">
-              <div>{{ data.title }}</div>
+              <div>{{ title }}</div>
             </div>
           </div>
           <div class="app-body-short-01 mt-4 mb-4">
-            {{ data.text }}
+            {{ text }}
             <!-- Actions container -->
 
-            <ng-container *ngFor="let action of data.actions">
+            <ng-container *ngFor="let action of actions">
               <div>
                 <div
                   (click)="clickAction(action.id)"

@@ -3,6 +3,9 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ILogEntry } from 'src/app/interfaces/events.interface';
 import { AppState } from 'src/app/store/app.state';
+import { place } from './adventureModules/varlenia.places';
+import { actions } from './adventureModules/varlenia.actions';
+
 import {
   loadPlace,
   setActiveEvent,
@@ -27,24 +30,5 @@ export class AdventureComponent implements OnInit {
 
   constructor(private store: Store<AppState>) {}
 
-  ngOnInit(): void {
-    this.store.dispatch(
-      loadPlace({
-        place: {
-          id: '0',
-          name: 'Moonlit gas station',
-          description: 'Test',
-          actions: ['lit-fire', 'enter-camper'],
-        },
-      })
-    );
-    // this.store.dispatch(setScene({ backgroundImg: '' }));
-    /*
-    this.store.dispatch(setActiveEvent({ id: 'test' }));
-    this.store.dispatch(
-      updateLog({ description: 'test', action: 'you made x' })
-    );
-
-    console.log(this.scene$);*/
-  }
+  ngOnInit(): void {}
 }

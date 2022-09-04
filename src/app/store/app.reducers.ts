@@ -9,8 +9,8 @@ import {
 } from '@ngrx/store';
 import { setActiveEvent, updateLog } from './scene/scene.actions';
 import { environment } from '../../environments/environment';
-import { Npc } from '../../app/interfaces/npc.interface';
-import { LogEntry } from '../../app/interfaces/events.interface';
+import { INpc } from '../../app/interfaces/npc.interface';
+import { ILogEntry } from '../../app/interfaces/events.interface';
 import { state } from '@angular/animations';
 import { from } from 'rxjs';
 

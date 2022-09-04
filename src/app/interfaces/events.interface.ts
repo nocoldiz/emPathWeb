@@ -34,6 +34,7 @@ export interface IAction {
   event?: string;
   failureEvent?: string;
   locked?: boolean;
+  target?: string;
   uses?: number;
   failure?: number;
   battleOnly?: boolean;

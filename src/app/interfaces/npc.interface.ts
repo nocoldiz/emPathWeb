@@ -2,9 +2,9 @@ import { IAction, IDialogueTree } from './events.interface';
 import { IItem } from './inventory.interface';
 
 export interface ICost {
-  item?: IItem;
+  itemId?: string;
   quantity?: number;
-  skillName?: string;
+  skillId?: string;
   mpCost?: number;
   hpCost?: number;
   euroCost?: number;

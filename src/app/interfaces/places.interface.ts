@@ -47,7 +47,7 @@ export interface IPlace {
   layout?: 'square' | 'tower' | 'sparse';
   services?: string[];
   places?: IPlace[];
-  description?: string;
+  description: string;
   keywords?: string[];
   isDungeon?: boolean;
   npc?: INpc[];
