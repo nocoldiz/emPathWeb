@@ -10,12 +10,14 @@ import { LayoutSidebarComponent } from './menu/layout-sidebar/layout-sidebar.com
 import { HeaderComponent } from './header/header/header.component';
 import { AdventureComponent } from './adventure/adventure.component';
 import { LogComponent } from './log/log.component';
+import { SceneComponent } from './scene/scene.component';
 
 @NgModule({
   declarations: [
     LayoutComponent,
     AppLayoutHorizontalComponent,
     LogComponent,
+    SceneComponent,
     LayoutMiniSidebarComponent,
     LayoutSidebarComponent,
     AdventureComponent,
