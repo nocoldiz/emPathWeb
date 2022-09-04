@@ -23,7 +23,6 @@ import { UserBillingComponent } from './user/user-billing/user-billing.component
 import { UserCreditcardComponent } from './user/user-creditcard/user-creditcard.component';
 import { UserTransactionsComponent } from './user/user-transactions/user-transactions.component';
 import { TimelineComponent } from './timeline/timeline.component';
-import { AdventureComponent } from './adventure/adventure.component';
 import { PricingSimpleComponent } from './pricing/pricing-simple/pricing-simple.component';
 import { PricingModernComponent } from './pricing/pricing-modern/pricing-modern.component';
 import { PricingTableComponent } from './pricing/pricing-table/pricing-table.component';
@@ -92,7 +91,6 @@ import { StarterApplicationComplexComponent } from './starters/application/start
     UserCreditcardComponent,
     UserTransactionsComponent,
     TimelineComponent,
-    AdventureComponent,
     PricingSimpleComponent,
     PricingModernComponent,
     PricingTableComponent,

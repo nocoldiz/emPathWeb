@@ -20,7 +20,6 @@ import { UserBillingComponent } from './user/user-billing/user-billing.component
 import { UserCreditcardComponent } from './user/user-creditcard/user-creditcard.component';
 import { UserTransactionsComponent } from './user/user-transactions/user-transactions.component';
 import { TimelineComponent } from './timeline/timeline.component';
-import { AdventureComponent } from './adventure/adventure.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { Error404Component } from './errors/error404/error404.component';
@@ -59,6 +58,7 @@ import { StarterRightSidebarTabsComponent } from './starters/right-sidebar/start
 import { StarterApplicationBasicComponent } from './starters/application/starter-application-basic/starter-application-basic.component';
 import { StarterApplicationAdvancedComponent } from './starters/application/starter-application-advanced/starter-application-advanced.component';
 import { StarterApplicationComplexComponent } from './starters/application/starter-application-complex/starter-application-complex.component';
+import { AdventureComponent } from '../layout/adventure/adventure.component';
 
 const starterPages = [
   {
