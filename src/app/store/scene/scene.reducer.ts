@@ -64,10 +64,7 @@ export const sceneReducer = createReducer(
   })),
   on(updateLog, (state, { action, description }) => ({
     ...state,
-    log: [
-      ...state.log,
-      { date: Date.now(), action: action, description: description },
-    ],
+    log: [...state.log, { action: action, description: description }],
   }))
   // Remove the todo from the todos array
 

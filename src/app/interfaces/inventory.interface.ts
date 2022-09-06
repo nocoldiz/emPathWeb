@@ -52,7 +52,7 @@ export interface IItem {
     | 'neck';
   keywords: string[];
   uses?: number;
-  action?: string;
+  actions?: string[];
   failure?: number;
   quality?: 'normal' | 'refined' | 'legendary';
   pastOwners?: string[];

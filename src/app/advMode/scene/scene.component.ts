@@ -59,7 +59,7 @@ export class SceneComponent implements OnInit {
 
   clickOnAction(actionId: string): void {
     console.log('## click on action ', actionId);
-    this.store.dispatch(sendAction({ actionId: actionId }));
+    // this.store.dispatch(sendAction({ actionId: actionId }));
     this.store.dispatch(
       updateLog({ description: 'test', action: 'you made x' })
     );
@@ -68,9 +68,6 @@ export class SceneComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.store.dispatch(
-      updateLog({ description: 'test', action: 'you made x' })
-    );
     this.store.dispatch(
       loadPlace({
         place: this.scenePlace,

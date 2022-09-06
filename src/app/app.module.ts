@@ -23,6 +23,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './store/app.effects';
+import { SceneEffects } from './store/scene/scene.effects';
+
 import { appReducer } from './store/app.state';
 
 @NgModule({
@@ -37,7 +39,7 @@ import { appReducer } from './store/app.state';
     SharedModule,
     StoreModule.forRoot(appReducer),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([AppEffects]),
+    EffectsModule.forRoot([AppEffects, SceneEffects]),
     NgxMdModule.forRoot(),
   ],
   providers: [],

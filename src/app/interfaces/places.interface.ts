@@ -5,6 +5,7 @@ import { IVegetation } from './vegetation.interface';
 
 export interface IPlace {
   name: string;
+  description: string;
   id: string;
   type?:
     | 'dungeon'
@@ -47,7 +48,7 @@ export interface IPlace {
   layout?: 'square' | 'tower' | 'sparse';
   services?: string[];
   places?: IPlace[];
-  description: string;
+  items?: string[];
   keywords?: string[];
   isDungeon?: boolean;
   npc?: INpc[];
