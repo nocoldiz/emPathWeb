@@ -1,7 +1,9 @@
 <div class="app-a-box app-scrollbar-fix">
   <ng-scrollbar>
     <div fxLayout="row wrap ">
-      <div fxFlex.gt-md="360px" fxFlex="100%">
+      <div *ngIf="place$ | async as place" fxFlex.gt-md="360px" fxFlex="100%">
+        <app-place-info [place]="place"></app-place-info>
+
         <app-log></app-log>
       </div>
       <div fxFlex.gt-md="720px" fxFlex="100%">

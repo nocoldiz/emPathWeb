@@ -32,6 +32,11 @@ export interface IAction {
   school?: string;
   expiration?: Date;
   event?: string;
+  selectLog?: string[];
+  successLog?: string[];
+  failureLog?: string[];
+  successEvent?: string;
+  selectEvent?: string;
   failureEvent?: string;
   locked?: boolean;
   target?: string;

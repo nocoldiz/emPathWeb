@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { IAction } from 'src/app/interfaces/events.interface';
 import { IPlace } from 'src/app/interfaces/places.interface';
 
 //Scene
@@ -11,6 +12,18 @@ export const getActiveAction = createAction(
   props<{ actionId: string }>()
 );
 
+export const pushEquipmentActions = createAction(
+  '[Scene] push equipment actions',
+  props<{ actions: IAction[] }>()
+);
+export const pushAction = createAction(
+  '[Scene] push action',
+  props<{ action: IAction }>()
+);
+export const removeAction = createAction(
+  '[Scene] push action',
+  props<{ id: string }>()
+);
 /**
  * Manually override a scene parameter
  */
@@ -25,8 +38,7 @@ export const setScene = createAction(
     leftOverlay?: string;
     rightOverlay?: string;
     backgroundImg?: string;
-    activeAction?: string;
-    globalActions?: string[];
+    activeAction: string;
   }>()
 );
 

@@ -1,4 +1,4 @@
-import { ILogEntry } from '../../interfaces/events.interface';
+import { IAction, ILogEntry } from '../../interfaces/events.interface';
 import { IPlace } from '../../interfaces/places.interface';
 export interface SceneState {
   place: IPlace;
@@ -10,14 +10,14 @@ export interface SceneState {
   text: string;
   log: ILogEntry[];
   activeAction: string;
-  globalActions: string[];
+  actions: IAction[];
 }
 export const initialState: SceneState = {
   place: {
     id: '0',
-    name: 'Moonlit gas station',
-    description: 'Lorem ipsum',
-    actions: ['lit-fire', ''],
+    name: '',
+    description: '',
+    actions: [],
   },
   text: '',
   log: [
@@ -27,14 +27,9 @@ export const initialState: SceneState = {
       id: '0',
     },
     {
-      action: 'You see a lonely gas station',
-      text: 'You are sitting in your camper',
-      id: '1',
-    },
-    {
       action: 'You look at the Guardian',
       text: 'Ehi you!',
-      id: '2',
+      id: '1',
       name: 'Guardian',
       class: 'Keeper',
     },
@@ -45,5 +40,5 @@ export const initialState: SceneState = {
   rightOverlay: '',
   backgroundImg: '',
   activeAction: '',
-  globalActions: [],
+  actions: [],
 };

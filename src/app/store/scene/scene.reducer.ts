@@ -6,6 +6,7 @@ import {
   loadPlace,
   sendAction,
   setScene,
+  pushAction,
   setText,
 } from './scene.actions';
 import { initialState } from './scene.state';
@@ -23,10 +24,9 @@ export const sceneReducer = createReducer(
         leftOverlay,
         rightOverlay,
         backgroundImg,
-        activeAction,
         text,
-        globalActions,
         title,
+        activeAction,
       }
     ) => ({
       ...state,
@@ -37,8 +37,6 @@ export const sceneReducer = createReducer(
       leftOverlay: leftOverlay,
       rightOverlay: rightOverlay,
       backgroundImg: backgroundImg,
-      activeAction: activeAction,
-      globalActions: globalActions,
       title: title,
     })
   ),
@@ -49,6 +47,11 @@ export const sceneReducer = createReducer(
   on(setText, (state, { text }) => ({
     ...state,
     text: text,
+  })),
+
+  on(pushAction, (state, { action }) => ({
+    ...state,
+    actions: [...state.actions, { action }],
   })),
   // Set active event
   on(setActiveEvent, (state, { id }) => ({

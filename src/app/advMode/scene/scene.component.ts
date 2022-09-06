@@ -45,15 +45,16 @@ export class SceneComponent implements OnInit {
     );*/
     place?.actions.forEach((actionId) => {
       let placeAction = actions.find((action) => action.id === actionId);
+      this.actions.push(placeAction);
 
-      console.log('place?.actions', actionId);
+      console.log('place?.actions', actionId, placeAction);
     });
   });
   public activeAction$ = this.store.select(getActiveAction).subscribe((id) => {
     console.log('## active action', id);
   });
 
-  clickAction(actionId: string): void {
+  clickOnAction(actionId: string): void {
     console.log('## click on action ', actionId);
     this.store.dispatch(sendAction({ actionId: actionId }));
     this.store.dispatch(

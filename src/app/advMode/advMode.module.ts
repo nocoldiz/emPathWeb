@@ -11,6 +11,8 @@ import { HeaderComponent } from './header/header/header.component';
 import { AdventureComponent } from './adventure/adventure.component';
 import { LogComponent } from './log/log.component';
 import { SceneComponent } from './scene/scene.component';
+import { ActionButtonComponent } from './actionButton/action-button.component';
+import { PlaceInfoComponent } from './placeInfo/place-info.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { SceneComponent } from './scene/scene.component';
     LayoutSidebarComponent,
     AdventureComponent,
     HeaderComponent,
+    ActionButtonComponent,
+    PlaceInfoComponent,
   ],
   imports: [CommonModule, SharedModule],
   exports: [
@@ -30,6 +34,8 @@ import { SceneComponent } from './scene/scene.component';
     LayoutMiniSidebarComponent,
     LayoutSidebarComponent,
     HeaderComponent,
+    ActionButtonComponent,
+    PlaceInfoComponent,
   ],
 })
 export class AdvModeModule {}

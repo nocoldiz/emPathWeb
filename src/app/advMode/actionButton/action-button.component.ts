@@ -1,18 +1,17 @@
-import { ILogEntry } from '../../interfaces/events.interface';
-import { Component, Input, OnInit, Output } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { AppState } from 'src/app/store/app.state';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { IAction } from 'src/app/interfaces/events.interface';
 
 @Component({
   selector: 'app-action-button',
-  templateUrl: './action-button.html',
-  styleUrls: ['./action-button.scss'],
+  templateUrl: './action-button.component.html',
+  styleUrls: ['./action-button.component.scss'],
 })
 export class ActionButtonComponent implements OnInit {
-  constructor(private store: Store<AppState>) {}
-  @Input action;
-  @Output click;
+  @Input() action: IAction;
+  @Output() click: EventEmitter<string> = new EventEmitter();
+  clickAction(id: string) {
+    this.click.emit(id);
+  }
 
   ngOnInit(): void {}
 }

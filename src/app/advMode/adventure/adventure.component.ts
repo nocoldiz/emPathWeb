@@ -26,6 +26,7 @@ import {
 })
 export class AdventureComponent implements OnInit {
   public log$ = this.store.select(getLog);
+  public place$ = this.store.select(getPlace);
   log: Observable<ILogEntry[]>;
 
   constructor(private store: Store<AppState>) {}
