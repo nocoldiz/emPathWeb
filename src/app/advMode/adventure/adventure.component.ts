@@ -14,10 +14,12 @@ import {
   setScene,
 } from 'src/app/store/scene/scene.actions';
 import {
+  getActions,
   getActiveAction,
   getLog,
   getPlace,
   getScene,
+  getSceneImg,
 } from 'src/app/store/scene/scene.selectors';
 @Component({
   selector: 'app-adventure',
@@ -26,6 +28,10 @@ import {
 })
 export class AdventureComponent implements OnInit {
   public place$ = this.store.select(getPlace);
+  public actions$ = this.store.select(getActions);
+  public log$ = this.store.select(getLog);
+  public sceneImg$ = this.store.select(getSceneImg);
+
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {}

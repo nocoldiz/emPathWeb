@@ -2,10 +2,7 @@
   class="app-content app-content--default relative sticky top-0"
   ngClass.gt-md="-mt-20"
 >
-  <div
-    *ngFor="let logEntry of log$ | async"
-    class="app-card app-card--m-b mb-4"
-  >
+  <div *ngFor="let logEntry of log" class="app-card app-card--m-b mb-4">
     <div class="app-card__content">
       <div
         *ngIf="logEntry.name || logEntry.npcImg"
@@ -20,6 +17,8 @@
           <div>
             <div class="app-productive-heading-02">
               {{ logEntry.name }}
+              {{ logEntry.id }}
+
               <span class="app-helper-text-01 opacity-5 ml-1">
                 {{ logEntry.class }}
               </span>

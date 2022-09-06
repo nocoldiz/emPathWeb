@@ -1,14 +1,21 @@
-<div class="app-a-box app-scrollbar-fix" *ngIf="place$ | async as place">
+<div class="app-a-box app-scrollbar-fix">
   <ng-scrollbar>
     <div fxLayout="row wrap ">
       <div fxFlex.gt-md="360px" fxFlex="100%">
-        <app-place-info [place]="place"></app-place-info>
-        <app-log></app-log>
+        <app-place-info
+          *ngIf="place$ | async as place"
+          [place]="place"
+        ></app-place-info>
+        <app-log *ngIf="log$ | async as log" [log]="log"></app-log>
       </div>
       <div fxFlex.gt-md="720px" fxFlex="100%">
-        <app-scene></app-scene>
+        <app-scene *ngIf="sceneImg$ | async as img" [img]="img"></app-scene>
+        <app-actions-panel
+          *ngIf="actions$ | async as actions"
+          [actions]="actions"
+        ></app-actions-panel>
       </div>
-      <div fxFlex.gt-md="" fxFlex="100%">
+      <div *ngIf="place$ | async as place" fxFlex.gt-md="" fxFlex="100%">
         <app-right-panel [places]="place.places"></app-right-panel>
       </div>
     </div>

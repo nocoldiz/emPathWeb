@@ -11,7 +11,10 @@ export const getLog = createSelector(
   getScene,
   (state: SceneState) => state.log
 );
-
+export const getSceneImg = createSelector(
+  getScene,
+  (state: SceneState) => state.backgroundImg
+);
 export const getPlace = createSelector(
   getScene,
   (state: SceneState) => state.place

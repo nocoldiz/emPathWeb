@@ -14,6 +14,7 @@ import { SceneComponent } from './scene/scene.component';
 import { ActionButtonComponent } from './actionButton/action-button.component';
 import { PlaceInfoComponent } from './placeInfo/place-info.component';
 import { RightPanelComponent } from './rightPanel/right-panel.component';
+import { ActionsPanelComponent } from './actionsPanel/actions-panel.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { RightPanelComponent } from './rightPanel/right-panel.component';
     ActionButtonComponent,
     PlaceInfoComponent,
     RightPanelComponent,
+    ActionsPanelComponent,
   ],
   imports: [CommonModule, SharedModule],
   exports: [
@@ -39,6 +41,7 @@ import { RightPanelComponent } from './rightPanel/right-panel.component';
     ActionButtonComponent,
     PlaceInfoComponent,
     RightPanelComponent,
+    ActionsPanelComponent,
   ],
 })
 export class AdvModeModule {}

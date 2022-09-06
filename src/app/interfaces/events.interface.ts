@@ -1,8 +1,8 @@
 import { ICost, INpc } from './npc.interface';
 
 export interface ILogEntry {
-  id: string;
-  text: string;
+  id?: string;
+  text?: string;
   img?: string;
   npcImg?: string;
   name?: string;

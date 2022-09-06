@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { IAction } from 'src/app/interfaces/events.interface';
+import { IAction, ILogEntry } from 'src/app/interfaces/events.interface';
 import { IPlace } from 'src/app/interfaces/places.interface';
 
 //Scene
@@ -64,7 +64,7 @@ export const setActiveEvent = createAction(
 );
 export const updateLog = createAction(
   '[Log] Update log',
-  props<{ description: string; action: string }>()
+  props<{ logEntry: ILogEntry }>()
 );
 export const setText = createAction(
   '[Log] set Text',

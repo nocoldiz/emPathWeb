@@ -11,10 +11,9 @@ import { getLog } from 'src/app/store/scene/scene.selectors';
   styleUrls: ['./log.component.scss'],
 })
 export class LogComponent implements OnInit {
-  @Input() logEntry: ILogEntry;
-  public log$ = this.store.select(getLog);
+  @Input() log: ILogEntry[];
 
-  constructor(private store: Store<AppState>) {}
+  constructor() {}
 
   ngOnInit(): void {}
 }

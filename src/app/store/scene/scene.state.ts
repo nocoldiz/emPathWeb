@@ -25,7 +25,25 @@ export const initialState: SceneState = {
   centerOverlay: '',
   leftOverlay: '',
   rightOverlay: '',
-  backgroundImg: '',
+  backgroundImg: 'desert-city',
   activeAction: '',
-  actions: [],
+  actions: [
+    {
+      id: 'lit-fire',
+      name: 'Lit fire',
+      type: 'physical',
+      cost: [{ itemId: 'wood', quantity: 1 }],
+      timeout: 1000,
+    },
+    {
+      id: 'enter-camper',
+      name: 'Enter camper',
+      type: 'physical',
+    },
+    {
+      id: 'open',
+      name: 'Open',
+      type: 'physical',
+    },
+  ],
 };
