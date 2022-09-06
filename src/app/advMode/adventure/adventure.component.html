@@ -1,141 +1,15 @@
-<div class="app-a-box app-scrollbar-fix">
+<div class="app-a-box app-scrollbar-fix" *ngIf="place$ | async as place">
   <ng-scrollbar>
     <div fxLayout="row wrap ">
-      <div *ngIf="place$ | async as place" fxFlex.gt-md="360px" fxFlex="100%">
+      <div fxFlex.gt-md="360px" fxFlex="100%">
         <app-place-info [place]="place"></app-place-info>
-
         <app-log></app-log>
       </div>
       <div fxFlex.gt-md="720px" fxFlex="100%">
         <app-scene></app-scene>
       </div>
       <div fxFlex.gt-md="" fxFlex="100%">
-        <div class="app-content app-content--default sticky top-0">
-          <div class="app-card app-card--m-b mb-4">
-            <div class="app-card__content">
-              <div class="app-productive-heading-02 mb-4">
-                POINTS OF INTERESTS
-              </div>
-
-              <div class="flex items-center mb-2">
-                <div
-                  class="bg-cover cursor-pointer w-16 h-16 rounded mr-3"
-                  style="
-                    background-image: url(assets/img/pixabay/taj-mahal-1209004_640.jpg);
-                  "
-                ></div>
-                <div>
-                  <div class="app-productive-heading-02">Cities</div>
-                  <div class="truncate app-body-short-01 mb-1">
-                    Lorem ipsum dolor sit amet
-                  </div>
-                  <div class="app-helper-text-01">122k followers</div>
-                </div>
-              </div>
-
-              <div class="flex items-center mb-2">
-                <div
-                  class="bg-cover cursor-pointer w-16 h-16 rounded mr-3"
-                  style="
-                    background-image: url(assets/img/pixabay/rock-540130_640.jpg);
-                  "
-                ></div>
-                <div>
-                  <div class="app-productive-heading-02">Nature</div>
-                  <div class="truncate app-body-short-01 mb-1">
-                    Lorem ipsum dolor sit amet
-                  </div>
-                  <div class="app-helper-text-01">533k followers</div>
-                </div>
-              </div>
-
-              <div class="flex items-center mb-2">
-                <div
-                  class="bg-cover cursor-pointer w-16 h-16 rounded mr-3"
-                  style="
-                    background-image: url(assets/img/pixabay/orange-1377310_1920.jpg);
-                  "
-                ></div>
-                <div>
-                  <div class="app-productive-heading-02">Paint</div>
-                  <div class="truncate app-body-short-01 mb-1">
-                    Lorem ipsum dolor sit amet
-                  </div>
-                  <div class="app-helper-text-01">1.2M followers</div>
-                </div>
-              </div>
-
-              <div class="flex items-center mb-2">
-                <div
-                  class="bg-cover cursor-pointer w-16 h-16 rounded mr-3"
-                  style="
-                    background-image: url(assets/img/pixabay/house-569115_640.jpg);
-                  "
-                ></div>
-                <div>
-                  <div class="app-productive-heading-02">Buildings</div>
-                  <div class="truncate app-body-short-01 mb-1">
-                    Lorem ipsum dolor sit amet
-                  </div>
-                  <div class="app-helper-text-01">16k followers</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="app-card app-card--m-b mb-4">
-            <div class="app-card__content">
-              <div class="app-productive-heading-02 mb-4">CREATURES</div>
-
-              <div class="flex items-center mb-2">
-                <youpez-ibm-icon
-                  iconName="flag"
-                  iconSize="32"
-                ></youpez-ibm-icon>
-                <div class="ml-3">
-                  <div class="app-productive-heading-02">Discount 20%</div>
-                  <div class="truncate app-body-short-01 mb-1">
-                    Lorem ipsum dolor sit amet
-                  </div>
-                  <div class="app-helper-text-01">See details</div>
-                </div>
-              </div>
-
-              <div class="flex items-center mb-2">
-                <youpez-ibm-icon
-                  iconName="locked"
-                  iconSize="32"
-                ></youpez-ibm-icon>
-                <div class="ml-3">
-                  <div class="app-productive-heading-02">New servers</div>
-                  <div class="truncate app-body-short-01 mb-1">
-                    Lorem ipsum dolor sit amet
-                  </div>
-                  <div class="app-helper-text-01">See details</div>
-                </div>
-              </div>
-
-              <div class="flex items-center mb-2">
-                <youpez-ibm-icon
-                  iconName="star"
-                  iconSize="32"
-                ></youpez-ibm-icon>
-                <div class="ml-3">
-                  <div class="app-productive-heading-02">Free beer</div>
-                  <div class="truncate app-body-short-01 mb-1">
-                    Lorem ipsum dolor sit amet
-                  </div>
-                  <div class="app-helper-text-01">See details</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="app-card app-card--m-b mb-4">
-            <div class="app-card__content">
-              <div class="app-productive-heading-02 mb-4">MAP</div>
-            </div>
-          </div>
-        </div>
+        <app-right-panel [places]="place.places"></app-right-panel>
       </div>
     </div>
   </ng-scrollbar>

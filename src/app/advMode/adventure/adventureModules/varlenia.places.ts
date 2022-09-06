@@ -11,5 +11,10 @@ export let place: IPlace = {
       name: 'Moonlit gas station parking lot',
       description: 'Test',
     },
+    {
+      id: '2',
+      name: 'Store',
+      description: 'Test',
+    },
   ],
 };

@@ -20,20 +20,7 @@ export const initialState: SceneState = {
     actions: [],
   },
   text: '',
-  log: [
-    {
-      action: 'You open your eyes',
-      text: 'You are sitting in your camper',
-      id: '0',
-    },
-    {
-      action: 'You look at the Guardian',
-      text: 'Ehi you!',
-      id: '1',
-      name: 'Guardian',
-      class: 'Keeper',
-    },
-  ],
+  log: [],
   music: '',
   centerOverlay: '',
   leftOverlay: '',

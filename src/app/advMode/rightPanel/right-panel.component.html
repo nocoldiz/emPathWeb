@@ -1,0 +1,67 @@
+<div class="app-content app-content--default sticky top-0">
+  <div class="app-card app-card--m-b mb-4">
+    <div class="app-card__content">
+      <div class="app-productive-heading-02 mb-4">POINTS OF INTERESTS</div>
+
+      <div *ngFor="let place of places" class="flex items-center mb-2">
+        <div
+          class="bg-cover cursor-pointer w-16 h-16 rounded mr-3"
+          style="
+            background-image: url(assets/img/pixabay/taj-mahal-1209004_640.jpg);
+          "
+        ></div>
+        <div>
+          <div class="app-productive-heading-02">{{ place.name }}</div>
+          <div class="truncate app-body-short-01 mb-1">
+            {{ place.name }}
+          </div>
+          <div class="app-helper-text-01">122k followers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-card app-card--m-b mb-4">
+    <div class="app-card__content">
+      <div class="app-productive-heading-02 mb-4">CREATURES</div>
+
+      <div class="flex items-center mb-2">
+        <youpez-ibm-icon iconName="flag" iconSize="32"></youpez-ibm-icon>
+        <div class="ml-3">
+          <div class="app-productive-heading-02">Discount 20%</div>
+          <div class="truncate app-body-short-01 mb-1">
+            Lorem ipsum dolor sit amet
+          </div>
+          <div class="app-helper-text-01">See details</div>
+        </div>
+      </div>
+
+      <div class="flex items-center mb-2">
+        <youpez-ibm-icon iconName="locked" iconSize="32"></youpez-ibm-icon>
+        <div class="ml-3">
+          <div class="app-productive-heading-02">New servers</div>
+          <div class="truncate app-body-short-01 mb-1">
+            Lorem ipsum dolor sit amet
+          </div>
+          <div class="app-helper-text-01">See details</div>
+        </div>
+      </div>
+
+      <div class="flex items-center mb-2">
+        <youpez-ibm-icon iconName="star" iconSize="32"></youpez-ibm-icon>
+        <div class="ml-3">
+          <div class="app-productive-heading-02">Free beer</div>
+          <div class="truncate app-body-short-01 mb-1">
+            Lorem ipsum dolor sit amet
+          </div>
+          <div class="app-helper-text-01">See details</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="app-card app-card--m-b mb-4">
+    <div class="app-card__content">
+      <div class="app-productive-heading-02 mb-4">MAP</div>
+    </div>
+  </div>
+</div>

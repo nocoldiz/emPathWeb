@@ -10,6 +10,7 @@ import {
 } from 'src/app/store/scene/scene.selectors';
 import {
   loadPlace,
+  pushAction,
   sendAction,
   setScene,
   setText,
@@ -33,6 +34,7 @@ export class SceneComponent implements OnInit {
   public actions: IAction[] = [];
 
   public sceneUpdate$ = this.store.select(getScene);
+  public actions$ = this.store.select(getScene);
 
   public place$ = this.store.select(getPlace).subscribe((place: IPlace) => {
     console.log(place);
@@ -46,6 +48,7 @@ export class SceneComponent implements OnInit {
     place?.actions.forEach((actionId) => {
       let placeAction = actions.find((action) => action.id === actionId);
       this.actions.push(placeAction);
+      //this.store.dispatch(pushAction({ action: placeAction }));
 
       console.log('place?.actions', actionId, placeAction);
     });
