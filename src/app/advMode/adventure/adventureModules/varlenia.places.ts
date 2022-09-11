@@ -16,5 +16,17 @@ export let place: IPlace = {
       name: 'Store',
       description: 'Test',
     },
+    {
+      id: '3',
+      name: 'Bathroom',
+      description: 'Test',
+      places: [
+        {
+          id: '4',
+          name: 'Stall',
+          description: 'Test',
+        },
+      ],
+    },
   ],
 };

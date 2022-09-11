@@ -6,7 +6,10 @@
 */
 {
   "files": [],
-  "compilerOptions": {
+  "angularCompilerOptions": {
+    "strictTemplates": true
+  },
+   "compilerOptions": {
     "experimentalDecorators": true,
   },
   "references": [

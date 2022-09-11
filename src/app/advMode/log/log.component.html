@@ -1,67 +1,69 @@
-<div
-  class="app-content app-content--default relative sticky top-0"
-  ngClass.gt-md="-mt-20"
->
-  <div *ngFor="let logEntry of log" class="app-card app-card--m-b mb-4">
-    <div class="app-card__content">
-      <div
-        *ngIf="logEntry.name || logEntry.npcImg"
-        class="flex justify-between mb-4"
-      >
-        <!-- Npc image-->
-        <div class="flex items-center">
-          <img
-            class="w-12 rounded mr-2"
-            [src]="logEntry.npcImg || 'assets/img/avatar/avatar2.jpg'"
-          />
-          <div>
-            <div class="app-productive-heading-02">
-              {{ logEntry.name }}
-              {{ logEntry.id }}
+<ng-scrollbar>
+  <div
+    class="app-content app-content--default relative sticky top-0"
+    ngClass.gt-md="-mt-20"
+  >
+    <div *ngFor="let logEntry of log" class="app-card app-card--m-b mb-4">
+      <div class="app-card__content">
+        <div
+          *ngIf="logEntry.name || logEntry.npcImg"
+          class="flex justify-between mb-4"
+        >
+          <!-- Npc image-->
+          <div class="flex items-center">
+            <img
+              class="w-12 rounded mr-2"
+              [src]="logEntry.npcImg || 'assets/img/avatar/avatar2.jpg'"
+            />
+            <div>
+              <div class="app-productive-heading-02">
+                {{ logEntry.name }}
+                {{ logEntry.id }}
 
-              <span class="app-helper-text-01 opacity-5 ml-1">
-                {{ logEntry.class }}
-              </span>
+                <span class="app-helper-text-01 opacity-5 ml-1">
+                  {{ logEntry.class }}
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-        <div>
-          <button
-            ibmButton="ghost"
-            size="sm"
-            class="bx--btn--icon-only bx--btn--remove-tooltip"
-          >
-            <svg
-              class="bx--btn__icon"
-              ibmIconOverflowMenuVertical
-              size="32"
-            ></svg>
-          </button>
-        </div>
-      </div>
-      <!-- Log image-->
-      <div fxLayout="row wrap" fxLayoutGap="3px grid" *ngIf="logEntry.img">
-        <div fxFlex="100%" fxFlex.gt-md="100%" style="min-height: 350px">
-          <div
-            class="bg-cover cursor-pointer"
-            fxFlex
-            style="
-              background-image: url(assets/img/pixabay/taj-mahal-1209004_640.jpg);
-            "
-          ></div>
-        </div>
-      </div>
-      <!-- Log Description-->
-      <div fxLayout="row wrap" fxLayoutGap="3px grid">
-        <div fxFlex="100%" fxFlex.gt-md="100%">
-          <div class="app-body-long-02 mb-2 mr-2">
-            {{ logEntry.text }}
+          <div>
+            <button
+              ibmButton="ghost"
+              size="sm"
+              class="bx--btn--icon-only bx--btn--remove-tooltip"
+            >
+              <svg
+                class="bx--btn__icon"
+                ibmIconOverflowMenuVertical
+                size="32"
+              ></svg>
+            </button>
           </div>
-          <div class="app-productive-heading-02 mb-2">
-            {{ logEntry.action }}
+        </div>
+        <!-- Log image-->
+        <div fxLayout="row wrap" fxLayoutGap="3px grid" *ngIf="logEntry.img">
+          <div fxFlex="100%" fxFlex.gt-md="100%" style="min-height: 350px">
+            <div
+              class="bg-cover cursor-pointer"
+              fxFlex
+              style="
+                background-image: url(assets/img/pixabay/taj-mahal-1209004_640.jpg);
+              "
+            ></div>
+          </div>
+        </div>
+        <!-- Log Description-->
+        <div fxLayout="row wrap" fxLayoutGap="3px grid">
+          <div fxFlex="100%" fxFlex.gt-md="100%">
+            <div class="app-body-long-02 mb-2 mr-2">
+              {{ logEntry.text }}
+            </div>
+            <div class="app-productive-heading-02 mb-2">
+              {{ logEntry.action }}
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</ng-scrollbar>
