@@ -26,6 +26,11 @@ export let place: IPlace = {
           name: 'Stall',
           description: 'Test',
         },
+        {
+          id: '4',
+          name: 'Locked stall',
+          description: 'Test',
+        },
       ],
     },
   ],

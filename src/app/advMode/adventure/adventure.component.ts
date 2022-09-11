@@ -1,3 +1,4 @@
+import { IPlace } from 'src/app/interfaces/places.interface';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -34,8 +35,10 @@ export class AdventureComponent implements OnInit {
   public actions$ = this.store.select(getActions);
   public log$ = this.store.select(getLog);
   public sceneImg$ = this.store.select(getSceneImg);
-
+  private firstScene: IPlace = place;
   constructor(private store: Store<AppState>) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.store.dispatch(loadPlace({ place: this.firstScene }));
+  }
 }
