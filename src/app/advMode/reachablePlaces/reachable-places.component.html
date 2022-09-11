@@ -6,6 +6,7 @@
 
         <div *ngFor="let place of places" class="flex items-center mb-2">
           <div
+            (click)="clickOnPlace(place)"
             class="bg-cover cursor-pointer w-16 h-16 rounded mr-3"
             style="
               background-image: url(assets/img/pixabay/taj-mahal-1209004_640.jpg);

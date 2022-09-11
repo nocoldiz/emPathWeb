@@ -15,7 +15,7 @@ import { ActionButtonComponent } from './actionButton/action-button.component';
 import { PlaceInfoComponent } from './placeInfo/place-info.component';
 import { RightPanelComponent } from './rightPanel/right-panel.component';
 import { ActionsPanelComponent } from './actionsPanel/actions-panel.component';
-
+import { ReachablePlacesComponent } from './reachablePlaces/reachable-places.component';
 @NgModule({
   declarations: [
     LayoutComponent,
@@ -30,6 +30,7 @@ import { ActionsPanelComponent } from './actionsPanel/actions-panel.component';
     PlaceInfoComponent,
     RightPanelComponent,
     ActionsPanelComponent,
+    ReachablePlacesComponent,
   ],
   imports: [CommonModule, SharedModule],
   exports: [

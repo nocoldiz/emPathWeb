@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IPlace } from 'src/app/interfaces/places.interface';
+import { IPlace } from '../../interfaces/places.interface';
 
 @Component({
   selector: 'app-right-panel',

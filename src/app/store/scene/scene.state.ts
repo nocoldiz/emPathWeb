@@ -18,6 +18,30 @@ export const initialState: SceneState = {
     name: '',
     description: '',
     actions: [],
+    places: [
+      {
+        id: '1',
+        name: 'Moonlit gas station parking lot',
+        description: 'Test',
+      },
+      {
+        id: '2',
+        name: 'Store',
+        description: 'Test',
+      },
+      {
+        id: '3',
+        name: 'Bathroom',
+        description: 'Test',
+        places: [
+          {
+            id: '4',
+            name: 'Stall',
+            description: 'Test',
+          },
+        ],
+      },
+    ],
   },
   text: '',
   log: [],
@@ -25,6 +49,7 @@ export const initialState: SceneState = {
   centerOverlay: '',
   leftOverlay: '',
   rightOverlay: '',
+
   backgroundImg: 'desert-city',
   activeAction: '',
   actions: [

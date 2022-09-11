@@ -18,6 +18,7 @@ import {
   getActiveAction,
   getLog,
   getPlace,
+  getReachablePlaces,
   getScene,
   getSceneImg,
 } from 'src/app/store/scene/scene.selectors';
@@ -28,6 +29,8 @@ import {
 })
 export class AdventureComponent implements OnInit {
   public place$ = this.store.select(getPlace);
+  public reachablePlaces$ = this.store.select(getReachablePlaces);
+
   public actions$ = this.store.select(getActions);
   public log$ = this.store.select(getLog);
   public sceneImg$ = this.store.select(getSceneImg);

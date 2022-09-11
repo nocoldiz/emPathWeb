@@ -16,8 +16,13 @@
         ></app-actions-panel>
       </p>
     </div>
-    <div *ngIf="place$ | async as place" fxFlex.gt-md="" fxFlex="100%">
-      <app-right-panel [places]="place.places"></app-right-panel>
+    <div fxFlex.gt-md="" fxFlex="100%">
+      <app-reachable-places
+        *ngIf="reachablePlaces$ | async as reachablePlaces"
+        [places]="reachablePlaces"
+      ></app-reachable-places>
+      <!--      <app-right-panel [places]="place.places"></app-right-panel>
+-->
     </div>
   </div>
 </div>
