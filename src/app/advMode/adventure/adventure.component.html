@@ -7,7 +7,7 @@
       ></app-place-info>
       <app-log *ngIf="log$ | async as log" [log]="log"></app-log>
     </div>
-    <div fxFlex.gt-md="720px" fxFlex="100%">
+    <div fxFlex.gt-sm="320px" fxFlex.gt-md="720px" fxFlex="100%">
       <app-scene *ngIf="sceneImg$ | async as img" [img]="img"></app-scene>
       <p>
         <app-actions-panel
@@ -18,8 +18,9 @@
     </div>
     <div fxFlex.gt-md="" fxFlex="100%">
       <app-reachable-places
-        *ngIf="reachablePlaces$ | async as reachablePlaces"
-        [places]="reachablePlaces"
+        [places]="reachablePlaces$ | async"
+        [currentPlace]="place$ | async"
+        [previousPlace]="previousPlace$ | async"
       ></app-reachable-places>
       <!--      <app-right-panel [places]="place.places"></app-right-panel>
 -->

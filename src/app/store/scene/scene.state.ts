@@ -2,6 +2,7 @@ import { IAction, ILogEntry } from '../../interfaces/events.interface';
 import { IPlace } from '../../interfaces/places.interface';
 export interface SceneState {
   place: IPlace;
+  previousPlace: IPlace;
   music: string;
   centerOverlay: string;
   leftOverlay: string;
@@ -15,6 +16,13 @@ export interface SceneState {
 export const initialState: SceneState = {
   place: {
     id: '0',
+    name: '',
+    description: '',
+    actions: [],
+    places: [],
+  },
+  previousPlace: {
+    id: '',
     name: '',
     description: '',
     actions: [],

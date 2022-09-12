@@ -1,3 +1,4 @@
+import { getPreviousPlace } from './../../store/scene/scene.selectors';
 import { IPlace } from 'src/app/interfaces/places.interface';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -31,6 +32,7 @@ import {
 export class AdventureComponent implements OnInit {
   public place$ = this.store.select(getPlace);
   public reachablePlaces$ = this.store.select(getReachablePlaces);
+  public previousPlace$ = this.store.select(getPreviousPlace);
 
   public actions$ = this.store.select(getActions);
   public log$ = this.store.select(getLog);

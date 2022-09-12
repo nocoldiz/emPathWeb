@@ -46,6 +46,10 @@ export const loadPlace = createAction(
   '[Scene] Load place',
   props<{ place: IPlace }>()
 );
+export const loadPreviousPlace = createAction(
+  '[Scene] Load previous place',
+  props<{ place: IPlace }>()
+);
 export const addImgToScene = createAction(
   '[Scene] Add image to scene',
   props<{ name: string; keywords: string[]; position: -1 | 0 | 1 }>()

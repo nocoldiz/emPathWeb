@@ -2,19 +2,30 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
 import { IPlace } from '../../interfaces/places.interface';
-import { loadPlace } from 'src/app/store/scene/scene.actions';
+import {
+  loadPlace,
+  loadPreviousPlace,
+} from 'src/app/store/scene/scene.actions';
 @Component({
   selector: 'app-reachable-places',
   templateUrl: './reachable-places.component.html',
   styleUrls: ['./reachable-places.component.scss'],
 })
 export class ReachablePlacesComponent implements OnInit {
+  @Input() currentPlace: IPlace;
+
   @Input() places: IPlace[];
+  @Input() previousPlace: IPlace;
 
   constructor(private store: Store<AppState>) {}
-  clickOnPlace(place: IPlace): void {
-    console.log('## click on place ', place);
-    this.store.dispatch(loadPlace({ place: place }));
+  clickOnPlace(newPlace: IPlace): void {
+    console.log('## click on place ', newPlace);
+    this.store.dispatch(loadPlace({ place: newPlace }));
+    this.store.dispatch(loadPreviousPlace({ place: this.currentPlace }));
+  }
+  goBack(): void {
+    this.store.dispatch(loadPlace({ place: this.previousPlace }));
+    this.store.dispatch(loadPlace({ place: this.previousPlace }));
   }
   ngOnInit(): void {
     console.log('ReachablePlacesComponent', this.places);

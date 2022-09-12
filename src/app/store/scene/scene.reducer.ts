@@ -8,6 +8,7 @@ import {
   setScene,
   pushAction,
   setText,
+  loadPreviousPlace,
 } from './scene.actions';
 import { initialState } from './scene.state';
 
@@ -42,7 +43,12 @@ export const sceneReducer = createReducer(
   ),
   on(loadPlace, (state, { place }) => ({
     ...state,
+    previousPlace: state.place,
     place: place,
+  })),
+  on(loadPreviousPlace, (state, { place }) => ({
+    ...state,
+    previousPlace: place,
   })),
   on(setText, (state, { text }) => ({
     ...state,
