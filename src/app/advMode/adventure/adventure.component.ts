@@ -37,7 +37,13 @@ export class AdventureComponent implements OnInit {
   public actions$ = this.store.select(getActions);
   public log$ = this.store.select(getLog);
   public sceneImg$ = this.store.select(getSceneImg);
-  private firstScene: IPlace = place;
+  private firstScene: IPlace = {
+    id: 'ml-gas-station',
+    name: 'Moonlit gas station parking lot',
+    description: 'Test',
+    actions: ['lit-fire', 'enter-camper', 'lick', 'open', 'listen'],
+    places: ['ml-bathroom', 'gas-station-store', 'parking lot'],
+  };
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {

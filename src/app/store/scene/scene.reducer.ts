@@ -1,4 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
+import { fixedPlaces } from 'src/app/advMode/adventure/adventureModules/varlenia.places';
 import {
   setActiveEvent,
   updateLog,
@@ -11,6 +12,7 @@ import {
   loadPreviousPlace,
 } from './scene.actions';
 import { initialState } from './scene.state';
+let places = fixedPlaces;
 
 export const sceneReducer = createReducer(
   initialState,
@@ -44,6 +46,9 @@ export const sceneReducer = createReducer(
   on(loadPlace, (state, { place }) => ({
     ...state,
     previousPlace: state.place,
+    reachablePlaces: place.places
+      ? places.filter((e) => place.places.includes(e.id))
+      : [],
     place: place,
   })),
   on(loadPreviousPlace, (state, { place }) => ({

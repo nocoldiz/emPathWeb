@@ -12,10 +12,10 @@ export let fixedPlaces: IPlace[] = [
   //Gas station template
   {
     id: 'ml-gas-station',
-    name: 'Moonlit gas station parking lot',
+    name: 'Moonlit gas station',
     description: 'Test',
     actions: ['lit-fire', 'enter-camper', 'lick', 'open', 'listen'],
-    places: ['ml-bathroom', 'gas-station-store', 'parking lot'],
+    places: ['ml-bathroom', 'ml-gas-station-store', 'ml-parking-lot'],
   },
   {
     id: 'ml-bathroom',
@@ -29,6 +29,18 @@ export let fixedPlaces: IPlace[] = [
     description: 'Test',
     actions: ['piss'],
     places: ['ml-bathroom'],
+  },
+  {
+    id: 'ml-parking-lot',
+    name: 'Parking lot',
+    description: 'Test',
+    places: ['ml-gas-station'],
+  },
+  {
+    id: 'ml-gas-station-store',
+    name: 'Store',
+    description: 'Store',
+    places: ['ml-gas-station'],
   },
   {
     id: 'ml-gas-station-store',

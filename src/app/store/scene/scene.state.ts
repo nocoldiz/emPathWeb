@@ -3,6 +3,7 @@ import { IPlace } from '../../interfaces/places.interface';
 export interface SceneState {
   place: IPlace;
   previousPlace: IPlace;
+  reachablePlaces: IPlace[];
   music: string;
   centerOverlay: string;
   leftOverlay: string;
@@ -21,6 +22,7 @@ export const initialState: SceneState = {
     actions: [],
     places: [],
   },
+  reachablePlaces: [],
   previousPlace: {
     id: '',
     name: '',

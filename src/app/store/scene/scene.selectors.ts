@@ -21,8 +21,9 @@ export const getPlace = createSelector(
 );
 export const getReachablePlaces = createSelector(
   getScene,
-  (state: SceneState) => state.place.places
+  (state: SceneState) => state.reachablePlaces
 );
+
 export const getPreviousPlace = createSelector(
   getScene,
   (state: SceneState) => state.previousPlace
