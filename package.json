@@ -13,10 +13,6 @@
   },
   "private": true,
   "dependencies": {
-    "@ag-grid-community/angular": "^24.1.0",
-    "@ag-grid-community/client-side-row-model": "^24.1.0",
-    "@ag-grid-community/core": "^24.1.0",
-    "@ag-grid-community/infinite-row-model": "^24.1.0",
     "@angular/animations": "^14.2.2",
     "@angular/cdk": "^14.2.2",
     "@angular/common": "^14.2.2",

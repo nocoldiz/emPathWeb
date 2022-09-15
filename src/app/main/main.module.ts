@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '../shared/shared.module';
 import { AdvModeModule } from '../advMode/advMode.module';
-import { AgGridModule } from '@ag-grid-community/angular';
 import { ChartsModule } from '../../@youpez';
 import { MainRoutingModule } from './main-routing.module';
 
@@ -147,7 +146,6 @@ import { StarterApplicationComplexComponent } from './starters/application/start
     AdvModeModule,
     SharedModule,
     ChartsModule,
-    AgGridModule.withComponents([]),
   ],
 })
 export class MainModule {}

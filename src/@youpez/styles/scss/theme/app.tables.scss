@@ -1,5 +1,3 @@
-@import "~@ag-grid-community/core/dist/styles/ag-grid.css";
-@import "~@ag-grid-community/core/dist/styles/ag-theme-balham/sass/ag-theme-balham-mixin";
 
 .app-table {
   .app-table__header {
@@ -20,24 +18,6 @@
 }
 
 .app-ag-grid {
-  @include ag-theme-balham((
-    font-family: ('IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif),
-    odd-row-background-color: null,
-    border-color: var(--theme-appBorderColorAlt),
-    row-border-color: var(--theme-appBorderColor),
-    header-foreground-color: var(--theme-appText),
-    header-background-color: var(--theme-appColorDecorative),
-    background-color: var(--theme-appUIForegroundBg),
-    data-color: var(--theme-appText),
-    selected-row-background-color: var(--theme-appHighLightColor),
-    range-selection-border-color: var(--theme-appColorPrimary),
-    checkbox-checked-color: var(--theme-appColorPrimary),
-    checkbox-background-color: var(--theme-appUIForegroundBg),
-    row-hover-color: var(--theme-appHoverBg),
-    //checkbox-border-radius: none,
-    //checkbox-unchecked-color: ag-derived(foreground-color),
-    //checkbox-indeterminate-color: ag-derived(checkbox-unchecked-color),
-  ));
 
   width: 100%;
   height: 100%;
