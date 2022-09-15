@@ -1,15 +1,28 @@
 <div class="app-content app-content--default sticky top-0">
   <div class="app-card app-card--m-b mb-4">
     <div class="app-card__content">
-      <div class="app-productive-heading-02 mb-4">{{ place.name }}</div>
+      <div class="app-productive-heading-03 mb-4">
+        {{ place.name }}
+        <div class="flex items-center mb-2">
+          <ul class="flex">
+            <li
+              class="reachable-place mr-2"
+              (click)="clickOnPlace(reachablePlace)"
+              *ngFor="let reachablePlace of reachablePlaces"
+            >
+              <div class="reachable-place app-helper-text-01">
+                [{{ reachablePlace.name }}]
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
 
       <div class="flex items-center mb-2">
         <div>
-          <div class="app-productive-heading-02">Cities</div>
-          <div class="truncate app-body-short-01 mb-1">
-            Lorem ipsum dolor sit amet
+          <div class="app-body-short-02 mb-1">
+            {{ place.description }}
           </div>
-          <div class="app-helper-text-01">122k followers</div>
         </div>
       </div>
     </div>
