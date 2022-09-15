@@ -8,10 +8,6 @@ import { IAction } from 'src/app/interfaces/events.interface';
 })
 export class ActionButtonComponent implements OnInit {
   @Input() action: IAction;
-  @Output() click: EventEmitter<string> = new EventEmitter();
-  clickAction(id: string) {
-    this.click.emit(id);
-  }
 
   ngOnInit(): void {}
 }

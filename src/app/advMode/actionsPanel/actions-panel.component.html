@@ -11,7 +11,7 @@
           <ng-container *ngFor="let action of actions">
             <app-action-button
               [action]="action"
-              (click)="clickOnAction($event)"
+              (click)="clickOnAction(action.id)"
             ></app-action-button>
           </ng-container>
         </div>
