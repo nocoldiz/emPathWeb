@@ -1,27 +1,28 @@
 <div class="app-a-box app-scrollbar-fix">
   <div fxLayout="row wrap ">
     <div fxFlex.gt-md="360px" fxFlex="100%">
-      <app-place-info
-        *ngIf="place$ | async as place"
-        [place]="place"
-      ></app-place-info>
-      <app-log *ngIf="log$ | async as log" [log]="log"></app-log>
-    </div>
-    <div fxFlex.gt-sm="320px" fxFlex.gt-md="720px" fxFlex="100%">
-      <app-scene *ngIf="sceneImg$ | async as img" [img]="img"></app-scene>
-      <p>
-        <app-actions-panel
-          *ngIf="actions$ | async as actions"
-          [actions]="actions"
-        ></app-actions-panel>
-      </p>
-    </div>
-    <div fxFlex.gt-md="" fxFlex="100%">
       <app-reachable-places
         [places]="reachablePlaces$ | async"
         [currentPlace]="place$ | async"
         [previousPlace]="previousPlace$ | async"
       ></app-reachable-places>
+      <app-log *ngIf="log$ | async as log" [log]="log"></app-log>
+    </div>
+    <div fxFlex.gt-sm="320px" fxFlex.gt-md="720px" fxFlex="100%">
+      <app-scene *ngIf="sceneImg$ | async as img" [img]="img"></app-scene>
+      <p>
+        <app-place-info
+          *ngIf="place$ | async as place"
+          [place]="place"
+        ></app-place-info>
+      </p>
+    </div>
+    <div fxFlex.gt-md="" fxFlex="100%">
+      <app-actions-panel
+        *ngIf="actions$ | async as actions"
+        [actions]="actions"
+      ></app-actions-panel>
+
       <!--      <app-right-panel [places]="place.places"></app-right-panel>
 -->
     </div>
