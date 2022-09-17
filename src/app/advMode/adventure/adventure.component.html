@@ -1,11 +1,9 @@
 <div class="app-a-box app-scrollbar-fix">
   <div fxLayout="row wrap ">
     <div fxFlex.gt-md="360px" fxFlex="100%">
-      <app-reachable-places
-        [places]="reachablePlaces$ | async"
-        [currentPlace]="place$ | async"
-        [previousPlace]="previousPlace$ | async"
-      ></app-reachable-places>
+      <app-personal-panel
+        [player]="player$ | async"
+      ></app-personal-panel>
       <app-log *ngIf="log$ | async as log" [log]="log"></app-log>
     </div>
     <div fxFlex.gt-sm="320px" fxFlex.gt-md="720px" fxFlex="100%">

@@ -1,13 +1,5 @@
 import { IPlace } from 'src/app/interfaces/places.interface';
 
-export let place: IPlace = {
-  id: 'gas-station-0',
-  name: 'Moonlit gas station parking lot',
-  description: 'Test',
-  actions: ['lit-fire', 'enter-camper', 'lick', 'open', 'listen'],
-  places: ['bathroom', 'gas-station-store', 'parking lot'],
-};
-
 export let fixedPlaces: IPlace[] = [
   //Gas station template
   {

@@ -10,15 +10,16 @@ let places = fixedPlaces;
 export class SceneEffects {
   /*
   @Effect()
-  loadMovies$ = this.actions$
-    .pipe(
-      ofType('[Scene] Load place'),
-      mergeMap(() => fixedPlaces
-        .pipe(
-          map(movies => ({ type: '[Movies API] Movies Loaded Success', payload: movies })),
-          catchError(() => EMPTY)
-        ))
+  doAction$ = this.actions$.pipe(
+    ofType('[Scene] Load place'),
+    mergeMap(() =>
+      this.actionserv.getCustomers().pipe(
+        // return a Success action when the HTTP request was successfull (`[Customers Api] Load Sucess`)
+        map((customers) => CustomerApiActions.loadCustomersSuccess(customers)),
+        // return a Failed action when something went wrong during the HTTP request (`[Customers Api] Load Failed`)
+        catchError((error) => of(CustomerApiActions.loadCustomersFailed(error)))
       )
-    );*/
+    )
+  );*/
   constructor(private actions$: Actions) {}
 }

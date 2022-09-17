@@ -1,12 +1,15 @@
-import { getPreviousPlace } from './../../store/scene/scene.selectors';
+import {
+  getPlayer,
+  getPreviousPlace,
+} from './../../store/scene/scene.selectors';
 import { IPlace } from 'src/app/interfaces/places.interface';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ILogEntry } from 'src/app/interfaces/events.interface';
 import { AppState } from 'src/app/store/app.state';
-import { place } from './adventureModules/varlenia.places';
-import { actions } from './adventureModules/varlenia.actions';
+import { fixedPlaces } from './adventureModules/varlenia.places';
+import { basicActions } from './adventureModules/varlenia.actions';
 
 import {
   loadPlace,
@@ -33,6 +36,7 @@ export class AdventureComponent implements OnInit {
   public place$ = this.store.select(getPlace);
   public reachablePlaces$ = this.store.select(getReachablePlaces);
   public previousPlace$ = this.store.select(getPreviousPlace);
+  public player$ = this.store.select(getPlayer);
 
   public actions$ = this.store.select(getActions);
   public log$ = this.store.select(getLog);

@@ -12,6 +12,67 @@ export interface ICost {
   wattCost?: number;
   researchCost?: number;
 }
+export interface IOrgan {
+  name: string;
+  hp?: number;
+  status?: string[];
+  actions?: string[];
+  material?: string;
+}
+export interface IBodyPart {
+  name: string;
+  hp?: number;
+  status?: string[];
+  actions?: string[];
+  organs?: IOrgan[];
+  equipment?: IItem;
+}
+
+export interface IHumanoidBody {
+  head?: IBodyPart;
+  upperBody?: IBodyPart;
+  lowerBody?: IBodyPart;
+  rightArm?: IBodyPart;
+  rightHand?: IBodyPart;
+  rightLeg?: IBodyPart;
+  rightFoot?: IBodyPart;
+  leftArm?: IBodyPart;
+  leftHand?: IBodyPart;
+  leftFoot?: IBodyPart;
+  leftLeg?: IBodyPart;
+  actions?: string[];
+  organs?: IOrgan[];
+}
+
+export interface ISpecies {
+  name?: string;
+  description?: string;
+  dailyCalories: number;
+  baseStats?: {
+    STR: number;
+    INT: number;
+    SAG: number;
+    DEX: number;
+    COS: number;
+    AGI: number;
+    LCK: number;
+  };
+  scientificName?: string;
+  diet?:
+    | 'vegetarian'
+    | 'omnivore'
+    | 'carnivore'
+    | 'cannibal'
+    | 'watt'
+    | 'fungivore'
+    | 'metallivore'
+    | 'heat';
+  offsprings?: number;
+  soul?: string[];
+  pregnancyMonths?: number;
+  genders?: string[];
+  habitat: string;
+}
 
 export interface IPersonalityTrait {
   name: string;
@@ -29,15 +90,7 @@ export interface INpc {
   hp: number;
   mp: number;
   atp: number;
-  description?: string;
-  hunger?: boolean;
-  thirst?: boolean;
-  traits: string[];
-  fertility?: number;
-  dialogueTree?: IDialogueTree;
-  image?: string;
-  birthday?: Date;
-  keywords?: string[];
+  watt?: number;
   stats: {
     STR: number;
     INT: number;
@@ -47,13 +100,23 @@ export interface INpc {
     AGI: number;
     LCK: number;
   };
-  inventory: IItem[];
-  abilities: IAction[];
+  species?: ISpecies;
+  bodyType?: IHumanoidBody;
+  description?: string;
+  hunger?: boolean;
+  thirst?: boolean;
+  traits?: string[];
+  fertility?: number;
+  dialogueTree?: IDialogueTree;
+  image?: string;
+  birthday?: Date;
+  keywords?: string[];
+  inventory?: IItem[];
+  abilities?: IAction[];
   politicalOrientation?: [number, number];
   religion?: string;
-  race?: string;
   gender?: string;
-  sexualOrientation: 'straight' | 'bisexual' | 'gay' | 'lesbian' | 'asexual';
-  class: 'explorer' | 'bard' | 'gunslinger' | 'hydraulic';
+  sexualOrientation?: 'straight' | 'bisexual' | 'gay' | 'lesbian' | 'asexual';
+  class?: 'explorer' | 'bard' | 'gunslinger' | 'hydraulic' | 'cyborg';
   ideals?: string[];
 }

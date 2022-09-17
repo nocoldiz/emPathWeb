@@ -37,3 +37,7 @@ export const getActions = createSelector(
   getScene,
   (state: SceneState) => state.actions
 );
+export const getPlayer = createSelector(
+  getScene,
+  (state: SceneState) => state.player
+);

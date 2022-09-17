@@ -1,6 +1,6 @@
+import { IItem } from './inventory.interface';
 import { IPlace } from './places.interface';
-
-export interface IHumanoidBody {
+export interface IHumanoidBodyOld {
   head: {
     brain?: {
       status: string[];
@@ -99,34 +99,4 @@ export interface IHumanoidBody {
       hp: number;
     };
   };
-}
-export interface Race {
-  name?: string;
-  description?: string;
-  dailyCalories: number;
-  baseStats?: {
-    STR: number;
-    INT: number;
-    SAG: number;
-    DEX: number;
-    COS: number;
-    AGI: number;
-    LCK: number;
-  };
-  scientificName?: string;
-  diet?:
-    | 'vegetarian'
-    | 'omnivore'
-    | 'carnivore'
-    | 'cannibal'
-    | 'watt'
-    | 'fungivore'
-    | 'metallivore'
-    | 'heat';
-  offsprings?: number;
-  soul?: string[];
-  pregnancyMonths?: number;
-  genders?: string[];
-  body: IHumanoidBody;
-  habitat: string;
 }

@@ -1,6 +1,6 @@
 import { IAction } from '../../../interfaces/events.interface';
 
-export let actions: IAction[] = [
+export let basicActions: IAction[] = [
   {
     id: 'lit-fire',
     name: 'Lit fire',

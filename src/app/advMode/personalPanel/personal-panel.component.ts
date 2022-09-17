@@ -1,3 +1,4 @@
+import { INpc } from './../../interfaces/npc.interface';
 import { IAction } from '../../interfaces/events.interface';
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -5,12 +6,12 @@ import { AppState } from '../../store/app.state';
 import { updateLog } from '../../store/scene/scene.actions';
 
 @Component({
-  selector: 'app-actions-panel',
-  templateUrl: './actions-panel.component.html',
-  styleUrls: ['./actions-panel.component.scss'],
+  selector: 'app-personal-panel',
+  templateUrl: './personal-panel.component.html',
+  styleUrls: ['./personal-panel.component.scss'],
 })
-export class ActionsPanelComponent implements OnInit {
-  @Input() actions: IAction[];
+export class PersonalPanelComponent implements OnInit {
+  @Input() player: INpc;
   img: string = '';
 
   // public actions: IAction[] = [];

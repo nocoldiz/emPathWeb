@@ -1,3 +1,4 @@
+import { PersonalPanelComponent } from './personalPanel/personal-panel.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
@@ -31,6 +32,7 @@ import { ReachablePlacesComponent } from './reachablePlaces/reachable-places.com
     RightPanelComponent,
     ActionsPanelComponent,
     ReachablePlacesComponent,
+    PersonalPanelComponent,
   ],
   imports: [CommonModule, SharedModule],
   exports: [

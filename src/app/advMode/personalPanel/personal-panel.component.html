@@ -1,0 +1,26 @@
+<div class="app-content app-content--default sticky top-0">
+  <div class="app-content app-content--default sticky top-0">
+    <div class="app-card app-card--m-b mb-4">
+      <div class="app-card__content">
+        <div class="app-productive-heading-02 mb-4">CREATURES</div>
+
+        <div *ngIf="player | async as item" class="flex items-center mb-2">
+          <div
+            (click)="clickOnPlace(place)"
+            class="bg-cover cursor-pointer w-16 h-16 rounded mr-3"
+            style="
+              background-image: url(assets/img/pixabay/taj-mahal-1209004_640.jpg);
+            "
+          ></div>
+          <div>
+            <div class="app-productive-heading-02">{{ item.name }}</div>
+            <div class="truncate app-body-short-01 mb-1">
+              {{ item.name }}
+            </div>
+            <div class="app-helper-text-01">122k followers</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
