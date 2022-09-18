@@ -1,6 +1,13 @@
 import { INpc } from './../../interfaces/npc.interface';
 import { IAction } from '../../interfaces/events.interface';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
 import { updateLog } from '../../store/scene/scene.actions';
@@ -11,7 +18,7 @@ import { MatMenuTrigger } from '@angular/material/menu';
   templateUrl: './personal-panel.component.html',
   styleUrls: ['./personal-panel.component.scss'],
 })
-export class PersonalPanelComponent implements OnInit {
+export class PersonalPanelComponent implements OnInit, OnChanges {
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
   @Input() player: INpc;
@@ -20,32 +27,13 @@ export class PersonalPanelComponent implements OnInit {
   headActions: string[] = [];
   upperBodyActions: string[] = [];
   lowerBodyActions: string[] = [];
+  leftArmActions: string[] = [];
+  rightArmActions: string[] = [];
+  leftLegActions: string[] = [];
+  rightLegActions: string[] = [];
+  rightPilonActions: string[] = [];
+  leftPilonActions: string[] = [];
 
-  // public actions: IAction[] = [];
-  /*
-  public sceneUpdate$ = this.store.select(getScene);
-  public actions$ = this.store.select(getScene);
-
-  public place$ = this.store.select(getPlace).subscribe((place: IPlace) => {
-    console.log(place);
-    this.title = place.name;
-
-    this.text = place.description;
-    this.store.dispatch(
-      setScene({ title: place.name, text: place.description })
-    );
-    place?.actions.forEach((actionId) => {
-      let placeAction = actions.find((action) => action.id === actionId);
-      this.actions.push(placeAction);
-      //this.store.dispatch(pushAction({ action: placeAction }));
-
-      console.log('place?.actions', actionId, placeAction);
-    });
-  });
-  public activeAction$ = this.store.select(getActiveAction).subscribe((id) => {
-    console.log('## active action', id);
-  });
-*/
   clickOnAction(action: IAction): void {
     console.log('## click on action ', action);
     this.store.dispatch(
@@ -58,5 +46,30 @@ export class PersonalPanelComponent implements OnInit {
   }
   constructor(private store: Store<AppState>) {}
 
-  ngOnInit(): void {}
+  ngOnChanges(changes: SimpleChanges): void {}
+
+  ngOnInit(): void {
+    Object.keys(this.player.bodyType).forEach((bodyPartName) => {
+      console.log('## element', bodyPartName);
+
+      this.player.bodyType[bodyPartName].organs.forEach((organ) => {
+        let menuName = bodyPartName.concat('Actions');
+        // Find all actions
+        organ.actions.forEach((action) => {
+          try {
+            this[menuName].push(action);
+          } catch (err) {
+            console.log('Missing body part', err);
+          }
+        });
+        // Remove duplicates
+        this[menuName].filter(
+          (item, index) => this[menuName].indexOf(item) === index
+        );
+
+        console.log('## element', organ);
+      });
+    });
+    console.log(this);
+  }
 }

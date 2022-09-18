@@ -44,6 +44,7 @@ export const initialState: SceneState = {
       head: {
         name: 'Android Head',
         hp: 10,
+        actions: ['headbutt'],
         organs: [
           {
             name: 'Eyes of truth',
@@ -65,6 +66,7 @@ export const initialState: SceneState = {
       leftArm: {
         name: 'Android Arm',
         hp: 10,
+        actions: ['grapple', 'lariat'],
         organs: [
           {
             name: 'Hand',
@@ -86,6 +88,7 @@ export const initialState: SceneState = {
       rightLeg: {
         name: 'Android Leg',
         hp: 10,
+        actions: ['kick', 'stomp'],
         organs: [],
       },
       leftLeg: {
