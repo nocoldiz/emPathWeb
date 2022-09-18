@@ -35,13 +35,11 @@ export interface IHumanoidBody {
   upperBody?: IBodyPart;
   lowerBody?: IBodyPart;
   rightArm?: IBodyPart;
-  rightHand?: IBodyPart;
   rightLeg?: IBodyPart;
-  rightFoot?: IBodyPart;
+  rightPilon?: IBodyPart;
   leftArm?: IBodyPart;
-  leftHand?: IBodyPart;
-  leftFoot?: IBodyPart;
   leftLeg?: IBodyPart;
+  leftPilon?: IBodyPart;
   actions?: string[];
   organs?: IOrgan[];
 }

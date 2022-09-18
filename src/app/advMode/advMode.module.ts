@@ -1,3 +1,4 @@
+import { BodyButtonComponent } from './bodyButton/body-button.component';
 import { PersonalPanelComponent } from './personalPanel/personal-panel.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -17,6 +18,7 @@ import { ActionButtonComponent } from './actionButton/action-button.component';
 import { PlaceInfoComponent } from './placeInfo/place-info.component';
 import { RightPanelComponent } from './rightPanel/right-panel.component';
 import { ActionsPanelComponent } from './actionsPanel/actions-panel.component';
+
 import { ReachablePlacesComponent } from './reachablePlaces/reachable-places.component';
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { ReachablePlacesComponent } from './reachablePlaces/reachable-places.com
     AdventureComponent,
     HeaderComponent,
     ActionButtonComponent,
+    BodyButtonComponent,
     PlaceInfoComponent,
     RightPanelComponent,
     ActionsPanelComponent,

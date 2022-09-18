@@ -57,6 +57,42 @@ export const initialState: SceneState = {
           },
         ],
       },
+      upperBody: {
+        name: 'Android Body',
+        hp: 10,
+        organs: [],
+      },
+      leftArm: {
+        name: 'Android Arm',
+        hp: 10,
+        organs: [
+          {
+            name: 'Hand',
+            hp: 10,
+            actions: ['squeeze', 'grab', 'punch', 'throw'],
+          },
+        ],
+      },
+      rightArm: {
+        name: 'Android Arm',
+        hp: 10,
+        organs: [],
+      },
+      lowerBody: {
+        name: 'Android Body',
+        hp: 10,
+        organs: [],
+      },
+      rightLeg: {
+        name: 'Android Leg',
+        hp: 10,
+        organs: [],
+      },
+      leftLeg: {
+        name: 'Android Leg',
+        hp: 10,
+        organs: [],
+      },
     },
   },
   reachablePlaces: [],

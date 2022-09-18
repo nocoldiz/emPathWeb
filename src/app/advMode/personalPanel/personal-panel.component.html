@@ -4,52 +4,77 @@
       <div class="app-card__content">
         <div class="app-productive-heading-02 mb-4">{{ player.name }}</div>
         <!-- ACTIONS MENU -->
-        <button
-          mat-icon-button
-          #menuTrigger="matMenuTrigger"
-          [matMenuTriggerFor]="menu"
-        ></button>
 
         <mat-menu #menu="matMenu">
           <button mat-menu-item>Item 1</button>
           <button mat-menu-item>Item 2</button>
         </mat-menu>
+        <!-- BODY PANEL -->
 
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <div fxLayout="col" *ngIf="player.bodyType?.leftPilon">
+            <app-body-button
+              [bodyPart]="player.bodyType.leftPilon"
+              label="Left Pilon"
+            ></app-body-button>
+          </div>
+          <div fxLayout="col" *ngIf="player.bodyType?.head">
+            <app-body-button
+              [bodyPart]="player.bodyType.head"
+              label="Head"
+            ></app-body-button>
+          </div>
+          <div fxLayout="col" *ngIf="player.bodyType?.rightPilon">
+            <app-body-button
+              [bodyPart]="player.bodyType.rightPilon"
+              label="Right Pilon"
+            ></app-body-button>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <div fxLayout="col" *ngIf="player.bodyType?.leftArm">
+            <app-body-button
+              [bodyPart]="player.bodyType.leftArm"
+              label="Left arm"
+            ></app-body-button>
+          </div>
+          <div fxLayout="col" *ngIf="player.bodyType?.upperBody">
+            <app-body-button
+              [bodyPart]="player.bodyType.upperBody"
+              label="Upper body"
+            ></app-body-button>
+          </div>
+          <div fxLayout="col" *ngIf="player.bodyType?.rightArm">
+            <app-body-button
+              [bodyPart]="player.bodyType.rightArm"
+              label="Right arm"
+            ></app-body-button>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <div fxLayout="col" *ngIf="player.bodyType?.leftLeg">
+            <app-body-button
+              [bodyPart]="player.bodyType.leftLeg"
+              label="Left leg"
+            ></app-body-button>
+          </div>
+          <div fxLayout="col" *ngIf="player.bodyType?.lowerBody">
+            <app-body-button
+              [bodyPart]="player.bodyType.lowerBody"
+              label="Lower body"
+            ></app-body-button>
+          </div>
+          <div fxLayout="col" *ngIf="player.bodyType?.rightLeg">
+            <app-body-button
+              [bodyPart]="player.bodyType.rightLeg"
+              label="Right leg"
+            ></app-body-button>
+          </div>
+        </div>
+        <!-- IMAGE AREA -->
+
+        <!-- IMAGE MAP -->
         <div fxLayout="row wrap ">
-          <!-- IMAGE AREA -->
-          <img
-            class="rounded-full"
-            usemap="#image-map"
-            src="../../../assets/img/hud/player.png"
-          />
-          <!-- IMAGE MAP -->
-
-          <map name="image-map">
-            <area
-              target=""
-              alt=""
-              title=""
-              (click)="clickOnBodyPart('head')"
-              coords="158,98,62,8"
-              shape="rect"
-            />
-            <area
-              target=""
-              alt=""
-              title=""
-              (click)="clickOnBodyPart('upperBody')"
-              coords="0,102,216,295"
-              shape="rect"
-            />
-            <area
-              target=""
-              alt=""
-              title=""
-              (click)="clickOnBodyPart('lowerBody')"
-              coords="53,296,170,565"
-              shape="rect"
-            />
-          </map>
           <!-- STAT CONTAINER -->
           <ng-container *ngIf="player.stats as stat">
             <div class="str stat">

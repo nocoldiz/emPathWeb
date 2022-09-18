@@ -12,7 +12,7 @@ export interface IItem {
     | 'food'
     | 'book';
   hp: number;
-  expiration: Date;
+  expiration?: Date;
   opened?: boolean;
   quantity: number;
   description?: string;
