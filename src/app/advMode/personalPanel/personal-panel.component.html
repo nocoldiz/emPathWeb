@@ -2,12 +2,23 @@
   <div class="app-content app-content--default sticky top-0">
     <div class="app-card app-card--m-b mb-4">
       <div class="app-card__content">
-        <div class="app-productive-heading-02 mb-4">{{ player.name }}</div>
+        <div class="app-productive-heading-02 mb-4">{{ hint }}</div>
         <!-- ACTIONS MENU -->
+        <div [matMenuTriggerFor]="menu"></div>
 
-        <mat-menu #menu="matMenu" xPosition="after">
-          <button mat-menu-item>Item 1</button>
-          <button mat-menu-item>Item 2</button>
+        <mat-menu yPosition="below" #menu="matMenu">
+          <button
+            *ngFor="let item of this[selectedPart]"
+            [matMenuTriggerFor]="targetMenu"
+            mat-menu-item
+          >
+            {{ item }}
+          </button>
+        </mat-menu>
+        <mat-menu yPosition="below" #targetMenu="matMenu">
+          <button *ngFor="let item of validTargets" mat-menu-item>
+            {{ item }}
+          </button>
         </mat-menu>
         <!-- BODY PANEL -->
 
@@ -21,7 +32,6 @@
           </div>
           <div fxLayout="col" *ngIf="player.bodyType?.head">
             <app-body-button
-              [matMenuTriggerFor]="menu"
               (click)="clickOnBodyPart('head')"
               [bodyPart]="player.bodyType.head"
               label="Head"

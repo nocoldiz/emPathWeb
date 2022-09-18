@@ -23,6 +23,8 @@ export class PersonalPanelComponent implements OnInit, OnChanges {
 
   @Input() player: INpc;
   img: string = '';
+  hint: string = '';
+  selectedPart: string;
   showActionsMenu: boolean = false;
   headActions: string[] = [];
   upperBodyActions: string[] = [];
@@ -33,26 +35,34 @@ export class PersonalPanelComponent implements OnInit, OnChanges {
   rightLegActions: string[] = [];
   rightPilonActions: string[] = [];
   leftPilonActions: string[] = [];
+  validTargets: string[] = ['yourself', 'ground', 'sky', 'item', 'npc1'];
 
   clickOnAction(action: IAction): void {
     console.log('## click on action ', action);
+    this.hint = 'Choose target';
+
     this.store.dispatch(
       updateLog({ logEntry: { text: 'test', action: 'you made x' } })
     );
   }
   clickOnBodyPart(bodyPart: string): void {
     console.log('## click on body part');
-    //this.trigger.openMenu();
+    this.selectedPart = bodyPart.concat('Actions');
+    this.hint = 'Select action';
+
+    this.trigger.openMenu();
   }
   constructor(private store: Store<AppState>) {}
 
   ngOnChanges(changes: SimpleChanges): void {}
 
   ngOnInit(): void {
-    Object.keys(this.player.bodyType).forEach((bodyPartName) => {
+    let playerBody = this.player.bodyType;
+    this.hint = this.player.name;
+    Object.keys(playerBody).forEach((bodyPartName) => {
       console.log('## element', bodyPartName);
 
-      this.player.bodyType[bodyPartName].organs.forEach((organ) => {
+      playerBody[bodyPartName].organs.forEach((organ) => {
         let menuName = bodyPartName.concat('Actions');
         // Find all actions
         organ.actions.forEach((action) => {
