@@ -52,7 +52,7 @@ export interface IPlace {
   keywords?: string[];
   isDungeon?: boolean;
   npc?: INpc[];
-  image?: string | string[];
+  img?: string | string[];
   floors?: number;
   height?: number;
   foundingDate?: Date | string;

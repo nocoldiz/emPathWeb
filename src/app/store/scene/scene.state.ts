@@ -73,7 +73,7 @@ export const initialState: SceneState = {
   centerOverlay: '',
   leftOverlay: '',
   rightOverlay: '',
-  backgroundImg: 'desert-city',
+  backgroundImg: 'station-moonlit-night-1',
   activeAction: '',
   actions: [
     {

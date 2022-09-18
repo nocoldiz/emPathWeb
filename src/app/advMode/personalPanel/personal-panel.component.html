@@ -3,6 +3,18 @@
     <div class="app-card app-card--m-b mb-4">
       <div class="app-card__content">
         <div class="app-productive-heading-02 mb-4">{{ player.name }}</div>
+        <!-- ACTIONS MENU -->
+        <button
+          mat-icon-button
+          #menuTrigger="matMenuTrigger"
+          [matMenuTriggerFor]="menu"
+        ></button>
+
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+
         <div fxLayout="row wrap ">
           <!-- IMAGE AREA -->
           <img
@@ -10,12 +22,14 @@
             usemap="#image-map"
             src="../../../assets/img/hud/player.png"
           />
+          <!-- IMAGE MAP -->
+
           <map name="image-map">
             <area
               target=""
               alt=""
               title=""
-              href="head"
+              (click)="clickOnBodyPart('head')"
               coords="158,98,62,8"
               shape="rect"
             />
@@ -23,7 +37,7 @@
               target=""
               alt=""
               title=""
-              href="upperbody"
+              (click)="clickOnBodyPart('upperBody')"
               coords="0,102,216,295"
               shape="rect"
             />
@@ -31,7 +45,7 @@
               target=""
               alt=""
               title=""
-              href="lowerbody"
+              (click)="clickOnBodyPart('lowerBody')"
               coords="53,296,170,565"
               shape="rect"
             />
@@ -68,20 +82,44 @@
             </div>
           </ng-container>
         </div>
-
-        <div class="flex items-center mb-2">
-          <div
-            class="bg-cover cursor-pointer w-16 h-16 rounded mr-3"
-            style="
-              background-image: url(assets/img/pixabay/taj-mahal-1209004_640.jpg);
-            "
-          ></div>
-          <div>
-            <div class="app-productive-heading-02">{{ player.name }}</div>
-            <div class="truncate app-body-short-01 mb-1">
-              {{ player.name }}
+        <!-- HP MP ATP CONTAINER -->
+        <div fxLayout="row wrap mb-6">
+          <div class="bar-container">
+            <div class="flex justify-between mb-1">
+              <div class="app-productive-heading-01">HP</div>
             </div>
-            <div class="app-helper-text-01">122k followers</div>
+            <div class="app-progress app-progress--small">
+              <div
+                class="app-progress__bar app-bg-success"
+                style="width: 11%"
+              ></div>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="row wrap mb-6">
+          <div class="bar-container">
+            <div class="flex justify-between mb-1">
+              <div class="app-productive-heading-01">MP</div>
+            </div>
+            <div class="app-progress app-progress--small">
+              <div
+                class="app-progress__bar app-bg-success"
+                style="width: 100%"
+              ></div>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="row wrap mb-6">
+          <div class="bar-container">
+            <div class="flex justify-between mb-1">
+              <div class="app-productive-heading-01">ATP</div>
+            </div>
+            <div class="app-progress app-progress--small">
+              <div
+                class="app-progress__bar app-bg-success"
+                style="width: 11%"
+              ></div>
+            </div>
           </div>
         </div>
       </div>

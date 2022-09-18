@@ -2,6 +2,7 @@ import { PersonalPanelComponent } from './personalPanel/personal-panel.component
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { LayoutComponent } from './default/layout.component';
 import { AppLayoutHorizontalComponent } from './horizontal/app-layout-horizontal/app-layout-horizontal.component';
@@ -34,7 +35,7 @@ import { ReachablePlacesComponent } from './reachablePlaces/reachable-places.com
     ReachablePlacesComponent,
     PersonalPanelComponent,
   ],
-  imports: [CommonModule, SharedModule],
+  imports: [CommonModule, SharedModule, MatMenuModule],
   exports: [
     LayoutComponent,
     AppLayoutHorizontalComponent,

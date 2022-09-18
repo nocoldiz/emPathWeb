@@ -1,9 +1,10 @@
 import { INpc } from './../../interfaces/npc.interface';
 import { IAction } from '../../interfaces/events.interface';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
 import { updateLog } from '../../store/scene/scene.actions';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
   selector: 'app-personal-panel',
@@ -11,8 +12,14 @@ import { updateLog } from '../../store/scene/scene.actions';
   styleUrls: ['./personal-panel.component.scss'],
 })
 export class PersonalPanelComponent implements OnInit {
+  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+
   @Input() player: INpc;
   img: string = '';
+  showActionsMenu: boolean = false;
+  headActions: string[] = [];
+  upperBodyActions: string[] = [];
+  lowerBodyActions: string[] = [];
 
   // public actions: IAction[] = [];
   /*
@@ -45,7 +52,10 @@ export class PersonalPanelComponent implements OnInit {
       updateLog({ logEntry: { text: 'test', action: 'you made x' } })
     );
   }
-
+  clickOnBodyPart(bodyPart: string): void {
+    console.log('## click on body part');
+    //this.trigger.openMenu();
+  }
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {}
