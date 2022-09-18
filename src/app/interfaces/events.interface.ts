@@ -23,7 +23,7 @@ export interface IAction {
     | 'ranged'
     | 'curse'
     | 'tecnical';
-  stat?: 'STR' | 'INT' | 'SAG' | 'DEX' | 'COS' | 'AGI' | 'LCL';
+  stat?: 'STR' | 'INT' | 'SAG' | 'DEX' | 'COS' | 'AGI' | 'LCK';
   timeout?: number;
   image?: string;
   icon?: string;

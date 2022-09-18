@@ -14,6 +14,7 @@ export interface ICost {
 }
 export interface IOrgan {
   name: string;
+  icon?: string;
   hp?: number;
   status?: string[];
   actions?: string[];
@@ -21,6 +22,7 @@ export interface IOrgan {
 }
 export interface IBodyPart {
   name: string;
+  icon?: string;
   hp?: number;
   status?: string[];
   actions?: string[];
@@ -79,8 +81,8 @@ export interface IPersonalityTrait {
   description: string;
   expiration: Date;
   id: string;
-  bonusStat?: 'STR' | 'INT' | 'SAG' | 'DEX' | 'COS' | 'AGI' | 'LCL';
-  malusStat?: 'STR' | 'INT' | 'SAG' | 'DEX' | 'COS' | 'AGI' | 'LCL';
+  bonusStat?: 'STR' | 'INT' | 'SAG' | 'DEX' | 'COS' | 'AGI' | 'LCK';
+  malusStat?: 'STR' | 'INT' | 'SAG' | 'DEX' | 'COS' | 'AGI' | 'LCK';
   bonus?: number;
   malus?: number;
 }

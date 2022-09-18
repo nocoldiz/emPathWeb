@@ -2,20 +2,84 @@
   <div class="app-content app-content--default sticky top-0">
     <div class="app-card app-card--m-b mb-4">
       <div class="app-card__content">
-        <div class="app-productive-heading-02 mb-4">CREATURES</div>
+        <div class="app-productive-heading-02 mb-4">{{ player.name }}</div>
+        <div fxLayout="row wrap ">
+          <!-- IMAGE AREA -->
+          <img
+            class="rounded-full"
+            usemap="#image-map"
+            src="../../../assets/img/hud/player.png"
+          />
+          <map name="image-map">
+            <area
+              target=""
+              alt=""
+              title=""
+              href="head"
+              coords="158,98,62,8"
+              shape="rect"
+            />
+            <area
+              target=""
+              alt=""
+              title=""
+              href="upperbody"
+              coords="0,102,216,295"
+              shape="rect"
+            />
+            <area
+              target=""
+              alt=""
+              title=""
+              href="lowerbody"
+              coords="53,296,170,565"
+              shape="rect"
+            />
+          </map>
+          <!-- STAT CONTAINER -->
+          <ng-container *ngIf="player.stats as stat">
+            <div class="str stat">
+              <span class="stat__name">STR</span>
+              <span class="stat__value"> {{ stat.STR }}</span>
+            </div>
+            <div class="str stat">
+              <span class="stat__name">COS</span>
+              <span class="stat__value"> {{ stat.COS }}</span>
+            </div>
+            <div class="int stat">
+              <span class="stat__name">INT</span>
+              <span class="stat__value"> {{ stat.INT }}</span>
+            </div>
+            <div class="dex stat">
+              <span class="stat__name">DEX</span>
+              <span class="stat__value"> {{ stat.DEX }}</span>
+            </div>
+            <div class="sag stat">
+              <span class="stat__name">SAG</span>
+              <span class="stat__value"> {{ stat.SAG }}</span>
+            </div>
+            <div class="lck stat">
+              <span class="stat__name">LCK</span>
+              <span class="stat__value"> {{ stat.LCK }}</span>
+            </div>
+            <div class="str stat">
+              <span class="stat__name">STR</span>
+              <span class="stat__value"> {{ stat.STR }}</span>
+            </div>
+          </ng-container>
+        </div>
 
-        <div *ngIf="player | async as item" class="flex items-center mb-2">
+        <div class="flex items-center mb-2">
           <div
-            (click)="clickOnPlace(place)"
             class="bg-cover cursor-pointer w-16 h-16 rounded mr-3"
             style="
               background-image: url(assets/img/pixabay/taj-mahal-1209004_640.jpg);
             "
           ></div>
           <div>
-            <div class="app-productive-heading-02">{{ item.name }}</div>
+            <div class="app-productive-heading-02">{{ player.name }}</div>
             <div class="truncate app-body-short-01 mb-1">
-              {{ item.name }}
+              {{ player.name }}
             </div>
             <div class="app-helper-text-01">122k followers</div>
           </div>
