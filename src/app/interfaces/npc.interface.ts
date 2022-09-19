@@ -87,11 +87,14 @@ export interface IPersonalityTrait {
 export interface INpc {
   name: string;
   id: string;
-  hp: number;
-  mp: number;
-  atp: number;
+  hp?: number;
+  mp?: number;
+  atp?: number;
   watt?: number;
-  stats: {
+  canTrade?: boolean;
+  isWild?: boolean;
+  isHostile?: boolean;
+  stats?: {
     STR: number;
     INT: number;
     SAG: number;

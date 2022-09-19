@@ -36,6 +36,7 @@ export let fixedPlaces: IPlace[] = [
     id: 'ml-gas-station-store',
     name: 'Store',
     description: `Store`,
+    npc: ['moonlit-merchant'],
     places: ['ml-gas-station'],
   },
   {

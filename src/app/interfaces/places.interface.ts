@@ -51,7 +51,7 @@ export interface IPlace {
   items?: string[];
   keywords?: string[];
   isDungeon?: boolean;
-  npc?: INpc[];
+  npc?: string[];
   img?: string | string[];
   floors?: number;
   height?: number;

@@ -1,8 +1,9 @@
 import { INpc } from './npc.interface';
 
 export interface IItem {
+  id: string;
   name: string;
-  type:
+  type?:
     | 'item'
     | 'weapon'
     | 'artifact'
@@ -11,21 +12,21 @@ export interface IItem {
     | 'body part'
     | 'food'
     | 'book';
-  hp: number;
+  hp?: number;
   expiration?: Date;
   opened?: boolean;
-  quantity: number;
+  quantity?: number;
   description?: string;
   duration?: boolean;
   price?: number;
   weight?: number;
   calories?: number;
   capacity?: number;
-  attackType: 'ranged' | 'close';
-  inventory: IItem[];
+  attackType?: 'ranged' | 'close';
+  inventory?: string[];
   pages?: number;
   material?: string[];
-  meltingPoint: number;
+  meltingPoint?: number;
   genre?: string;
   maker?: string;
   craftable?: boolean;
@@ -41,16 +42,8 @@ export interface IItem {
     AGI: number;
     LCK: number;
   };
-  equip:
-    | 'none'
-    | 'head'
-    | 'upper body'
-    | 'lower body'
-    | 'arms'
-    | 'legs'
-    | 'feet'
-    | 'neck';
-  keywords: string[];
+  equipRegions?: string[];
+  keywords?: string[];
   uses?: number;
   actions?: string[];
   failure?: number;
