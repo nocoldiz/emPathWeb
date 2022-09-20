@@ -44,6 +44,7 @@
     "ngx-md": "^8.1.6",
     "ngx-router-animations": "0.0.9",
     "ngx-scrollbar": "^7.5.3",
+    "p5": "^1.4.2",
     "random-avatar-generator": "^2.0.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.1.0",
