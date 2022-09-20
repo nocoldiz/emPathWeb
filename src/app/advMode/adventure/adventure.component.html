@@ -19,8 +19,10 @@
     </div>
     <div fxFlex.gt-md="" fxFlex="100%">
       <app-actions-panel
-        *ngIf="actions$ | async as actions"
-        [actions]="actions"
+        [actions]="actions$ | async"
+        [npc]="npc$ | async"
+        [items]="items$ | async"
+        [place]="place$ | async"
       ></app-actions-panel>
 
       <!--      <app-right-panel [places]="place.places"></app-right-panel>

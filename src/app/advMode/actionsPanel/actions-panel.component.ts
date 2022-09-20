@@ -3,6 +3,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
 import { updateLog } from '../../store/scene/scene.actions';
+import { IItem } from 'src/app/interfaces/inventory.interface';
+import { INpc } from 'src/app/interfaces/npc.interface';
+import { IPlace } from 'src/app/interfaces/places.interface';
 
 @Component({
   selector: 'app-actions-panel',
@@ -11,6 +14,10 @@ import { updateLog } from '../../store/scene/scene.actions';
 })
 export class ActionsPanelComponent implements OnInit {
   @Input() actions: IAction[];
+  @Input() items: IItem[];
+  @Input() npc: INpc[];
+  @Input() place: IPlace[];
+
   img: string = '';
 
   // public actions: IAction[] = [];

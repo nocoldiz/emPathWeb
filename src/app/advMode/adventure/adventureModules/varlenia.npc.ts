@@ -1,6 +1,6 @@
 import { INpc } from '../../../interfaces/npc.interface';
 
-export let basicItems: INpc[] = [
+export let fixedNpc: INpc[] = [
   {
     id: 'moonlit-merchant',
     name: 'Moonlit Merchant',

@@ -1,6 +1,6 @@
 import { IItem } from '../../../interfaces/inventory.interface';
 
-export let basicItems: IItem[] = [
+export let fixedItems: IItem[] = [
   {
     id: 'potion',
     name: 'Unidentified potion',

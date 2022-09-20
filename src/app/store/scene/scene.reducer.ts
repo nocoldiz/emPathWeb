@@ -1,5 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import { fixedPlaces } from 'src/app/advMode/adventure/adventureModules/varlenia.places';
+import { fixedNpc } from 'src/app/advMode/adventure/adventureModules/varlenia.npc';
+import { fixedItems } from 'src/app/advMode/adventure/adventureModules/varlenia.items';
+
 import {
   setActiveEvent,
   updateLog,
@@ -13,6 +16,8 @@ import {
 } from './scene.actions';
 import { initialState } from './scene.state';
 let places = fixedPlaces;
+let npc = fixedNpc;
+let items = fixedItems;
 
 export const sceneReducer = createReducer(
   initialState,
@@ -46,6 +51,8 @@ export const sceneReducer = createReducer(
   on(loadPlace, (state, { place }) => ({
     ...state,
     previousPlace: state.place,
+    items: place.items ? items.filter((e) => place.items.includes(e.id)) : [],
+    npc: place.npc ? npc.filter((e) => place.npc.includes(e.id)) : [],
     reachablePlaces: place.places
       ? places.filter((e) => place.places.includes(e.id))
       : [],

@@ -41,3 +41,11 @@ export const getPlayer = createSelector(
   getScene,
   (state: SceneState) => state.player
 );
+export const getNpc = createSelector(
+  getScene,
+  (state: SceneState) => state.npc
+);
+export const getItems = createSelector(
+  getScene,
+  (state: SceneState) => state.items
+);

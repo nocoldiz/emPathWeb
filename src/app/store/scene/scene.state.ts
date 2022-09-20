@@ -1,6 +1,7 @@
 import { INpc } from './../../interfaces/npc.interface';
 import { IAction, ILogEntry } from '../../interfaces/events.interface';
 import { IPlace } from '../../interfaces/places.interface';
+import { IItem } from 'src/app/interfaces/inventory.interface';
 export interface SceneState {
   place: IPlace;
   previousPlace: IPlace;
@@ -15,6 +16,8 @@ export interface SceneState {
   log: ILogEntry[];
   activeAction: string;
   actions: IAction[];
+  items: IItem[];
+  npc: INpc[];
 }
 export const initialState: SceneState = {
   place: {
@@ -24,6 +27,8 @@ export const initialState: SceneState = {
     actions: [],
     places: [],
   },
+  items: [],
+  npc: [],
   player: {
     id: 'player',
     name: 'Varlenia',
