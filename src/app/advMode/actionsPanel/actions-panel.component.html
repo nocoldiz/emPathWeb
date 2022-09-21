@@ -2,6 +2,8 @@
   class="app-content app-content--default relative sticky top-0"
   ngClass.gt-md="-mt-20"
 >
+  <div #mapContainer></div>
+
   <!-- Description container -->
   <div fxFlex="80%" fxFlex.gt-md="100%">
     <div ngClass.lt-md="ml-2" ngClass.md="ml-2" ngClass.gt-md="pt-4">
@@ -9,9 +11,6 @@
         <!-- Actions container -->
 
         <div fxLayout="row wrap" class="app-card-row-holder">
-          <canvas #canvas></canvas>
-          <div id="gear-clock-canvas"></div>
-
           <ng-container *ngFor="let action of actions">
             <app-action-button
               [action]="action"

@@ -1,10 +1,9 @@
-import { printPatterns } from "./debug";
-import { createSuperposition } from "./superposition";
-import { createOverlappingModel } from "./overlappingModel";
-import { setGround } from "./setGround";
-import { createObservation } from "./observe";
-import { propagate } from "./propagate";
-import { createRender } from "./render";
+import { createSuperposition } from './superposition';
+import { createOverlappingModel } from './overlappingModel';
+import { setGround } from './setGround';
+import { createObservation } from './observe';
+import { propagate } from './propagate';
+import { createRender } from './render';
 
 export interface IWfcOptions {
   periodicInput: boolean;
@@ -26,24 +25,32 @@ const targetTime = 1000 / targetFps;
 export function createWaveFunctionCollapse(
   image: ImageData,
   canvas: HTMLCanvasElement,
-  { periodicInput, periodicOutput, outputWidth, outputHeight, N, symmetry, ground }: IWfcOptions,
+  {
+    periodicInput,
+    periodicOutput,
+    outputWidth,
+    outputHeight,
+    N,
+    symmetry,
+    ground,
+  }: IWfcOptions
 ): IWaveFunctionCollapse {
-
   const model = createOverlappingModel(image, { N, symmetry, periodicInput });
-  const superpos = createSuperposition(
-    model.numCoefficients,
-    { width: outputWidth, height: outputHeight, periodic: periodicOutput },
-  );
+  const superpos = createSuperposition(model.numCoefficients, {
+    width: outputWidth,
+    height: outputHeight,
+    periodic: periodicOutput,
+  });
 
   const observe = createObservation(model, superpos);
 
   canvas.width = superpos.width;
   canvas.height = superpos.height;
 
-  const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+  const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 
   const clear = () => {
-    ctx.fillStyle = "#000";
+    ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     superpos.clear();
     setGround(ground, superpos);
@@ -60,7 +67,7 @@ export function createWaveFunctionCollapse(
       const result = observe();
       if (result === null) {
         propagating = true;
-      } else if (result === false)  {
+      } else if (result === false) {
         clear();
       } else {
         return;
