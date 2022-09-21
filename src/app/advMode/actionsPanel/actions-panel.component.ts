@@ -70,7 +70,7 @@ export class ActionsPanelComponent implements OnInit {
   private drawing = function (p: any) {
     // f5 setup
     p.setup = () => {
-      p.createCanvas(p.windowWidth, p.windowHeight).parent('gear-clock-canvas');
+      p.createCanvas(300, 500).parent('gear-clock-canvas');
       p.angleMode(p.DEGREES);
       p.rectMode(p.CENTER);
       p.background(0);
