@@ -24,14 +24,9 @@ export class ActionsPanelComponent implements OnInit {
   @Input() items: IItem[];
   @Input() npc: INpc[];
   @Input() place: IPlace[];
-  private ctx: CanvasRenderingContext2D;
-  private p5;
 
   img: string = '';
   sampleImage;
-  @ViewChild('canvas', { static: true })
-  canvas: ElementRef<HTMLCanvasElement>;
-
   @ViewChild('mapContainer') mapContainer: ElementRef;
 
   inputBitmap: ImageData | undefined;
@@ -60,15 +55,23 @@ export class ActionsPanelComponent implements OnInit {
 
   ngAfterViewInit() {
     const canvas = document.createElement('canvas');
-    const wfcOptions = createWfcOptions();
+    const wfcOptions = {
+      N: 3,
+      symmetry: 8,
+      ground: 0,
+      periodicInput: true,
+      periodicOutput: true,
+      outputWidth: 64,
+      outputHeight: 64,
+    };
 
     canvas.className = 'wfcOutput';
-    canvas.width = 300;
-    canvas.height = 300;
+    canvas.width = 0;
+    canvas.height = 0;
     this.mapContainer.nativeElement.append(canvas);
 
-    this.getImageData('./assets/img/wfc/Cat.png').then((image) => {
-      this.wfc = createWaveFunctionCollapse(image, canvas, wfcOptions.options);
+    this.getImageData('./assets/img/wfc/Town.png').then((image) => {
+      this.wfc = createWaveFunctionCollapse(image, canvas, wfcOptions);
     });
   }
 }
