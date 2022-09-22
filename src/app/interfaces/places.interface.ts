@@ -51,6 +51,7 @@ export interface IPlace {
   items?: string[];
   map?: string;
   keywords?: string[];
+  size?: number;
   isDungeon?: boolean;
   npc?: string[];
   img?: string | string[];

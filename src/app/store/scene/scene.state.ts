@@ -26,6 +26,7 @@ export const initialState: SceneState = {
     description: '',
     actions: [],
     places: [],
+    size: 16,
   },
   items: [],
   npc: [],

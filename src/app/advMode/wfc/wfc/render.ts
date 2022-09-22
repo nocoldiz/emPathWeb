@@ -80,11 +80,11 @@ export function createRender(
       // circular average of active coefficients
       const hue = (180 * (Math.PI + Math.atan2(hueY, hueX))) / Math.PI;
 
-      const saturation = 100 * (sum / maxPatternCount[activeCoefficients]);
+      const saturation = 1 * (sum / maxPatternCount[activeCoefficients]);
       const lightness = Math.round(80 - (80 * activeCoefficients) / w.length);
       ctx.fillStyle = `hsl(${hue},${saturation}%,${lightness}%)`;
       ctx.fillRect(x * tilesize, y * tilesize, tilesize, tilesize);
-      ctx.fillText('⛸', x * tilesize, y * tilesize, tilesize);
+      //ctx.fillText('⛸', x * tilesize, y * tilesize, tilesize);
     }
   };
 }
