@@ -1,5 +1,5 @@
-import { ISuperposition } from "./superposition";
-import { IOverlappingModel } from "./overlappingModel";
+import { ISuperposition } from './superposition';
+import { IOverlappingModel } from './overlappingModel';
 
 function orderedArraySum(array: number[]): number[] {
   const sorted = array.slice().sort((a, b) => b - a);
@@ -10,15 +10,23 @@ function orderedArraySum(array: number[]): number[] {
   return sum;
 }
 
-function drawPixelFromColor(ctx: CanvasRenderingContext2D, x: number, y: number, color: number) {
-  ctx.fillStyle = `rgb(${color & 255},${(color >> 8) & 255},${(color >> 16) & 255})`;
+function drawPixelFromColor(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  color: number
+) {
+  ctx.fillStyle = `rgb(${color & 255},${(color >> 8) & 255},${
+    (color >> 16) & 255
+  })`;
+  console.log(x, y, color);
   ctx.fillRect(x, y, 1, 1);
 }
 
 export function createRender(
   { colors, patterns, patternCount, N }: IOverlappingModel,
   { wave, width, height, periodic }: ISuperposition,
-  ctx: CanvasRenderingContext2D,
+  ctx: CanvasRenderingContext2D
 ) {
   const maxPatternCount = orderedArraySum(patternCount);
 
@@ -29,7 +37,7 @@ export function createRender(
     let sum = 0;
     let lastPatternIndex = 0;
 
-    const  angleConstant = 2 * Math.PI / w.length;
+    const angleConstant = (2 * Math.PI) / w.length;
     let hueX = 0;
     let hueY = 0;
 
@@ -57,13 +65,12 @@ export function createRender(
       } else {
         drawPixelFromColor(ctx, x, y, colors[pattern[0]]);
       }
-
     } else {
       // circular average of active coefficients
-      const hue = 180 * (Math.PI + Math.atan2(hueY, hueX)) / Math.PI;
+      const hue = (180 * (Math.PI + Math.atan2(hueY, hueX))) / Math.PI;
 
       const saturation = 100 * (sum / maxPatternCount[activeCoefficients]);
-      const lightness = Math.round(80 - 80 * activeCoefficients / w.length);
+      const lightness = Math.round(80 - (80 * activeCoefficients) / w.length);
       ctx.fillStyle = `hsl(${hue},${saturation}%,${lightness}%)`;
       ctx.fillRect(x, y, 1, 1);
     }

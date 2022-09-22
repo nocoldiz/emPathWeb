@@ -27,6 +27,16 @@ export class ActionsPanelComponent implements OnInit {
 
   img: string = '';
   sampleImage;
+  mapWidth: 32;
+  mapHeight: 32;
+  map: Array<Array<string>> = [
+    ['🌱', '🟦', 'c', '🌱', '🟦', 'c', '🌱', '🟦', 'c', 'c'],
+    ['🌱', '🟦', 'c', '🌱', '🟦', 'c', '🌱', '🟦', 'c', 'c'],
+    ['🌱', '🟦', 'c', '🌱', '🟦', 'c', '🌱', '🟦', 'c', 'c'],
+    ['🌱', '🟦', 'c', '🌱', '🟦', 'c', '🌱', '🟦', 'c', 'c'],
+    ['🌱', '🟦', 'c', '🌱', '🟦', 'c', '🌱', '🟦', 'c', 'c'],
+    ['🌱', '🟦', 'c', '🌱', '🟦', 'c', '🌱', '🟦', 'c', 'c'],
+  ];
   @ViewChild('mapContainer') mapContainer: ElementRef;
 
   inputBitmap: ImageData | undefined;
@@ -57,20 +67,20 @@ export class ActionsPanelComponent implements OnInit {
     const canvas = document.createElement('canvas');
     const wfcOptions = {
       N: 3,
-      symmetry: 8,
+      symmetry: 2,
       ground: 0,
       periodicInput: true,
       periodicOutput: true,
-      outputWidth: 64,
-      outputHeight: 64,
+      outputWidth: 32,
+      outputHeight: 32,
     };
 
     canvas.className = 'wfcOutput';
-    canvas.width = 0;
-    canvas.height = 0;
+    canvas.width = 32;
+    canvas.height = 32;
     this.mapContainer.nativeElement.append(canvas);
 
-    this.getImageData('./assets/img/wfc/Town.png').then((image) => {
+    this.getImageData('./assets/img/wfc/Village.png').then((image) => {
       this.wfc = createWaveFunctionCollapse(image, canvas, wfcOptions);
     });
   }
