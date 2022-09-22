@@ -18,7 +18,7 @@ import { ActionButtonComponent } from './actionButton/action-button.component';
 import { PlaceInfoComponent } from './placeInfo/place-info.component';
 import { RightPanelComponent } from './rightPanel/right-panel.component';
 import { ActionsPanelComponent } from './actionsPanel/actions-panel.component';
-
+import { MapService } from '../../app/services/map.service';
 import { ReachablePlacesComponent } from './reachablePlaces/reachable-places.component';
 @NgModule({
   declarations: [
@@ -50,5 +50,6 @@ import { ReachablePlacesComponent } from './reachablePlaces/reachable-places.com
     RightPanelComponent,
     ActionsPanelComponent,
   ],
+  providers: [MapService],
 })
 export class AdvModeModule {}

@@ -1,3 +1,4 @@
+import { MapService } from './../../services/map.service';
 import { barBackground } from './../../../@youpez/data/charts';
 import { IAction } from '../../interfaces/events.interface';
 import {
@@ -13,7 +14,6 @@ import { AppState } from '../../store/app.state';
 import { updateLog } from '../../store/scene/scene.actions';
 import { IItem } from 'src/app/interfaces/inventory.interface';
 import { INpc } from 'src/app/interfaces/npc.interface';
-import { Field } from './sketch/wfc/wfc.js';
 import { IPlace } from 'src/app/interfaces/places.interface';
 import {
   IWaveFunctionCollapse,
@@ -80,7 +80,7 @@ export class ActionsPanelComponent implements OnInit {
     });
   }
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>, mapService: MapService) {}
 
   ngOnInit(): void {}
 
