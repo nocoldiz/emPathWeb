@@ -33,7 +33,8 @@ export function createWaveFunctionCollapse(
     N,
     symmetry,
     ground,
-  }: IWfcOptions
+  }: IWfcOptions,
+  placeId: string
 ): IWaveFunctionCollapse {
   const model = createOverlappingModel(image, { N, symmetry, periodicInput });
   const superpos = createSuperposition(model.numCoefficients, {
@@ -42,7 +43,7 @@ export function createWaveFunctionCollapse(
     periodic: periodicOutput,
   });
 
-  const observe = createObservation(model, superpos);
+  const observe = createObservation(model, superpos, placeId);
 
   canvas.width = 512;
   canvas.height = 512;

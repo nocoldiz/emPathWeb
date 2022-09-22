@@ -1,5 +1,5 @@
-import { ISuperposition } from "./superposition";
-import { IOverlappingModel } from "./overlappingModel";
+import { ISuperposition } from './superposition';
+import { IOverlappingModel } from './overlappingModel';
 
 const sumFunc = (a: any, b: any) => a + b;
 
@@ -29,8 +29,8 @@ function pickFromDistribution(array: number[], r: number): number {
 export function createObservation(
   { patternCount, N }: IOverlappingModel,
   { wave, width, height, numCoefficients, periodic, collapse }: ISuperposition,
+  placeId: string
 ) {
-
   const logT = Math.log(numCoefficients);
   const distribution: number[] = [];
 
@@ -39,8 +39,10 @@ export function createObservation(
     let minEntropyWave = -1;
 
     for (let i = 0; i < wave.length; i++) {
-
-      if (!periodic && (i % width + N > width || Math.floor(i / width) + N > height)) {
+      if (
+        !periodic &&
+        ((i % width) + N > width || Math.floor(i / width) + N > height)
+      ) {
         continue;
       }
 
@@ -94,6 +96,5 @@ export function createObservation(
     collapse(minEntropyWave, r);
 
     return null;
-
   };
 }

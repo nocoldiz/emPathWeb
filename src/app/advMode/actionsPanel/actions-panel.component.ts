@@ -75,7 +75,12 @@ export class ActionsPanelComponent implements OnInit {
     this.mapContainer.nativeElement.append(canvas);
 
     this.getImageData('./assets/img/wfc/' + img + '.png').then((image) => {
-      this.wfc = createWaveFunctionCollapse(image, canvas, wfcOptions);
+      this.wfc = createWaveFunctionCollapse(
+        image,
+        canvas,
+        wfcOptions,
+        this.place.id
+      );
     });
   }
 

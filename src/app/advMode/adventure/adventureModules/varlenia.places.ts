@@ -34,6 +34,7 @@ export let fixedPlaces: IPlace[] = [
   {
     id: 'ml-parking-lot',
     name: 'Parking lot',
+    map: 'Forest',
     description: `The parking lot is gravel, and there's no grass anywhere around here. There isn't even any wildlife; just a few stray dogs that sometimes wander in when someone goes into the convenience store to buy food. The only plants growing in the area are weeds; the weeds don't seem to mind being alone.' `,
     places: ['ml-gas-station'],
   },
