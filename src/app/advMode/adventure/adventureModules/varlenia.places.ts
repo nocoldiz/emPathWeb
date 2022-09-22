@@ -6,7 +6,7 @@ export let fixedPlaces: IPlace[] = [
     id: 'ml-gas-station',
     img: 'station-moonlit-night-4',
     map: 'gas',
-    size: 32,
+    size: 16,
     name: 'Moonlit gas station',
     description: `The moonlit gas station is so far from home. The sign says "Honk if you're lonely," but nobody does. There's nothing here for anyone. It doesn't have its own name, because it's too far away from anybody else to be worth naming.
     It's the middle of nowhere, and it's always empty. Nobody comes this way, except maybe occasionally some trucker who needs a break from driving.There is a small convenience store in the gas station that sells snacks and drinks, but no fresh produce or meat. If you get hungry here, you can eat the snack foods, which are all pretty old by now. They taste like they've been there forever.

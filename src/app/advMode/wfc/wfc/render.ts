@@ -1,8 +1,12 @@
 import { ISuperposition } from './superposition';
 import { IOverlappingModel } from './overlappingModel';
 
-const TILESIZE = 16;
 let collisionMap;
+
+let tileLibrary = {
+  '#00ff0c': ['🌱', '🥀'],
+  '#00d8ff': ['🌊'],
+};
 
 function orderedArraySum(array: number[]): number[] {
   const sorted = array.slice().sort((a, b) => b - a);
@@ -20,13 +24,31 @@ function drawPixelFromColor(
   color: number,
   tilesize: number
 ) {
+  ctx.textAlign = 'center';
   ctx.fillStyle = `rgb(${color & 255},${(color >> 8) & 255},${
     (color >> 16) & 255
   })`;
+  //console.log('#map', x, y, ctx.fillStyle);
   if (ctx.fillStyle === `rgb(0,0,0`) {
     collisionMap[x][y] = 'X';
     console.log(collisionMap);
   }
+  //TODO: add different probabilities, ex: fertility stat for drawing flowers
+  if (Math.random() > 0.8) {
+    //Draw emoji
+
+    if (ctx.fillStyle in tileLibrary) {
+      ctx.fillText(
+        tileLibrary[ctx.fillStyle][
+          Math.floor(Math.random() * tileLibrary[ctx.fillStyle].length)
+        ],
+        x * tilesize,
+        y * tilesize,
+        tilesize
+      );
+    }
+  }
+
   ctx.fillRect(x * tilesize, y * tilesize, tilesize, tilesize);
   // ctx.fillText('🏖️', x * TILESIZE, y * TILESIZE, TILESIZE);
 }
@@ -87,6 +109,7 @@ export function createRender(
       const saturation = 1 * (sum / maxPatternCount[activeCoefficients]);
       const lightness = Math.round(80 - (80 * activeCoefficients) / w.length);
       ctx.fillStyle = `hsl(${hue},${saturation}%,${lightness}%)`;
+
       ctx.fillRect(x * tilesize, y * tilesize, tilesize, tilesize);
       //ctx.fillText('⛸', x * tilesize, y * tilesize, tilesize);
     }
