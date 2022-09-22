@@ -48,6 +48,7 @@ export function createWaveFunctionCollapse(
 
   canvas.width = 512;
   canvas.height = 512;
+  const tilesize = canvas.width / outputWidth;
 
   const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 
@@ -58,7 +59,7 @@ export function createWaveFunctionCollapse(
     setGround(ground, superpos);
   };
 
-  const render = createRender(model, superpos, ctx);
+  const render = createRender(model, superpos, ctx, tilesize);
 
   let propagating = false;
   let propagationLoops = 1;

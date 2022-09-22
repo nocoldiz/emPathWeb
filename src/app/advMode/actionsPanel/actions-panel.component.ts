@@ -65,22 +65,23 @@ export class ActionsPanelComponent implements OnInit {
 
   ngAfterViewInit() {
     const canvas = document.createElement('canvas');
+    const size = 32;
     const wfcOptions = {
       N: 3,
       symmetry: 8,
       ground: 0,
       periodicInput: true,
       periodicOutput: true,
-      outputWidth: 32,
-      outputHeight: 32,
+      outputWidth: size,
+      outputHeight: size,
     };
 
     canvas.className = 'wfcOutput';
-    canvas.width = 32;
-    canvas.height = 32;
+    canvas.width = size;
+    canvas.height = size;
     this.mapContainer.nativeElement.append(canvas);
 
-    this.getImageData('./assets/img/wfc/gas.png').then((image) => {
+    this.getImageData('./assets/img/wfc/Qud.png').then((image) => {
       this.wfc = createWaveFunctionCollapse(image, canvas, wfcOptions);
     });
   }

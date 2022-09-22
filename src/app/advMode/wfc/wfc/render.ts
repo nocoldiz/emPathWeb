@@ -16,19 +16,22 @@ function drawPixelFromColor(
   ctx: CanvasRenderingContext2D,
   x: number,
   y: number,
-  color: number
+  color: number,
+  tilesize: number
 ) {
   ctx.fillStyle = `rgb(${color & 255},${(color >> 8) & 255},${
     (color >> 16) & 255
   })`;
   console.log(x, y);
-  ctx.fillRect(x * TILESIZE, y * TILESIZE, TILESIZE, TILESIZE);
+  ctx.fillRect(x * tilesize, y * tilesize, tilesize, tilesize);
+  // ctx.fillText('🏖️', x * TILESIZE, y * TILESIZE, TILESIZE);
 }
 
 export function createRender(
   { colors, patterns, patternCount, N }: IOverlappingModel,
   { wave, width, height, periodic }: ISuperposition,
-  ctx: CanvasRenderingContext2D
+  ctx: CanvasRenderingContext2D,
+  tilesize: number
 ) {
   const maxPatternCount = orderedArraySum(patternCount);
 
@@ -61,11 +64,17 @@ export function createRender(
       if (!periodic && (x >= width - N || y >= height - N)) {
         for (let i = 0; i < N; i++) {
           for (let j = 0; j < N; j++) {
-            drawPixelFromColor(ctx, x + i, y + j, colors[pattern[i + j * N]]);
+            drawPixelFromColor(
+              ctx,
+              x + i,
+              y + j,
+              colors[pattern[i + j * N]],
+              tilesize
+            );
           }
         }
       } else {
-        drawPixelFromColor(ctx, x, y, colors[pattern[0]]);
+        drawPixelFromColor(ctx, x, y, colors[pattern[0]], tilesize);
       }
     } else {
       // circular average of active coefficients
@@ -74,7 +83,8 @@ export function createRender(
       const saturation = 100 * (sum / maxPatternCount[activeCoefficients]);
       const lightness = Math.round(80 - (80 * activeCoefficients) / w.length);
       ctx.fillStyle = `hsl(${hue},${saturation}%,${lightness}%)`;
-      ctx.fillRect(x * TILESIZE, y * TILESIZE, TILESIZE, TILESIZE);
+      ctx.fillRect(x * tilesize, y * tilesize, tilesize, tilesize);
+      ctx.fillText('⛸', x * tilesize, y * tilesize, tilesize);
     }
   };
 }

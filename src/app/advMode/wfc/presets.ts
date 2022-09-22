@@ -13,8 +13,8 @@ export const presetDefaults: IPreset = {
   ground: 0,
   periodicInput: true,
   periodicOutput: true,
-  outputWidth: 128,
-  outputHeight: 128,
+  outputWidth: 32,
+  outputHeight: 32,
 };
 
 export const presets: IPreset[] = [
