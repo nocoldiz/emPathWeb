@@ -2,6 +2,7 @@ import {
   IWaveFunctionCollapse,
   MapService,
 } from './../../services/map.service';
+import { barBackground } from './../../../@youpez/data/charts';
 import { IAction } from '../../interfaces/events.interface';
 import {
   Component,
@@ -13,6 +14,7 @@ import {
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
+import { updateLog } from '../../store/scene/scene.actions';
 import { IItem } from 'src/app/interfaces/inventory.interface';
 import { INpc } from 'src/app/interfaces/npc.interface';
 import { IPlace } from 'src/app/interfaces/places.interface';
@@ -97,5 +99,7 @@ export class ActionsPanelComponent implements OnInit {
 
   ngAfterViewInit() {
     this.generateMap(this.place?.size || 32, this.place?.map || 'Town');
+    let collisionMap = this.mapService.getCollisionMap();
+    console.log('#collisionMap', collisionMap);
   }
 }

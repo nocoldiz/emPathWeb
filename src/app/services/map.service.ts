@@ -52,12 +52,14 @@ export class MapService {
   };
 
   constructor(@Inject(DOCUMENT) private document: HTMLDocument) {}
+  createPlayer(canvas: HTMLCanvasElement) {}
 
-  createImage() {
-    let cv = this.document.createElement('canvas');
-    cv.id = 'mycanvas';
-    cv.width = 300;
-    cv.height = 200;
+  getCollisionMap() {
+    return this.collisionMap;
+  }
+
+  createImage(canvas: HTMLCanvasElement) {
+    let cv = canvas;
 
     console.log('the canvas:' + cv);
     console.log(cv);
