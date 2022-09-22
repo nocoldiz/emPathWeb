@@ -8,7 +8,9 @@
       <div class="app-body-short-01 mt-4 mb-4">
         <!-- Actions container -->
         <div fxLayout="row wrap" class="app-card-row-holder">
-          <div #mapContainer class="map-container">
+          <canvas #mapContainer class="event-layer" width="512" height="512"></canvas>
+
+          <div class="map-container">
             <canvas #eventContainer class="event-layer" width="512" height="512"></canvas>
           </div>
         </div>

@@ -39,7 +39,10 @@ export interface IWaveFunctionCollapse {
 @Injectable()
 export class MapService {
   targetFps = 60;
+  ctx: CanvasRenderingContext2D;
+  cv;
   targetTime = 1000 / this.targetFps;
+  stop = false;
   sumFunc = (a: any, b: any) => a + b;
   collisionMap = [];
 
@@ -59,24 +62,26 @@ export class MapService {
   }
 
   createImage(canvas: HTMLCanvasElement) {
-    let cv = canvas;
+    this.cv = canvas;
 
-    console.log('the canvas:' + cv);
-    console.log(cv);
-    let ctx: CanvasRenderingContext2D = cv.getContext(
-      '2d'
-    ) as CanvasRenderingContext2D;
+    console.log('the canvas:' + this.cv);
+    console.log(this.cv);
+    this.ctx = this.cv.getContext('2d') as CanvasRenderingContext2D;
 
-    console.log(this.document.body, ctx);
+    console.log(this.document.body, this.ctx);
 
-    ctx.fillStyle = 'green';
-    ctx.strokeStyle = 'black';
-    ctx.fillRect(10, 5, 200, 50);
-    ctx.fillStyle = 'yellow';
-    ctx.fillRect(60, 35, 100, 40);
-    return ctx.canvas.toDataURL();
+    this.ctx.fillStyle = 'green';
+    this.ctx.strokeStyle = 'black';
+    this.ctx.fillRect(10, 5, 200, 50);
+    this.ctx.fillStyle = 'yellow';
+    this.ctx.fillRect(60, 35, 100, 40);
+    return this.ctx.canvas.toDataURL();
   }
-
+  clear(): void {
+    this.ctx.fillStyle = '#000';
+    this.ctx.fillRect(0, 0, this.cv.width, this.cv.height);
+    this.stop = true;
+  }
   setGround(
     ground = 0,
     {
@@ -386,6 +391,8 @@ export class MapService {
 
     for (let dx = -N + 1; dx < N; dx++) {
       for (let dy = -N + 1; dy < N; dy++) {
+        if (this.stop) return;
+
         let x2 = x1 + dx;
         if (x2 < 0) {
           x2 += width;
@@ -413,12 +420,16 @@ export class MapService {
         const prop = propagator[N - 1 - dx][N - 1 - dy];
 
         for (let t = 0; t < numCoefficients; t++) {
+          if (this.stop) return;
+
           if (!w2[t]) {
             continue;
           }
           let b = false;
           const p = prop[t];
           for (let l = 0; !b && l < p.length; l++) {
+            if (this.stop) return;
+
             b = w1[p[l]];
           }
           if (!b) {
@@ -440,11 +451,15 @@ export class MapService {
     }
 
     for (let i = 0; i < array.length; i++) {
+      if (this.stop) return;
+
       array[i] /= sum;
     }
 
     let x = 0;
     for (let i = 0; i < array.length; i++) {
+      if (this.stop) return;
+
       x += array[i];
       if (r <= x) {
         return i;

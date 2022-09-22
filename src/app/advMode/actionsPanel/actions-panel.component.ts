@@ -29,10 +29,12 @@ export class ActionsPanelComponent implements OnInit {
   @Input() items: IItem[];
   @Input() npc: INpc[];
   @Input() place: IPlace;
+  private ctx: CanvasRenderingContext2D;
 
   img: string = '';
   sampleImage;
-  @ViewChild('mapContainer') mapContainer: ElementRef;
+  @ViewChild('mapContainer', { static: true })
+  mapContainer: ElementRef<HTMLCanvasElement>;
   @ViewChild('eventContainer') eventContainer: ElementRef;
 
   inputBitmap: ImageData | undefined;
@@ -56,7 +58,7 @@ export class ActionsPanelComponent implements OnInit {
   }
 
   generateMap(size: number, img: string) {
-    const canvas = document.createElement('canvas');
+    const canvas = this.mapContainer.nativeElement;
     let map = [[]];
     const wfcOptions = {
       N: 3,
@@ -69,12 +71,12 @@ export class ActionsPanelComponent implements OnInit {
     };
 
     canvas.className = 'wfcOutput';
-    canvas.width = size;
-    canvas.height = size;
-    this.mapContainer.nativeElement.append(canvas);
+    this.ctx.canvas.width = size;
+    this.ctx.canvas.height = size;
+    //this.mapContainer.nativeElement.append(canvas);
 
     this.getImageData('./assets/img/wfc/' + img + '.png').then((image) => {
-      this.mapService.createWaveFunctionCollapse(
+      this.wfc = this.mapService.createWaveFunctionCollapse(
         image,
         canvas,
         wfcOptions,
@@ -86,10 +88,13 @@ export class ActionsPanelComponent implements OnInit {
 
   constructor(private store: Store<AppState>, private mapService: MapService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.ctx = this.mapContainer.nativeElement.getContext('2d');
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.place) {
+      this.wfc.stop();
       this.generateMap(
         changes.place.currentValue.size || 32,
         changes.place.currentValue.map || 'Town'
@@ -100,6 +105,6 @@ export class ActionsPanelComponent implements OnInit {
   ngAfterViewInit() {
     this.generateMap(this.place?.size || 32, this.place?.map || 'Town');
     let collisionMap = this.mapService.getCollisionMap();
-    console.log('#collisionMap', collisionMap);
+    console.log(collisionMap);
   }
 }

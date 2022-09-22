@@ -1,3 +1,4 @@
+import { MapService } from './../../services/map.service';
 import { ILogEntry } from '../../interfaces/events.interface';
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -20,8 +21,9 @@ export class PlaceInfoComponent implements OnInit {
   clickOnPlace(newPlace: IPlace): void {
     console.log('## click on place ', newPlace);
     this.store.dispatch(loadPlace({ place: newPlace }));
+    //  this.mapService.clear();
   }
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>, private mapService: MapService) {}
 
   ngOnInit(): void {}
 }
