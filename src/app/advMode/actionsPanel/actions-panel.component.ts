@@ -1,5 +1,7 @@
-import { MapService } from './../../services/map.service';
-import { barBackground } from './../../../@youpez/data/charts';
+import {
+  IWaveFunctionCollapse,
+  MapService,
+} from './../../services/map.service';
 import { IAction } from '../../interfaces/events.interface';
 import {
   Component,
@@ -11,15 +13,9 @@ import {
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
-import { updateLog } from '../../store/scene/scene.actions';
 import { IItem } from 'src/app/interfaces/inventory.interface';
 import { INpc } from 'src/app/interfaces/npc.interface';
 import { IPlace } from 'src/app/interfaces/places.interface';
-import {
-  IWaveFunctionCollapse,
-  createWaveFunctionCollapse,
-} from '../wfc/wfc/run';
-import { createWfcOptions } from '../wfc/components/wfcOptions';
 
 @Component({
   selector: 'app-actions-panel',
@@ -76,11 +72,17 @@ export class ActionsPanelComponent implements OnInit {
     this.mapContainer.nativeElement.append(canvas);
 
     this.getImageData('./assets/img/wfc/' + img + '.png').then((image) => {
-      createWaveFunctionCollapse(image, canvas, wfcOptions, this.place.id, map);
+      this.mapService.createWaveFunctionCollapse(
+        image,
+        canvas,
+        wfcOptions,
+        this.place.id,
+        map
+      );
     });
   }
 
-  constructor(private store: Store<AppState>, mapService: MapService) {}
+  constructor(private store: Store<AppState>, private mapService: MapService) {}
 
   ngOnInit(): void {}
 
