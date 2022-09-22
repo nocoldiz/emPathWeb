@@ -2,6 +2,7 @@ import { ISuperposition } from './superposition';
 import { IOverlappingModel } from './overlappingModel';
 
 const TILESIZE = 16;
+let collisionMap;
 
 function orderedArraySum(array: number[]): number[] {
   const sorted = array.slice().sort((a, b) => b - a);
@@ -22,7 +23,10 @@ function drawPixelFromColor(
   ctx.fillStyle = `rgb(${color & 255},${(color >> 8) & 255},${
     (color >> 16) & 255
   })`;
-  console.log(x, y);
+  if (ctx.fillStyle === `rgb(0,0,0`) {
+    collisionMap[x][y] = 'X';
+    console.log(collisionMap);
+  }
   ctx.fillRect(x * tilesize, y * tilesize, tilesize, tilesize);
   // ctx.fillText('🏖️', x * TILESIZE, y * TILESIZE, TILESIZE);
 }

@@ -111,6 +111,8 @@ export interface INpc {
   traits?: string[];
   fertility?: number;
   dialogueTree?: IDialogueTree;
+  isUnique?: boolean;
+  appearsIn?: string[]; //List of places id
   image?: string;
   birthday?: Date;
   keywords?: string[];

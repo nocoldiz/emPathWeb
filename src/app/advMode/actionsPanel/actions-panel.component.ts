@@ -1,6 +1,13 @@
 import { barBackground } from './../../../@youpez/data/charts';
 import { IAction } from '../../interfaces/events.interface';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
 import { updateLog } from '../../store/scene/scene.actions';
@@ -23,21 +30,12 @@ export class ActionsPanelComponent implements OnInit {
   @Input() actions: IAction[];
   @Input() items: IItem[];
   @Input() npc: INpc[];
-  @Input() place: IPlace[];
+  @Input() place: IPlace;
 
   img: string = '';
   sampleImage;
-  mapWidth: 32;
-  mapHeight: 32;
-  map: Array<Array<string>> = [
-    ['🌱', '🟦', 'c', '🌱', '🟦', 'c', '🌱', '🟦', 'c', 'c'],
-    ['🌱', '🟦', 'c', '🌱', '🟦', 'c', '🌱', '🟦', 'c', 'c'],
-    ['🌱', '🟦', 'c', '🌱', '🟦', 'c', '🌱', '🟦', 'c', 'c'],
-    ['🌱', '🟦', 'c', '🌱', '🟦', 'c', '🌱', '🟦', 'c', 'c'],
-    ['🌱', '🟦', 'c', '🌱', '🟦', 'c', '🌱', '🟦', 'c', 'c'],
-    ['🌱', '🟦', 'c', '🌱', '🟦', 'c', '🌱', '🟦', 'c', 'c'],
-  ];
   @ViewChild('mapContainer') mapContainer: ElementRef;
+  @ViewChild('eventContainer') eventContainer: ElementRef;
 
   inputBitmap: ImageData | undefined;
 
@@ -59,13 +57,8 @@ export class ActionsPanelComponent implements OnInit {
     });
   }
 
-  constructor(private store: Store<AppState>) {}
-
-  ngOnInit(): void {}
-
-  ngAfterViewInit() {
+  generateMap(size: number, img: string) {
     const canvas = document.createElement('canvas');
-    const size = 32;
     const wfcOptions = {
       N: 3,
       symmetry: 8,
@@ -81,8 +74,25 @@ export class ActionsPanelComponent implements OnInit {
     canvas.height = size;
     this.mapContainer.nativeElement.append(canvas);
 
-    this.getImageData('./assets/img/wfc/Qud.png').then((image) => {
+    this.getImageData('./assets/img/wfc/' + img + '.png').then((image) => {
       this.wfc = createWaveFunctionCollapse(image, canvas, wfcOptions);
     });
+  }
+
+  constructor(private store: Store<AppState>) {}
+
+  ngOnInit(): void {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.place) {
+      this.generateMap(
+        changes.place.currentValue.size || 32,
+        changes.place.currentValue.map || 'Town'
+      );
+    }
+  }
+
+  ngAfterViewInit() {
+    this.generateMap(this.place?.size || 32, this.place?.map || 'Town');
   }
 }
