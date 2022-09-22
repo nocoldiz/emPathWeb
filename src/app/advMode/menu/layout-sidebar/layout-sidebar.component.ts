@@ -26,7 +26,9 @@ export class LayoutSidebarComponent implements OnInit, AfterViewInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.sideBarToggle.next(true);
+  }
 
   ngAfterViewInit() {
     setTimeout(() => {

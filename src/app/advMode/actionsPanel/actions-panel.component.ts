@@ -59,9 +59,10 @@ export class ActionsPanelComponent implements OnInit {
 
   generateMap(size: number, img: string) {
     const canvas = document.createElement('canvas');
+    let map = [[]];
     const wfcOptions = {
       N: 3,
-      symmetry: 8,
+      symmetry: 2,
       ground: 0,
       periodicInput: true,
       periodicOutput: true,
@@ -75,12 +76,7 @@ export class ActionsPanelComponent implements OnInit {
     this.mapContainer.nativeElement.append(canvas);
 
     this.getImageData('./assets/img/wfc/' + img + '.png').then((image) => {
-      this.wfc = createWaveFunctionCollapse(
-        image,
-        canvas,
-        wfcOptions,
-        this.place.id
-      );
+      createWaveFunctionCollapse(image, canvas, wfcOptions, this.place.id, map);
     });
   }
 

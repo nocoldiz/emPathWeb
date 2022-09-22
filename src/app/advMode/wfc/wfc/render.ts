@@ -1,10 +1,13 @@
 import { ISuperposition } from './superposition';
 import { IOverlappingModel } from './overlappingModel';
 
-let collisionMap;
+let collisionMap = [];
 
 let tileLibrary = {
+  //Green
   '#00ff0c': ['🌱', '🥀'],
+
+  //Blue
   '#00d8ff': ['🌊'],
 };
 
@@ -29,8 +32,8 @@ function drawPixelFromColor(
     (color >> 16) & 255
   })`;
   //console.log('#map', x, y, ctx.fillStyle);
-  if (ctx.fillStyle === `rgb(0,0,0`) {
-    collisionMap[x][y] = 'X';
+  if (ctx.fillStyle === `#000f01`) {
+    collisionMap.push([x, y]);
     console.log(collisionMap);
   }
   //TODO: add different probabilities, ex: fertility stat for drawing flowers

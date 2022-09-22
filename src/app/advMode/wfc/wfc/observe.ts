@@ -29,7 +29,8 @@ function pickFromDistribution(array: number[], r: number): number {
 export function createObservation(
   { patternCount, N }: IOverlappingModel,
   { wave, width, height, numCoefficients, periodic, collapse }: ISuperposition,
-  placeId: string
+  placeId: string,
+  map: any
 ) {
   const logT = Math.log(numCoefficients);
   const distribution: number[] = [];
