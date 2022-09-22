@@ -19,7 +19,7 @@ export interface IWaveFunctionCollapse {
   stop(): void;
 }
 
-const targetFps = 45;
+const targetFps = 60;
 const targetTime = 1000 / targetFps;
 
 export function createWaveFunctionCollapse(
@@ -46,8 +46,8 @@ export function createWaveFunctionCollapse(
 
   const observe = createObservation(model, superpos);
 
-  canvas.width = superpos.width;
-  canvas.height = superpos.height;
+  canvas.width = 512;
+  canvas.height = 512;
 
   const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 

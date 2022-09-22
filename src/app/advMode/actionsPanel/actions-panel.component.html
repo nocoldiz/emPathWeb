@@ -9,13 +9,6 @@
         <!-- Actions container -->
         <div fxLayout="row wrap" class="app-card-row-holder">
           <div #mapContainer class="map-container"></div>
-          <div class="map-grid">
-            <div class="map-grid__row" *ngFor="let row of map; index as i">
-              <span *ngFor="let col of row; index as j" class="tile">{{
-                map[i][j]
-              }}</span>
-            </div>
-          </div>
         </div>
 
         <div fxLayout="row" class="app-card-row-holder">

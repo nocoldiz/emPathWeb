@@ -67,7 +67,7 @@ export class ActionsPanelComponent implements OnInit {
     const canvas = document.createElement('canvas');
     const wfcOptions = {
       N: 3,
-      symmetry: 2,
+      symmetry: 8,
       ground: 0,
       periodicInput: true,
       periodicOutput: true,
@@ -80,7 +80,7 @@ export class ActionsPanelComponent implements OnInit {
     canvas.height = 32;
     this.mapContainer.nativeElement.append(canvas);
 
-    this.getImageData('./assets/img/wfc/Village.png').then((image) => {
+    this.getImageData('./assets/img/wfc/gas.png').then((image) => {
       this.wfc = createWaveFunctionCollapse(image, canvas, wfcOptions);
     });
   }

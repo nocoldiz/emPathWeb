@@ -1,6 +1,8 @@
 import { ISuperposition } from './superposition';
 import { IOverlappingModel } from './overlappingModel';
 
+const TILESIZE = 16;
+
 function orderedArraySum(array: number[]): number[] {
   const sorted = array.slice().sort((a, b) => b - a);
   const sum = [sorted[0]];
@@ -19,8 +21,8 @@ function drawPixelFromColor(
   ctx.fillStyle = `rgb(${color & 255},${(color >> 8) & 255},${
     (color >> 16) & 255
   })`;
-  console.log(x, y, color);
-  ctx.fillRect(x, y, 1, 1);
+  console.log(x, y);
+  ctx.fillRect(x * TILESIZE, y * TILESIZE, TILESIZE, TILESIZE);
 }
 
 export function createRender(
@@ -72,7 +74,7 @@ export function createRender(
       const saturation = 100 * (sum / maxPatternCount[activeCoefficients]);
       const lightness = Math.round(80 - (80 * activeCoefficients) / w.length);
       ctx.fillStyle = `hsl(${hue},${saturation}%,${lightness}%)`;
-      ctx.fillRect(x, y, 1, 1);
+      ctx.fillRect(x * TILESIZE, y * TILESIZE, TILESIZE, TILESIZE);
     }
   };
 }
