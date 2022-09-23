@@ -1,8 +1,8 @@
 import {
   IWaveFunctionCollapse,
   MapService,
-} from './../../services/map.service';
-import { barBackground } from './../../../@youpez/data/charts';
+} from '../../services/map.service';
+import { barBackground } from '../../../@youpez/data/charts';
 import { IAction } from '../../interfaces/events.interface';
 import {
   Component,
@@ -22,11 +22,11 @@ import { IPlace } from 'src/app/interfaces/places.interface';
 import { Console } from 'console';
 
 @Component({
-  selector: 'app-actions-panel',
-  templateUrl: './actions-panel.component.html',
-  styleUrls: ['./actions-panel.component.scss'],
+  selector: 'app-minimap',
+  templateUrl: './minimap.component.html',
+  styleUrls: ['./minimap.component.scss'],
 })
-export class ActionsPanelComponent implements OnInit {
+export class MinimapComponent implements OnInit {
   @Input() actions: IAction[];
   @Input() items: IItem[];
   @Input() npc: INpc[];
@@ -40,6 +40,7 @@ export class ActionsPanelComponent implements OnInit {
   sampleImage;
   inputBitmap: ImageData | undefined;
   wfc: IWaveFunctionCollapse | undefined;
+  eventMap: string[][]
 
   @ViewChild('mapContainer', { static: true })
   mapContainer: ElementRef<HTMLCanvasElement>;
@@ -54,7 +55,12 @@ export class ActionsPanelComponent implements OnInit {
    * @returns {any}
    */
   handleKeyboardEvent(event: KeyboardEvent) {
-    let collisionMap = this.mapService.getCollisionMap();
+    let eventMap = this.mapService.getEventMap();
+    console.log(this.positionY, this.positionX)
+    console.log(eventMap[this.positionY] && eventMap[this.positionY][this.positionX])
+    if (this.positionX) {
+    }
+
     // console.log(collisionMap);
     //TODO: cycle collisionMap before moving if this.positionX && this.positionY
     switch (event.key) {
@@ -131,15 +137,20 @@ export class ActionsPanelComponent implements OnInit {
     });
   }
 
-  constructor(private store: Store<AppState>, private mapService: MapService) {}
+  constructor(private store: Store<AppState>, private mapService: MapService) { }
 
   ngOnInit(): void {
     this.ctx = this.mapContainer.nativeElement.getContext('2d');
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.place) {
       this.wfc.stop();
+      this.tileSize = 512 / this.place.size;
+      this.positionX = 512 * 0.5
+      this.positionY = 512 * 0.5
+
       this.generateMap(
         changes.place.currentValue.size || 32,
         changes.place.currentValue.map || 'Town'
@@ -148,8 +159,11 @@ export class ActionsPanelComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+    this.tileSize = 512 / this.place.size;
+    this.positionX = 512 * 0.5
+    this.positionY = 512 * 0.5
+
     this.generateMap(this.place?.size || 32, this.place?.map || 'Town');
-    let collisionMap = this.mapService.getCollisionMap();
-    console.log(collisionMap);
+    this.eventMap = this.mapService.getEventMap();
   }
 }

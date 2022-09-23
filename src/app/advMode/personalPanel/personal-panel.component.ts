@@ -38,7 +38,6 @@ export class PersonalPanelComponent implements OnInit, OnChanges {
   validTargets: string[] = ['yourself', 'ground', 'sky', 'item', 'npc1'];
 
   clickOnAction(action: IAction): void {
-    console.log('## click on action ', action);
     this.hint = 'Choose target';
 
     this.store.dispatch(
@@ -46,22 +45,19 @@ export class PersonalPanelComponent implements OnInit, OnChanges {
     );
   }
   clickOnBodyPart(bodyPart: string): void {
-    console.log('## click on body part');
     this.selectedPart = bodyPart.concat('Actions');
     this.hint = 'Select action';
 
     this.trigger.openMenu();
   }
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>) { }
 
-  ngOnChanges(changes: SimpleChanges): void {}
+  ngOnChanges(changes: SimpleChanges): void { }
 
   ngOnInit(): void {
     let playerBody = this.player.bodyType;
     this.hint = this.player.name;
     Object.keys(playerBody).forEach((bodyPartName) => {
-      console.log('## element', bodyPartName);
-
       playerBody[bodyPartName].organs.forEach((organ) => {
         let menuName = bodyPartName.concat('Actions');
         // Find all actions
@@ -69,17 +65,13 @@ export class PersonalPanelComponent implements OnInit, OnChanges {
           try {
             this[menuName].push(action);
           } catch (err) {
-            console.log('Missing body part', err);
           }
         });
         // Remove duplicates
         this[menuName].filter(
           (item, index) => this[menuName].indexOf(item) === index
         );
-
-        console.log('## element', organ);
       });
     });
-    console.log(this);
   }
 }

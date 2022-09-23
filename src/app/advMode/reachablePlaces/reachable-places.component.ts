@@ -17,9 +17,8 @@ export class ReachablePlacesComponent implements OnInit {
   @Input() places: IPlace[];
   @Input() previousPlace: IPlace;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>) { }
   clickOnPlace(newPlace: IPlace): void {
-    console.log('## click on place ', newPlace);
     this.store.dispatch(loadPlace({ place: newPlace }));
     this.store.dispatch(loadPreviousPlace({ place: this.currentPlace }));
   }
@@ -28,6 +27,5 @@ export class ReachablePlacesComponent implements OnInit {
     this.store.dispatch(loadPlace({ place: this.previousPlace }));
   }
   ngOnInit(): void {
-    console.log('ReachablePlacesComponent', this.places);
   }
 }

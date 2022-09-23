@@ -1,7 +1,4 @@
-<div
-  class="app-content app-content--default relative sticky top-0"
-  ngClass.gt-md="-mt-20"
->
+<div class="app-content app-content--default relative sticky top-0" ngClass.gt-md="-mt-20">
   <!-- Description container -->
   <div fxFlex="80%" fxFlex.gt-md="100%">
     <div ngClass.lt-md="ml-2" ngClass.md="ml-2" ngClass.gt-md="pt-4">
@@ -10,18 +7,17 @@
         <div fxLayout="row wrap" class="app-card-row-holder">
 
           <div class="map-container">
+            <canvas #eventContainer class="event-layer" width="512" height="512"></canvas>
+            <div *ngFor="let row of eventMap"></div>
+
             <canvas #mapContainer class="map-layer" width="512" height="512"></canvas>
 
-            <canvas #eventContainer class="event-layer" width="512" height="512"></canvas>
           </div>
         </div>
 
         <div fxLayout="row" class="app-card-row-holder">
           <ng-container *ngFor="let action of actions">
-            <app-action-button
-              [action]="action"
-              (click)="clickOnAction(action)"
-            ></app-action-button>
+            <app-action-button [action]="action" (click)="clickOnAction(action)"></app-action-button>
           </ng-container>
         </div>
       </div>

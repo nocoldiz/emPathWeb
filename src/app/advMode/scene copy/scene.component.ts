@@ -39,13 +39,12 @@ export class SceneComponent implements OnInit {
   });
 */
   clickOnAction(actionId: string): void {
-    console.log('## click on action ', actionId);
     this.store.dispatch(
       updateLog({ logEntry: { text: 'test', action: 'you made x' } })
     );
   }
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

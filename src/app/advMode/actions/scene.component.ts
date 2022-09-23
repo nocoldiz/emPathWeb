@@ -19,7 +19,6 @@ export class SceneComponent implements OnInit {
   public actions$ = this.store.select(getScene);
 
   public place$ = this.store.select(getPlace).subscribe((place: IPlace) => {
-    console.log(place);
     this.title = place.name;
 
     this.text = place.description;
@@ -31,21 +30,18 @@ export class SceneComponent implements OnInit {
       this.actions.push(placeAction);
       //this.store.dispatch(pushAction({ action: placeAction }));
 
-      console.log('place?.actions', actionId, placeAction);
     });
   });
   public activeAction$ = this.store.select(getActiveAction).subscribe((id) => {
-    console.log('## active action', id);
   });
 */
   clickOnAction(actionId: string): void {
-    console.log('## click on action ', actionId);
     this.store.dispatch(
       updateLog({ logEntry: { text: 'test', action: 'you made x' } })
     );
   }
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

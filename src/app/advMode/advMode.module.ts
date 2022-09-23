@@ -17,7 +17,7 @@ import { SceneComponent } from './scene/scene.component';
 import { ActionButtonComponent } from './actionButton/action-button.component';
 import { PlaceInfoComponent } from './placeInfo/place-info.component';
 import { RightPanelComponent } from './rightPanel/right-panel.component';
-import { ActionsPanelComponent } from './actionsPanel/actions-panel.component';
+import { MinimapComponent } from './minimap/minimap.component';
 import { MapService } from '../../app/services/map.service';
 import { ReachablePlacesComponent } from './reachablePlaces/reachable-places.component';
 @NgModule({
@@ -34,7 +34,7 @@ import { ReachablePlacesComponent } from './reachablePlaces/reachable-places.com
     BodyButtonComponent,
     PlaceInfoComponent,
     RightPanelComponent,
-    ActionsPanelComponent,
+    MinimapComponent,
     ReachablePlacesComponent,
     PersonalPanelComponent,
   ],
@@ -48,8 +48,8 @@ import { ReachablePlacesComponent } from './reachablePlaces/reachable-places.com
     ActionButtonComponent,
     PlaceInfoComponent,
     RightPanelComponent,
-    ActionsPanelComponent,
+    MinimapComponent,
   ],
   providers: [MapService],
 })
-export class AdvModeModule {}
+export class AdvModeModule { }

@@ -47,7 +47,7 @@ export class MapService {
   targetTime = 1000 / this.targetFps;
   stop = false;
   sumFunc = (a: any, b: any) => a + b;
-  collisionMap = [];
+  eventMap = [];
 
   tileLibrary = {
     //Green
@@ -57,11 +57,10 @@ export class MapService {
     '#00d8ff': ['🌊'],
   };
 
-  constructor(@Inject(DOCUMENT) private document: HTMLDocument) {}
+  constructor(@Inject(DOCUMENT) private document: HTMLDocument) { }
   createPlayer(canvas: HTMLCanvasElement) {
     this.eventCtx = this.ev.getContext('2d') as CanvasRenderingContext2D;
 
-    console.log(this.document.body, this.eventCtx);
 
     this.eventCtx.fillStyle = 'green';
     this.eventCtx.strokeStyle = 'green';
@@ -73,7 +72,6 @@ export class MapService {
 
     this.eventCtx = this.ev.getContext('2d') as CanvasRenderingContext2D;
 
-    console.log(this.document.body, this.eventCtx);
 
     this.eventCtx.fillStyle = 'green';
     this.eventCtx.strokeStyle = 'green';
@@ -81,18 +79,13 @@ export class MapService {
     this.eventCtx.fillText('🏖️', x, y, 16);
   }
 
-  getCollisionMap() {
-    return this.collisionMap;
+  getEventMap() {
+    return this.eventMap;
   }
-
   createImage(canvas: HTMLCanvasElement) {
     this.cv = canvas;
 
-    console.log('the canvas:' + this.cv);
-    console.log(this.cv);
     this.groundCtx = this.cv.getContext('2d') as CanvasRenderingContext2D;
-
-    console.log(this.document.body, this.groundCtx);
 
     this.groundCtx.fillStyle = 'green';
     this.groundCtx.strokeStyle = 'black';
@@ -301,13 +294,13 @@ export class MapService {
     tilesize: number
   ) {
     groundCtx.textAlign = 'center';
-    groundCtx.fillStyle = `rgb(${color & 255},${(color >> 8) & 255},${
-      (color >> 16) & 255
-    })`;
-    //console.log('#map', x, y, groundCtx.fillStyle);
+    groundCtx.fillStyle = `rgb(${color & 255},${(color >> 8) & 255},${(color >> 16) & 255
+      })`;
+    if (!this.eventMap[y]) { this.eventMap[y] = [] }
     if (groundCtx.fillStyle === `#000f01`) {
-      this.collisionMap.push([x, y]);
-      console.log(this.collisionMap);
+      // this.collisionMap.push([x, y]);
+      this.eventMap[y][x] = "X";
+
     }
     //TODO: add different probabilities, ex: fertility stat for drawing flowers
     if (Math.random() > 0.8) {
@@ -316,9 +309,9 @@ export class MapService {
       if (groundCtx.fillStyle in this.tileLibrary) {
         groundCtx.fillText(
           this.tileLibrary[groundCtx.fillStyle][
-            Math.floor(
-              Math.random() * this.tileLibrary[groundCtx.fillStyle].length
-            )
+          Math.floor(
+            Math.random() * this.tileLibrary[groundCtx.fillStyle].length
+          )
           ],
           x * tilesize,
           y * tilesize,
