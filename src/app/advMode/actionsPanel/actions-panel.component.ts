@@ -7,6 +7,7 @@ import { IAction } from '../../interfaces/events.interface';
 import {
   Component,
   ElementRef,
+  HostListener,
   Input,
   OnInit,
   SimpleChanges,
@@ -18,6 +19,7 @@ import { updateLog } from '../../store/scene/scene.actions';
 import { IItem } from 'src/app/interfaces/inventory.interface';
 import { INpc } from 'src/app/interfaces/npc.interface';
 import { IPlace } from 'src/app/interfaces/places.interface';
+import { Console } from 'console';
 
 @Component({
   selector: 'app-actions-panel',
@@ -30,16 +32,54 @@ export class ActionsPanelComponent implements OnInit {
   @Input() npc: INpc[];
   @Input() place: IPlace;
   private ctx: CanvasRenderingContext2D;
-
+  private key: string;
+  positionY: number = 0;
+  positionX: number = 0;
+  tileSize = 16;
   img: string = '';
   sampleImage;
+  inputBitmap: ImageData | undefined;
+  wfc: IWaveFunctionCollapse | undefined;
+
   @ViewChild('mapContainer', { static: true })
   mapContainer: ElementRef<HTMLCanvasElement>;
+
   @ViewChild('eventContainer') eventContainer: ElementRef;
 
-  inputBitmap: ImageData | undefined;
+  @HostListener('document:keypress', ['$event'])
 
-  wfc: IWaveFunctionCollapse | undefined;
+  /**
+   * Description
+   * @param {KeyboardEvent} event
+   * @returns {any}
+   */
+  handleKeyboardEvent(event: KeyboardEvent) {
+    let collisionMap = this.mapService.getCollisionMap();
+    console.log(collisionMap);
+    //TODO: cycle collisionMap before moving if this.positionX && this.positionY
+    switch (event.key) {
+      case 'a':
+        this.positionX -= this.tileSize;
+        break;
+      case 'd':
+        this.positionX += this.tileSize;
+        break;
+      case 's':
+        this.positionY += this.tileSize;
+        break;
+      case 'w':
+        this.positionY -= this.tileSize;
+        break;
+    }
+    console.log(this.positionX, this.positionY);
+    //player position
+  }
+
+  /**
+   * getImageData
+   * @param {string} url
+   * @returns {any}
+   */
   getImageData(url: string): Promise<ImageData> {
     const img = document.createElement('img');
     img.src = url;
