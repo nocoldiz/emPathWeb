@@ -39,8 +39,11 @@ export interface IWaveFunctionCollapse {
 @Injectable()
 export class MapService {
   targetFps = 60;
-  ctx: CanvasRenderingContext2D;
+  groundCtx: CanvasRenderingContext2D;
+  eventCtx: CanvasRenderingContext2D;
+
   cv;
+  ev;
   targetTime = 1000 / this.targetFps;
   stop = false;
   sumFunc = (a: any, b: any) => a + b;
@@ -55,7 +58,16 @@ export class MapService {
   };
 
   constructor(@Inject(DOCUMENT) private document: HTMLDocument) {}
-  createPlayer(canvas: HTMLCanvasElement) {}
+  createPlayer(canvas: HTMLCanvasElement) {
+    this.eventCtx = this.ev.getContext('2d') as CanvasRenderingContext2D;
+
+    console.log(this.document.body, this.eventCtx);
+
+    this.eventCtx.fillStyle = 'green';
+    this.eventCtx.strokeStyle = 'green';
+    this.eventCtx.fillRect(0, 0, canvas.width, canvas.height);
+    this.eventCtx.fillText('🏖️', 16, 16, 16);
+  }
 
   getCollisionMap() {
     return this.collisionMap;
@@ -66,20 +78,20 @@ export class MapService {
 
     console.log('the canvas:' + this.cv);
     console.log(this.cv);
-    this.ctx = this.cv.getContext('2d') as CanvasRenderingContext2D;
+    this.groundCtx = this.cv.getContext('2d') as CanvasRenderingContext2D;
 
-    console.log(this.document.body, this.ctx);
+    console.log(this.document.body, this.groundCtx);
 
-    this.ctx.fillStyle = 'green';
-    this.ctx.strokeStyle = 'black';
-    this.ctx.fillRect(10, 5, 200, 50);
-    this.ctx.fillStyle = 'yellow';
-    this.ctx.fillRect(60, 35, 100, 40);
-    return this.ctx.canvas.toDataURL();
+    this.groundCtx.fillStyle = 'green';
+    this.groundCtx.strokeStyle = 'black';
+    this.groundCtx.fillRect(10, 5, 200, 50);
+    this.groundCtx.fillStyle = 'yellow';
+    this.groundCtx.fillRect(60, 35, 100, 40);
+    return this.groundCtx.canvas.toDataURL();
   }
   clear(): void {
-    this.ctx.fillStyle = '#000';
-    this.ctx.fillRect(0, 0, this.cv.width, this.cv.height);
+    this.groundCtx.fillStyle = '#000';
+    this.groundCtx.fillRect(0, 0, this.cv.width, this.cv.height);
     this.stop = true;
   }
   setGround(
@@ -203,16 +215,16 @@ export class MapService {
     canvas.height = 512;
     const tilesize = canvas.width / outputWidth;
 
-    const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+    const groundCtx = canvas.getContext('2d') as CanvasRenderingContext2D;
 
     const clear = () => {
-      ctx.fillStyle = '#000';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      groundCtx.fillStyle = '#000';
+      groundCtx.fillRect(0, 0, canvas.width, canvas.height);
       superpos.clear();
       this.setGround(ground, superpos);
     };
 
-    const render = this.createRender(model, superpos, ctx, tilesize);
+    const render = this.createRender(model, superpos, groundCtx, tilesize);
 
     let propagating = false;
     let propagationLoops = 1;
@@ -270,18 +282,18 @@ export class MapService {
   }
 
   drawPixelFromColor(
-    ctx: CanvasRenderingContext2D,
+    groundCtx: CanvasRenderingContext2D,
     x: number,
     y: number,
     color: number,
     tilesize: number
   ) {
-    ctx.textAlign = 'center';
-    ctx.fillStyle = `rgb(${color & 255},${(color >> 8) & 255},${
+    groundCtx.textAlign = 'center';
+    groundCtx.fillStyle = `rgb(${color & 255},${(color >> 8) & 255},${
       (color >> 16) & 255
     })`;
-    //console.log('#map', x, y, ctx.fillStyle);
-    if (ctx.fillStyle === `#000f01`) {
+    //console.log('#map', x, y, groundCtx.fillStyle);
+    if (groundCtx.fillStyle === `#000f01`) {
       this.collisionMap.push([x, y]);
       console.log(this.collisionMap);
     }
@@ -289,10 +301,12 @@ export class MapService {
     if (Math.random() > 0.8) {
       //Draw emoji
 
-      if (ctx.fillStyle in this.tileLibrary) {
-        ctx.fillText(
-          this.tileLibrary[ctx.fillStyle][
-            Math.floor(Math.random() * this.tileLibrary[ctx.fillStyle].length)
+      if (groundCtx.fillStyle in this.tileLibrary) {
+        groundCtx.fillText(
+          this.tileLibrary[groundCtx.fillStyle][
+            Math.floor(
+              Math.random() * this.tileLibrary[groundCtx.fillStyle].length
+            )
           ],
           x * tilesize,
           y * tilesize,
@@ -301,14 +315,14 @@ export class MapService {
       }
     }
 
-    ctx.fillRect(x * tilesize, y * tilesize, tilesize, tilesize);
-    // ctx.fillText('🏖️', x * TILESIZE, y * TILESIZE, TILESIZE);
+    groundCtx.fillRect(x * tilesize, y * tilesize, tilesize, tilesize);
+    // groundCtx.fillText('🏖️', x * TILESIZE, y * TILESIZE, TILESIZE);
   }
 
   createRender(
     { colors, patterns, patternCount, N }: IOverlappingModel,
     { wave, width, height, periodic }: ISuperposition,
-    ctx: CanvasRenderingContext2D,
+    groundCtx: CanvasRenderingContext2D,
     tilesize: number
   ) {
     const maxPatternCount = this.orderedArraySum(patternCount);
@@ -343,7 +357,7 @@ export class MapService {
           for (let i = 0; i < N; i++) {
             for (let j = 0; j < N; j++) {
               this.drawPixelFromColor(
-                ctx,
+                groundCtx,
                 x + i,
                 y + j,
                 colors[pattern[i + j * N]],
@@ -352,7 +366,13 @@ export class MapService {
             }
           }
         } else {
-          this.drawPixelFromColor(ctx, x, y, colors[pattern[0]], tilesize);
+          this.drawPixelFromColor(
+            groundCtx,
+            x,
+            y,
+            colors[pattern[0]],
+            tilesize
+          );
         }
       } else {
         // circular average of active coefficients
@@ -360,10 +380,10 @@ export class MapService {
 
         const saturation = 1 * (sum / maxPatternCount[activeCoefficients]);
         const lightness = Math.round(80 - (80 * activeCoefficients) / w.length);
-        ctx.fillStyle = `hsl(${hue},${saturation}%,${lightness}%)`;
+        groundCtx.fillStyle = `hsl(${hue},${saturation}%,${lightness}%)`;
 
-        ctx.fillRect(x * tilesize, y * tilesize, tilesize, tilesize);
-        //ctx.fillText('⛸', x * tilesize, y * tilesize, tilesize);
+        groundCtx.fillRect(x * tilesize, y * tilesize, tilesize, tilesize);
+        //groundCtx.fillText('⛸', x * tilesize, y * tilesize, tilesize);
       }
     };
   }

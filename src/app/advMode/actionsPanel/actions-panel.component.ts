@@ -62,7 +62,7 @@ export class ActionsPanelComponent implements OnInit {
     let map = [[]];
     const wfcOptions = {
       N: 3,
-      symmetry: 2,
+      symmetry: 1,
       ground: 0,
       periodicInput: true,
       periodicOutput: true,
