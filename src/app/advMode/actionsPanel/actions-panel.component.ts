@@ -55,7 +55,7 @@ export class ActionsPanelComponent implements OnInit {
    */
   handleKeyboardEvent(event: KeyboardEvent) {
     let collisionMap = this.mapService.getCollisionMap();
-    console.log(collisionMap);
+    // console.log(collisionMap);
     //TODO: cycle collisionMap before moving if this.positionX && this.positionY
     switch (event.key) {
       case 'a':
@@ -72,6 +72,11 @@ export class ActionsPanelComponent implements OnInit {
         break;
     }
     console.log(this.positionX, this.positionY);
+    this.mapService.movePlayer(
+      this.eventContainer.nativeElement,
+      this.positionX,
+      this.positionY
+    );
     //player position
   }
 
@@ -110,7 +115,7 @@ export class ActionsPanelComponent implements OnInit {
       outputHeight: size,
     };
 
-    canvas.className = 'wfcOutput';
+    // canvas.className = 'wfcOutput';
     this.ctx.canvas.width = size;
     this.ctx.canvas.height = size;
     //this.mapContainer.nativeElement.append(canvas);

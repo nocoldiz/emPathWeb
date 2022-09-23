@@ -68,6 +68,18 @@ export class MapService {
     this.eventCtx.fillRect(0, 0, canvas.width, canvas.height);
     this.eventCtx.fillText('🏖️', 16, 16, 16);
   }
+  movePlayer(canvas: HTMLCanvasElement, x: number, y: number) {
+    this.ev = canvas;
+
+    this.eventCtx = this.ev.getContext('2d') as CanvasRenderingContext2D;
+
+    console.log(this.document.body, this.eventCtx);
+
+    this.eventCtx.fillStyle = 'green';
+    this.eventCtx.strokeStyle = 'green';
+    // this.eventCtx.fillRect(0, 0, canvas.width, canvas.height);
+    this.eventCtx.fillText('🏖️', x, y, 16);
+  }
 
   getCollisionMap() {
     return this.collisionMap;

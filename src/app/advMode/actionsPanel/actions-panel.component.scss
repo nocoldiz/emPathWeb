@@ -1,6 +1,3 @@
-.map-container{
-  //transform: scale(9) translateY(40px) translateX((20px));
-}
 
 .map-grid{
   &__row{
@@ -12,7 +9,11 @@
   }
 }
 
+.map-layer{
+  position: absolute;
+}
 
 .event-layer{
   position: absolute;
+  z-index: 100;
 }
