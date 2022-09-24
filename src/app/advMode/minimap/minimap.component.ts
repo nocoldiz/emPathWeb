@@ -18,6 +18,7 @@ import { AppState } from '../../store/app.state';
 import { IItem } from 'src/app/interfaces/inventory.interface';
 import { INpc } from 'src/app/interfaces/npc.interface';
 import { IPlace } from 'src/app/interfaces/places.interface';
+import Phaser from 'phaser';
 
 @Component({
   selector: 'app-minimap',

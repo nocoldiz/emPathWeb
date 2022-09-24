@@ -4,8 +4,10 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "baseUrl": "./",
+    "allowSyntheticDefaultImports": true,
     "outDir": "./out-tsc/app",
     "types": ["node"],
+    "lib": [ "es5", "dom", "scripthost" ],
     "paths": {
       "@youpez/*": [
         "src/@youpez/*"

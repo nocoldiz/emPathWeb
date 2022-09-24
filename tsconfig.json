@@ -11,6 +11,8 @@
   },
    "compilerOptions": {
     "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "lib":["scripthost"],
   },
   "references": [
     {
