@@ -25,7 +25,7 @@ export let fixedPlaces: IPlace[] = [
   {
     id: 'ml-bathroom-stall',
     name: 'Bathroom stall',
-    size: 8,
+    size: 16,
     description: `There is a sign that says "please use the bathroom" and a small hand print next to it.
     If you look up, you can see the sky through the hole in the roof. It doesn't rain often here and most people don't mind the lack of privacy or having to go outside to do their business.`,
     actions: ['piss'],

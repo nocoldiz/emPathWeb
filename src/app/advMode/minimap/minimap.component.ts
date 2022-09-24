@@ -15,11 +15,9 @@ import {
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
-import { updateLog } from '../../store/scene/scene.actions';
 import { IItem } from 'src/app/interfaces/inventory.interface';
 import { INpc } from 'src/app/interfaces/npc.interface';
 import { IPlace } from 'src/app/interfaces/places.interface';
-import { Console } from 'console';
 
 @Component({
   selector: 'app-minimap',
@@ -45,7 +43,6 @@ export class MinimapComponent implements OnInit {
   @ViewChild('mapContainer', { static: true })
   mapContainer: ElementRef<HTMLCanvasElement>;
 
-  @ViewChild('eventContainer') eventContainer: ElementRef;
 
   @HostListener('document:keypress', ['$event'])
 
@@ -79,7 +76,7 @@ export class MinimapComponent implements OnInit {
     }
     console.log(this.positionX, this.positionY);
     this.mapService.movePlayer(
-      this.eventContainer.nativeElement,
+      this.mapContainer.nativeElement,
       this.positionX,
       this.positionY
     );
@@ -113,7 +110,7 @@ export class MinimapComponent implements OnInit {
     let map = [[]];
     const wfcOptions = {
       N: 3,
-      symmetry: 1,
+      symmetry: 8,
       ground: 0,
       periodicInput: true,
       periodicOutput: true,
