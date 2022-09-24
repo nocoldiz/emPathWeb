@@ -47,7 +47,7 @@ export class MapService {
   targetTime = 1000 / this.targetFps;
   stop = false;
   sumFunc = (a: any, b: any) => a + b;
-  eventMap = [];
+  eventMap = [[]];
 
   tileLibrary = {
     //Green
@@ -67,12 +67,8 @@ export class MapService {
     this.eventCtx.fillRect(0, 0, canvas.width, canvas.height);
     this.eventCtx.fillText('🏖️', 16, 16, 16);
   }
-  movePlayer(canvas: HTMLCanvasElement, x: number, y: number) {
-    this.ev = canvas;
-
+  movePlayer(x: number, y: number) {
     this.eventCtx = this.ev.getContext('2d') as CanvasRenderingContext2D;
-
-
     this.eventCtx.fillStyle = 'green';
     this.eventCtx.strokeStyle = 'green';
     // this.eventCtx.fillRect(0, 0, canvas.width, canvas.height);
@@ -190,7 +186,6 @@ export class MapService {
 
   createWaveFunctionCollapse(
     image: ImageData,
-    canvas: HTMLCanvasElement,
     {
       periodicInput,
       periodicOutput,
@@ -216,20 +211,13 @@ export class MapService {
 
     const observe = this.createObservation(model, superpos, placeId, map);
 
-    canvas.width = 512;
-    canvas.height = 512;
-    const tilesize = canvas.width / outputWidth;
-
-    const groundCtx = canvas.getContext('2d') as CanvasRenderingContext2D;
-
+    const tilesize = 512 / outputWidth;
     const clear = () => {
-      groundCtx.fillStyle = '#000';
-      groundCtx.fillRect(0, 0, canvas.width, canvas.height);
       superpos.clear();
       this.setGround(ground, superpos);
     };
 
-    const render = this.createRender(model, superpos, groundCtx, tilesize);
+    const render = this.createRender(model, superpos, tilesize);
 
     let propagating = false;
     let propagationLoops = 1;
@@ -287,17 +275,17 @@ export class MapService {
   }
 
   drawPixelFromColor(
-    groundCtx: CanvasRenderingContext2D,
     x: number,
     y: number,
     color: number,
     tilesize: number
   ) {
-    groundCtx.textAlign = 'center';
-    groundCtx.fillStyle = `rgb(${color & 255},${(color >> 8) & 255},${(color >> 16) & 255
+    let fillColor = `rgb(${color & 255},${(color >> 8) & 255},${(color >> 16) & 255
       })`;
+    console.log("##fillColor", fillColor)
+
     if (!this.eventMap[y]) { this.eventMap[y] = [] }
-    if (groundCtx.fillStyle === `#000f01`) {
+    if (fillColor === `#000f01`) {
       // this.collisionMap.push([x, y]);
       this.eventMap[y][x] = "X";
 
@@ -306,28 +294,19 @@ export class MapService {
     if (Math.random() > 0.8) {
       //Draw emoji
 
-      if (groundCtx.fillStyle in this.tileLibrary) {
-        groundCtx.fillText(
-          this.tileLibrary[groundCtx.fillStyle][
-          Math.floor(
-            Math.random() * this.tileLibrary[groundCtx.fillStyle].length
-          )
-          ],
-          x * tilesize,
-          y * tilesize,
-          tilesize
-        );
+      if (fillColor in this.tileLibrary) {
+        //Draw
+
       }
     }
 
-    groundCtx.fillRect(x * tilesize, y * tilesize, tilesize, tilesize);
+    //groundCtx.fillRect(x * tilesize, y * tilesize, tilesize, tilesize);
     // groundCtx.fillText('🏖️', x * TILESIZE, y * TILESIZE, TILESIZE);
   }
 
   createRender(
     { colors, patterns, patternCount, N }: IOverlappingModel,
     { wave, width, height, periodic }: ISuperposition,
-    groundCtx: CanvasRenderingContext2D,
     tilesize: number
   ) {
     const maxPatternCount = this.orderedArraySum(patternCount);
@@ -362,7 +341,6 @@ export class MapService {
           for (let i = 0; i < N; i++) {
             for (let j = 0; j < N; j++) {
               this.drawPixelFromColor(
-                groundCtx,
                 x + i,
                 y + j,
                 colors[pattern[i + j * N]],
@@ -372,7 +350,6 @@ export class MapService {
           }
         } else {
           this.drawPixelFromColor(
-            groundCtx,
             x,
             y,
             colors[pattern[0]],
@@ -385,9 +362,9 @@ export class MapService {
 
         const saturation = 1 * (sum / maxPatternCount[activeCoefficients]);
         const lightness = Math.round(80 - (80 * activeCoefficients) / w.length);
-        groundCtx.fillStyle = `hsl(${hue},${saturation}%,${lightness}%)`;
+        //groundCtx.fillStyle = `hsl(${hue},${saturation}%,${lightness}%)`;
 
-        groundCtx.fillRect(x * tilesize, y * tilesize, tilesize, tilesize);
+        // groundCtx.fillRect(x * tilesize, y * tilesize, tilesize, tilesize);
         //groundCtx.fillText('⛸', x * tilesize, y * tilesize, tilesize);
       }
     };
