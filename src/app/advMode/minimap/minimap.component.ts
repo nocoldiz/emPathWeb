@@ -57,13 +57,13 @@ export class MinimapComponent implements OnInit {
   wfc: IWaveFunctionCollapse | undefined;
   eventMap: string[][]
   config: any;
+  game: Phaser.Game
 
   @ViewChild('mapContainer', { static: true })
   mapContainer: ElementRef<HTMLCanvasElement>;
+
   initialize: boolean;
-
-
-  phaserGame: Phaser.Game;
+  phaserGame: any
 
 
   /**
@@ -117,15 +117,35 @@ export class MinimapComponent implements OnInit {
       );*/
     });
   }
-
+  initializeGame() {
+    const context = this
+    context.initialize = true
+    context.phaserGame = {
+      width: 512,
+      height: 512,
+      type: Phaser.AUTO,
+      parent: 'map-container',
+      scene: {
+        create() {
+          console.log("##")
+          this.helloWorld = this.add.text(0, 0, 'Hello World')
+        },
+        update() {
+          this.helloWorld.angle += 1;
+          console.log(this.helloWorld.angle)
+        },
+        saveGame() {
+          const { angle } = this.helloWorld
+          // context.api.saveAngle(angle)
+        }
+      }
+    }
+    // this.phaserGame = new Phaser.Game();
+  }
   constructor(private store: Store<AppState>, private mapService: MapService) {
-    this.place$ = this.store.select(getPlace);
-
-
     this.config = {
       type: Phaser.AUTO,
       height: 512,
-      test: this.place$,
       pixelArt: true,
       width: 512,
       scene: [MainScene],
@@ -169,6 +189,8 @@ export class MinimapComponent implements OnInit {
     this.tileSize = 512 / this.place.size;
     this.positionX = 512 * 0.5
     this.positionY = 512 * 0.5
+    this.initializeGame();
+
     const context = this
     context.initialize = true
 

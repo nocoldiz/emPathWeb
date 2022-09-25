@@ -17,7 +17,7 @@ export default class MainScene extends Phaser.Scene {
     constructor(private store: Store<AppState>, private mapService: MapService) {
         //super(config)
         super({ key: 'main' });
-        console.log(this);
+        console.log(this)
 
     }
     helloWorld: Phaser.GameObjects.Text
