@@ -18,8 +18,12 @@ import { AppState } from '../../store/app.state';
 import { IItem } from 'src/app/interfaces/inventory.interface';
 import { INpc } from 'src/app/interfaces/npc.interface';
 import { IPlace } from 'src/app/interfaces/places.interface';
-import Phaser from 'phaser';
 import { getPlace } from 'src/app/store/scene/scene.selectors';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { defineCustomElements as defineIonPhaser } from '@ion-phaser/core/loader';
+interface GameInstance extends Phaser.Types.Core.GameConfig {
+  instance: Phaser.Game
+}
 
 
 export default class MainScene extends Phaser.Scene {
@@ -31,15 +35,26 @@ export default class MainScene extends Phaser.Scene {
   layer: any;
   player: any;
 
-  constructor(private store: Store<AppState>, private mapService: MapService) {
-    super(config)
+  constructor() {
+    //super(config)
     super({ key: 'main' });
     console.log(this);
-    this.place$ = this.store.select(getPlace);
-    console.log(this.store);
+
+  }
+  helloWorld: Phaser.GameObjects.Text
+
+  init() {
+    this.cameras.main.setBackgroundColor('#24252A');
+    console.log("## iNIT")
+    console.log(this);
 
   }
 
+
+
+  setAngle(angle: number) {
+    this.helloWorld.angle = angle;
+  }
   getImageData(url: string): Promise<ImageData> {
     const img = document.createElement('img');
     img.src = url;
@@ -75,16 +90,26 @@ export default class MainScene extends Phaser.Scene {
     //this.mapContainer.nativeElement.append(canvas);
 
     this.getImageData('./assets/img/wfc/' + img + '.png').then((image) => {
-      console.log("##imageData", image)
+      /*
       this.wfc = this.mapService && this.mapService.createWaveFunctionCollapse(
         image,
         wfcOptions,
         'test',
         map
-      );
+      );*/
     });
   }
   create() {
+    this.helloWorld = this.add.text(
+      this.cameras.main.centerX,
+      this.cameras.main.centerY,
+      "Hello World", {
+      font: "40px Arial",
+      color: "#ffffff"
+    }
+    );
+    this.helloWorld.setOrigin(0.5);
+
 
     this.place$.subscribe(() => {
       console.log("## place has changed00");
@@ -181,12 +206,9 @@ export default class MainScene extends Phaser.Scene {
   }
   update() {
     // console.log('update method');
-    this.mapService && this.mapService.getEventMap();
+    // this.mapService && this.mapService.getEventMap();
   }
 }
-
-
-
 @Component({
   selector: 'app-minimap',
   templateUrl: './minimap.component.html',
@@ -197,24 +219,34 @@ export class MinimapComponent implements OnInit {
   @Input() items: IItem[];
   @Input() npc: INpc[];
   @Input() place: IPlace;
-  phaserGame: Phaser.Game;
-  config: Phaser.Types.Core.GameConfig;
 
-  private ctx: CanvasRenderingContext2D;
-  private key: string;
+  phaser: GameInstance = {
+    width: 512,
+    height: 512,
+    type: Phaser.AUTO,
+    scene: [MainScene],
+    instance: null,
+    pixelArt: true,
+  };
+
   positionY: number = 0;
   positionX: number = 0;
   tileSize = 16;
   img: string = '';
+  place$: any
+
   sampleImage;
   inputBitmap: ImageData | undefined;
   wfc: IWaveFunctionCollapse | undefined;
   eventMap: string[][]
+  config: any;
 
   @ViewChild('mapContainer', { static: true })
   mapContainer: ElementRef<HTMLCanvasElement>;
+  initialize: boolean;
 
 
+  phaserGame: Phaser.Game;
 
 
   /**
@@ -269,10 +301,14 @@ export class MinimapComponent implements OnInit {
     });
   }
 
-  constructor() {
+  constructor(private store: Store<AppState>, private mapService: MapService) {
+    this.place$ = this.store.select(getPlace);
+
+
     this.config = {
       type: Phaser.AUTO,
       height: 512,
+      test: this.place$,
       pixelArt: true,
       width: 512,
       scene: [MainScene],
@@ -288,7 +324,10 @@ export class MinimapComponent implements OnInit {
 
   ngOnInit(): void {
 
+
+
   }
+
 
   ngOnChanges(changes: SimpleChanges): void {
     /*
@@ -305,12 +344,25 @@ export class MinimapComponent implements OnInit {
     }*/
   }
 
+  testFunction() {
+    console.log("test");
+  }
+
   ngAfterViewInit() {
     this.tileSize = 512 / this.place.size;
     this.positionX = 512 * 0.5
     this.positionY = 512 * 0.5
-    this.phaserGame = new Phaser.Game();
+    const context = this
+    context.initialize = true
+
+    context.phaserGame = new Phaser.Game(this.config);
+    context.initialize = true;
+
     this.generateMap(this.place?.size || 32, this.place?.map || 'Town');
+    // this.eventMap = this.mapService.getEventMap();
+
+    // this.phaserGame = new Phaser.Game();
+    // this.generateMap(this.place?.size || 32, this.place?.map || 'Town');
     // this.eventMap = this.mapService.getEventMap();
   }
 }

@@ -1,6 +1,6 @@
 import { BodyButtonComponent } from './bodyButton/body-button.component';
 import { PersonalPanelComponent } from './personalPanel/personal-panel.component';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { MatMenuModule } from '@angular/material/menu';
@@ -51,5 +51,7 @@ import { ReachablePlacesComponent } from './reachablePlaces/reachable-places.com
     MinimapComponent,
   ],
   providers: [MapService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+
 })
 export class AdvModeModule { }

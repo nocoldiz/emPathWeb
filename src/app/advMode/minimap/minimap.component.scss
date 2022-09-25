@@ -8,3 +8,8 @@
     line-height: 24px;
   }
 }
+
+.event-layer {
+  position: absolute;
+  z-index: 100;
+}

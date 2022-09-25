@@ -27,6 +27,7 @@
     "@carbon/elements": "^10.25.0",
     "@carbon/icons-angular": "^11.2.1",
     "@carbon/themes": "^10.25.0",
+    "@ion-phaser/core": "^1.3.0",
     "@ng-bootstrap/ng-bootstrap": "^8.0.1",
     "@ngneat/tailwind": "^1.1.0",
     "@ngrx/effects": "^10.1.2",
