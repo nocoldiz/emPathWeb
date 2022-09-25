@@ -19,15 +19,25 @@ import { IItem } from 'src/app/interfaces/inventory.interface';
 import { INpc } from 'src/app/interfaces/npc.interface';
 import { IPlace } from 'src/app/interfaces/places.interface';
 import Phaser from 'phaser';
-class MainScene extends Phaser.Scene {
+import { getPlace } from 'src/app/store/scene/scene.selectors';
+
+
+export default class MainScene extends Phaser.Scene {
+  place$: any
   map: Phaser.Tilemaps.Tilemap;
   wfc: IWaveFunctionCollapse | undefined;
   tileset: any;
+  tiles: any;
   layer: any;
   player: any;
 
-  constructor(private mapService: MapService) {
+  constructor(private store: Store<AppState>, private mapService: MapService) {
+    super(config)
     super({ key: 'main' });
+    console.log(this);
+    this.place$ = this.store.select(getPlace);
+    console.log(this.store);
+
   }
 
   getImageData(url: string): Promise<ImageData> {
@@ -75,11 +85,32 @@ class MainScene extends Phaser.Scene {
     });
   }
   create() {
+
+    this.place$.subscribe(() => {
+      console.log("## place has changed00");
+
+    });
+    var level = [
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 1, 2, 3, 0, 0, 0, 1, 2, 3, 0],
+      [0, 5, 6, 7, 0, 0, 0, 5, 6, 7, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 14, 13, 14, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 14, 14, 14, 14, 14, 0, 0, 0, 15],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 15],
+      [35, 36, 37, 0, 0, 0, 0, 0, 15, 15, 15],
+      [39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39]
+    ]
+
     //console.log('create method');
-    this.map = this.make.tilemap({ key: 'map', tileWidth: 32, tileHeight: 32 });
+    this.map = this.make.tilemap({ data: level, tileWidth: 16, tileHeight: 16 });
     //this.tileset = this.map.addTilesetImage('tiles', null, 32, 32, 1, 2);
-    this.layer = this.map.createLayer(0, this.tileset, 0, 0);
+    this.tiles = this.map.addTilesetImage('mario-tiles');
     this.player = this.add.image(32 + 16, 32 + 16, '');
+    this.layer = this.map.createLayer(0, this.tiles, 0, 0);
+    console.log(this.layer);
     var size = 15;
     this.generateMap(32, 'Village')
 
@@ -145,6 +176,8 @@ class MainScene extends Phaser.Scene {
   }
   preload() {
     // console.log('preload method');
+    this.load.image('mario-tiles', 'assets/tileset/super-mario.png');
+
   }
   update() {
     // console.log('update method');
@@ -182,43 +215,7 @@ export class MinimapComponent implements OnInit {
   mapContainer: ElementRef<HTMLCanvasElement>;
 
 
-  @HostListener('document:keypress', ['$event'])
 
-  /**
-   * Description
-   * @param {KeyboardEvent} event
-   * @returns {any}
-   */
-  handleKeyboardEvent(event: KeyboardEvent) {
-    let eventMap = this.mapService.getEventMap();
-    console.log(this.positionY, this.positionX)
-    console.log(eventMap[this.positionY] && eventMap[this.positionY][this.positionX])
-    if (this.positionX) {
-    }
-
-    // console.log(collisionMap);
-    //TODO: cycle collisionMap before moving if this.positionX && this.positionY
-    switch (event.key) {
-      case 'a':
-        this.positionX -= this.tileSize;
-        break;
-      case 'd':
-        this.positionX += this.tileSize;
-        break;
-      case 's':
-        this.positionY += this.tileSize;
-        break;
-      case 'w':
-        this.positionY -= this.tileSize;
-        break;
-    }
-    console.log(this.positionX, this.positionY);
-    this.mapService.movePlayer(
-      this.positionX,
-      this.positionY
-    );
-    //player position
-  }
 
   /**
    * getImageData
@@ -262,16 +259,17 @@ export class MinimapComponent implements OnInit {
     //this.mapContainer.nativeElement.append(canvas);
 
     this.getImageData('./assets/img/wfc/' + img + '.png').then((image) => {
+      /*
       this.wfc = this.mapService.createWaveFunctionCollapse(
         image,
         wfcOptions,
         this.place.id,
         map
-      );
+      );*/
     });
   }
 
-  constructor(private store: Store<AppState>, private mapService: MapService) {
+  constructor() {
     this.config = {
       type: Phaser.AUTO,
       height: 512,
@@ -293,8 +291,9 @@ export class MinimapComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    /*
     if (changes.place) {
-      this.wfc.stop();
+      //this.wfc.stop();
       this.tileSize = 512 / this.place.size;
       this.positionX = 512 * 0.5
       this.positionY = 512 * 0.5
@@ -303,15 +302,15 @@ export class MinimapComponent implements OnInit {
         changes.place.currentValue.size || 32,
         changes.place.currentValue.map || 'Town'
       );
-    }
+    }*/
   }
 
   ngAfterViewInit() {
     this.tileSize = 512 / this.place.size;
     this.positionX = 512 * 0.5
     this.positionY = 512 * 0.5
-    this.phaserGame = new Phaser.Game(this.config);
+    this.phaserGame = new Phaser.Game();
     this.generateMap(this.place?.size || 32, this.place?.map || 'Town');
-    this.eventMap = this.mapService.getEventMap();
+    // this.eventMap = this.mapService.getEventMap();
   }
 }

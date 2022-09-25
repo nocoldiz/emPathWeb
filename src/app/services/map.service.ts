@@ -282,7 +282,6 @@ export class MapService {
   ) {
     let fillColor = `rgb(${color & 255},${(color >> 8) & 255},${(color >> 16) & 255
       })`;
-    console.log("##fillColor", fillColor)
 
     if (!this.eventMap[y]) { this.eventMap[y] = [] }
     if (fillColor === `#000f01`) {
